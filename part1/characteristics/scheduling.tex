@@ -6,13 +6,34 @@ The performances of an operating system are deeply impacted by the scheduling al
 As we'll see further in the thesis, it can also affect the energy consumption of the device.\\
 
 \subsection{Base Concepts}
-Beforehand, we'll have to explain (or remind) some technical in order for the reader to fully understand this chapter.
+\paragraph{}
+Beforehand, we'll have to explain (or remind) some technical terms in order for the reader to fully understand this chapter.
 
 % What is a scheduler
+\paragraph{}
+A scheduler is a process designed to choose which task will run at a certain point of time in the system.
+Different disciplines can be used, each one with multiple advantages and drawbacks.
+Some commonly used will be presented below in the next subsection.
 
-% Preemtive vs non-preemptive (cooperative)
+% Preemptive vs non-preemptive (cooperative)
+\paragraph{}
+A scheduler is said \textit{preemptive} if tasks in the system can preempt each other.
+When a higher-priority task wants to execute, the scheduler can interrupt the lower-priority task and run the higher-priority one.
+In the other hand, a scheduler is said \textit{non-preemptive} or \textit{cooperative}
+    if a task that has been allowed to start will execute until the end.
 
 % online/offline
+\paragraph{}
+Another distinction we can make is to divide schedulers into \textit{online} and \textit{offline} schedulers.
+% online
+Online schedulers decide during runtime, based on various parameters (such as task priority for example), the ordering of the different tasks.
+A scheduler based on task priority is also called \textit{priority-based} scheduler.
+% offline
+On the contrary, offline schedulers (also known as \textit{table-driven} schedulers) perform their scheduling decisions at the start of the system.
+
+
+The impact of these characteristics in the design of an RTOS will be explained later in this chapter.
+
 
 \subsection{Scheduling Policies}
 
