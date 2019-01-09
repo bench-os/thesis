@@ -31,11 +31,29 @@ A scheduler based on task priority is also called \textit{priority-based} schedu
 % offline
 On the contrary, offline schedulers (also known as \textit{table-driven} schedulers) perform their scheduling decisions at the start of the system.
 
-
 The impact of these characteristics in the design of an RTOS will be explained later in this chapter.
 
-
 \subsection{Scheduling Policies}
+
+\subsubsection{First in, first out (FIFO)}
+Also known as First come, first serve (FCFS), FIFO is one of the simpliest scheduling algorithm.
+Processes are queued into a data structure in their order of arrival.
+The first process to be enqueued is the first which will be executed.
+
+\subsubsection{Round-robin}
+The round-robin scheduling algorithm divides the time allocated to each process into fixed time slices.
+If a process doesn't terminate when his allocated time slice is expired, it is preempted and the scheduler switches to another task.
+If a task terminates within its time slice, the scheduler simply switches to the next task.
+
+\subsubsection{Earliest deadline first (EDF)}
+Earliest deadline first scheduling algorithm dynamically assigns a priority
+    to each enqueued process (based on its deadline or an estimation of it) into a priority queue data structure.
+The scheduler then executes the process the closest to its deadline at each scheduling event.
+
+\subsubsection{Fixed priority pre-emptive scheduling}
+Priority for each task is pre-assigned by the operating system.
+The scheduler arranges the tasks by order of priority.
+Higher priority tasks can interrupt lower priority tasks.
 
 \subsection{Real-Time Scheduling}
 %handbook chapter 2 12
