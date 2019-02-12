@@ -1,1 +1,42 @@
 \section{Hardware Support}
+
+\subsection{Constrained devices classes}
+
+Constrained devices have been classified in 3 classes by the IETF with RFC7228 in May 2014. The distinction between those three classes are made with the RAM and ROM capabilities.
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|l|l|l|}
+  \hline
+   & data size (e.g., RAM) & code size (e.g., Flash) \\ \hline
+  Class 0, C0 & \textless{}\textless 10 KiB & \textless{}\textless 100 KiB \\ %\hline
+  Class 1, C1 & $\sim$10 Kib & $\sim$10 KiB \\ %\hline
+  Class 2, C2 & $\sim$25 KiB & $\sim$250 KiB \\ \hline
+  \end{tabular}
+  \caption{Classes of Constrained Devices}
+  \label{constrained-devices-classes}
+\end{table}
+
+\paragraph{Class 0}
+Those devices are the most constrained. There are typically sensor-like motes. There are so constrained that they cannot access Internet without the help of a larger devices. From the point of view of a RTOS, their code are too heavy to fit in such devices. Instead Class-0 devices are usually used bare metal.
+
+\paragraph{Class 1}
+Those devices are able to talk to each other but via constrained protocols. Use of security protocols are too heavy for that class. RTOS are mainly focused on these kind of devices.
+
+\paragraph{Class 2}
+Those devices are the less constrained and can use the same stacks of protocols used in personal computers and servers. General-purpose operating systems can be used for these kind of devices but the Class-2 devices can benefit from lightweight and energy-efficient protocols.
+
+\subsection{Hardware Abstraction Layer}
+Some OS are tied to a specific hardware architecture and target only specific vendors making the OS not portable. Developers cannot change the hardware during the development process. Developers cannot reuse their code with other platform. 
+
+\paragraph{Definition of HAL}
+An hardware abstraction layer defines a set of routines, protocols and tools to access underlying hardware. It provides abstract and high-level functions to interact with the hardware. The hardware, drives and board supports are considered as a black-box.
+
+
+\paragraph{CPU diversity}
+The embedded world use the majority for the world's microcontrollers. The diversity of CPU keep increasing every year. 
+In RIOT, the CPU are organized in an hierarchical way. The hardware abstraction layer is split among the CPU architecture (e.g. Cortex M-4), the CPU family (e.g. stm32), the CPU type (e.g. stm32f4) and, finally, the CPU model (e.g. stm32f401re).
+Using this kind of structure help to avoid duplication of code.
+
+\paragraph{Pro and cons}
+Developers can switch hardware and perform cross-platform testing more easily. But there is some limitation. The hardware abstraction layer is tied to the hardware and change heavily with the hardware. Also, there is some limitation using an hardware abstraction layer. Not all the functionnalities from the hardware are available. 
