@@ -1,8 +1,19 @@
-\section{Hardware Support -- DRAFT}
+\section{Hardware Support}
+
+The embedded world use the majority of the world's microcontrollers.
+The diversity of CPU keep increasing every year.
+Working with this diversity of constrained devices make the developer's work harder as they need to adapt and learn to use specific librairies for each devices.
+A source code on a particular device will not be easily reusable for another device.
+
+With RTOSes, developers can more easily make their code portable on many devices.
+
+This section first describes the three constrained devices classes and how this is related to RTOSes.
+Then, it explains what an hardware abstraction layer is and how a RTOS use it in order to be available on the largest amount of devices.
 
 \subsection{Constrained devices classes}
 
 Constrained devices have been classified in 3 classes by the IETF with RFC7228 in May 2014. The distinction between those three classes are made with the RAM and ROM capabilities.
+The table \ref{tab:constrained-devices-classes} resumes the different constrained devices classes.
 
 \begin{table}[!h]
   \centering
@@ -14,7 +25,7 @@ Constrained devices have been classified in 3 classes by the IETF with RFC7228 i
   Class 2, C2 & $\sim$25 KiB & $\sim$250 KiB \\ \hline
   \end{tabular}
   \caption{Classes of Constrained Devices}
-  \label{constrained-devices-classes}
+  \label{tab:constrained-devices-classes}
 \end{table}
 
 \paragraph{Class 0}
@@ -22,7 +33,8 @@ Those devices are the most constrained.
 There are typically sensor-like motes.
 There are so constrained that they cannot access Internet without the help of a larger devices.
 From the point of view of a RTOS, their code are too heavy to fit in such devices.
-Instead Class-0 devices are usually used bare metal. %Explain bare metal?
+Instead Class-0 devices are usually used bare metal.
+In the embedded world, bare metal programming is writing code that runs directly on the hardware without any abstraction such as an OS.
 
 \paragraph{Class 1}
 Those devices are able to talk to each other but via constrained protocols.
@@ -34,23 +46,28 @@ Those devices are the less constrained and can use the same stacks of protocols 
 General-purpose operating systems can be used for these kind of devices but the Class-2 devices can benefit from lightweight and energy-efficient protocols.
 
 \subsection{Hardware Abstraction Layer}
-Some OS are tied to a specific hardware architecture and target only specific vendors making the OS not portable.
-Developers cannot change the hardware during the development process.
-Developers cannot reuse their code with other platform.
-% This introduction doesnt explain any problematic, we should add a sentence to explain that
+
+Due to the variety of CPU, vendors provide a set of libraires used to develop applications on their architectures.
+This set of libraires and tools are called the hardware abstraction layer.
 
 \paragraph{Definition of HAL}
 An hardware abstraction layer defines a set of routines, protocols and tools to access underlying hardware.
 It provides abstract and high-level functions to interact with the hardware.
-The hardware, drives and board supports are considered as a black-box.
+The hardware, drivers and board supports are considered as a black-box.
 
+\paragraph{RTOS and HAL}
+The HAL is strongly dependent of the architecture of the CPU.
+In order for the RTOS to support multiple boards and architectures, it has to implement and use the different HAL provided by the vendors.
 
-\paragraph{CPU diversity}
-The embedded world use the majority for the world's microcontrollers.
-The diversity of CPU keep increasing every year.
-In RIOT, the CPU are organized in an hierarchical way.
-The hardware abstraction layer is split among the CPU architecture (e.g. Cortex M-4), the CPU family (e.g. stm32), the CPU type (e.g. stm32f4) and, finally, the CPU model (e.g. stm32f401re).
-Using this kind of structure help to avoid duplication of code.
+\begin{figure}[!h]
+  \centering
+  \includegraphics[scale=0.7]{assets/hal-layers.png}
+  \caption{\label{fig:hal-layer}Layers around the hardware abstraction layer}
+\end{figure}
+
+The fig.\ref{fig:hal-layer} shows that the application and the RTOS layers are placed above the HAL, itself just above the device layer.
+The application layer talks to the RTOS and the RTOS layer talks to the corresponding HAL depending on the device used.
+
 
 \paragraph{Pro and cons}
 Developers can switch hardware and perform cross-platform testing more easily.
