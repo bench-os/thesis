@@ -1,1 +1,24 @@
 \section{Benchmarking Framework}
+ 
+As we were not pleased by the previous objective, we decided to change it.
+We wanted to build a framework hidden for the developer that he or she could run on any RTOS with any application.
+
+The framework would be able to retrieve measurements such as the context switching time, the interrupt latency, the memory usage and the energy consumption.
+
+An use case for our benchmarking framework is explain in the section below.
+
+\subsection{Use case}
+Ideally, using our benchmarking framework, the use case for any developer using a RTOS would be the following.
+
+The developer develops an application with multiple tasks on a specific RTOS on a specific device.
+The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
+The developer flash its application on the device and the framework output continuously benchmarking information.
+The information contains context switching time, interrupt latency, memory usage and enery consumption.
+
+With this framework, the developer can optimize its application, change the device or even the RTOS.
+The framework, available on as much RTOS as possible, will help the developer to see which RTOS or devices is the best fit for its application.
+
+\subsection{Limitations}
+As the next chapter explains, this framework idea encountered several limitations.
+First, the devices does not have enough internal power to compute the context switching time or the interrupt latency with engough precision.
+Second, we did not had enough time to build a framework able to measure the memory usage or the energy consumption.
