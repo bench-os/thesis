@@ -2,7 +2,7 @@
 
 The embedded world use the majority of the world's microcontrollers.
 The diversity of CPU keep increasing every year.
-Working with this diversity of constrained devices make the developer's work harder as they need to adapt and learn to use specific librairies for each devices.
+Working with this diversity of constrained devices make the developer's work harder as he need to adapt and learn to use specific librairies for each devices.
 A source code on a particular device will not be easily reusable for another device.
 
 With RTOSes, developers can more easily make their code portable on many devices.
@@ -47,10 +47,12 @@ General-purpose operating systems can be used for these kind of devices but the 
 
 \subsection{Hardware Abstraction Layer}
 
-Due to the variety of CPU, vendors provide a set of libraires used to develop applications on their architectures.
+Due to the variety of CPU's, vendors provide a set of libraires used to develop applications on their architectures.
 This set of libraires and tools are called the hardware abstraction layer.
 
 \paragraph{Definition of HAL}
+% TODO
+% Repetition of 'hardware'
 An hardware abstraction layer defines a set of routines, protocols and tools to access underlying hardware.
 It provides abstract and high-level functions to interact with the hardware.
 The hardware, drivers and board supports are considered as a black-box.
@@ -65,12 +67,12 @@ In order for the RTOS to support multiple boards and architectures, it has to im
   \caption{\label{fig:hal-layer}Layers around the hardware abstraction layer}
 \end{figure}
 
-The fig.\ref{fig:hal-layer} shows that the application and the RTOS layers are placed above the HAL, itself just above the device layer.
+The figure \ref{fig:hal-layer} shows that the application and the RTOS layers are placed above the HAL, itself just above the device layer.
 The application layer talks to the RTOS and the RTOS layer talks to the corresponding HAL depending on the device used.
 
 
 \paragraph{Pro and cons}
 Developers can switch hardware and perform cross-platform testing more easily.
-But there is some limitation: The hardware abstraction layer is tied to the hardware and change heavily with the hardware.
+But there is some limitation: The HAL is tied to the hardware and change heavily with it.
 Also, there is some limitation using an hardware abstraction layer.
 Not all the functionalities from the hardware are available.
