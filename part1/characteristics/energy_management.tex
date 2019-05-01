@@ -96,4 +96,16 @@ The sleep mode of a microprocessor takes advantage of multiple hardware features
 The RTC Wake Up Support serves to wake the CPU up when in sleep mode and no other source is active.
 
 \subsubsection{Tick Suppression}
+%https://www.embedded.com/electronics-blogs/industry-comment/4414162/1/FreeRTOS-s-tick-suppression-saves-power
 \paragraph{}
+Tick suppression defines the principle of providing tick-less support for the scheduler.
+
+In a regular scheduler, a periodic timer (tick interrupt) is used to track time.
+This tick interrupt wakes the CPU up to perform a scheduling cycle.
+Such a mechanism, even if punctual, is frequent and then depletes energy in a non-negligeable way by entering and exiting sleep mode frequently.
+
+In a tick-less scheduler, the tick interrupt is disabled when the idle task is running.
+Stopping the tick interrupt allows the CPU to remain in a deep power saving state 
+    until either an interrupt occurs or it is time for the kernel to switch task.
+
+%schema tick vs tickless scheduler
