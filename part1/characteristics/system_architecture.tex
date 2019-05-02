@@ -15,7 +15,7 @@ In this section, we'll explain the different kernel architectures commonly found
 \paragraph{}
 The kernel is the center piece of an operating system.
 The role of the kernel is to manage every critical function of an operating system.
-It then could technically run by itself but it wouldn't be very practical.
+It could technically run by itself but it wouldn't be very practical.
 An operating system is built around its kernel and in the case of an RTOS, kernel design is critical for ensuring strict deadlines.
 The tasks a kernel usually manages consists of:
 \begin{itemize}
@@ -36,6 +36,9 @@ The first one, the kernel space, is dedicated to operations the closest to the h
 It is reserved for the most trusted operations of the operating system.
 Due to its central position in the operating system, any bug in the kernel can lead to system failure.
 In order for an user process to use the hardware, it needs to ask the kernel through an API so that the kernel performs the operation for the process.
+
+The second one, the user space is dedicated to all the code running outside of the kernel-space such as applications, programs and libraries.
+Each user-space process has its own memory space and cannot access the memory of another process (unless they use shared memory).
 
 \subsection{CPU modes}
 %https://minnie.tuhs.org/CompArch/Lectures/week07.html
