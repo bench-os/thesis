@@ -106,6 +106,94 @@ Our benchmarking framework should compute the context switching time of that sam
 
 \subsection{Methodology}
 
+Before we start to develop our framework, we have contacted and discussed with some of the IoT communities.
+Via mailing lists, we communicated with the communities of RIOT OS, Contiki, FreeRTOS, mBed OS and Apache Mynewt.
+We also exchanged idea with IoT developers through forums on the web.
+Our main concern was to implement a framework that measure the context switching time without altering it.
+Unfortunately, the communities and the developpers could not help us.
+
+So we decided two approaches to solve this problem.
+The first one is to implement the framework inside the scheduler in the kernel of the RTOS.
+The second one is to implement the framework as an external library used by the RTOS that have a minimal impact on the context switching time.
+
 \paragraph{Integration in the kernel}
+This approach was abandonned early as the scheduling algorithm is different for each platform.
+Some of them are written in assembly language.
+We could not implement a generic solution that cover every platform.
 
 \paragraph{Minimal impact framework}
+The framework we have developped use the following principle.
+Every time a task is executed (inside an infinite loop, from an interrupt, ...) it pings the framework using the \texttt{bench\_ping} call providing its task ID.
+By pinging the framework, the task shows that it runs in foreground.
+The framework will detect a context switching by comparing the active task ID with the previous one at each ping.
+If the ID's do not match, it means that the active task has changed and the framework will compute the elapsed time (computed in ticks) and print it.
+The source code of this benchmarking framework is shown in the listing \ref{lst:internal-bench-code}.
+
+\begin{lstlisting}[style=CStyle, label={lst:internal-bench-code}, caption={Source code of the benchmarking framework implemented in Contiki}]
+/**
+  * Struct that stores benchmarking information.
+  * 
+  * previous_id: The id of the previous thread that performs a ping;
+  * new_id: The id of the current thread that has performed a ping;
+  * current_time: the timer
+  */
+struct BContext {
+  uint32_t previous_id;
+  uint32_t new_id;
+  clock_time_t current_time;
+} bench_context;
+
+
+void bench_ping(uint32_t id) {
+  // Save the new id
+  bench_context.new_id = id;
+  // Save the current time
+  // Check for switching context
+  if (!check_change()) {
+    bench_context.current_time = RTIMER_NOW(); // Ticks
+  }
+}
+
+int check_change(void) {
+  if(bench_context.new_id != bench_context.previous_id) {
+    // Compute the difference
+    clock_time_t previous = bench_context.current_time;
+    clock_time_t current = RTIMER_NOW();
+    clock_time_t result = current - previous;
+
+    // Keep the previous id for log
+    uint32_t previous_id = bench_context.previous_id;
+    // Change previous_id to new_id
+    bench_context.previous_id = bench_context.new_id;
+
+    bench_context.current_time = RTIMER_NOW(); // Ticks
+
+    printf("[BENCH_CONTEXT_SWITCHING] %lu %lu %lu\n", previous_id, bench_context.new_id, result);
+    
+    return 1; // Change occurs
+  }
+  return 0; // No change
+}
+\end{lstlisting}
+
+
+We wanted to make our benchmarking framework hidden for the developer.
+But we had no other choice but to create a benchmarking call \texttt{bench\_ping} that the developer need to use in his tasks.
+The listing \ref{lst:bench-task-code} shows how we integrate our framework in the simple task.
+
+\begin{lstlisting}[style=CStyle, label={lst:bench-task-code}, caption={Source code of the task with benchmarking framework calls}]
+PROCESS_THREAD(task, ev, data)
+{
+    PROCESS_BEGIN();
+
+    while (1)
+    {
+        PROCESS_PAUSE();
+        bench_ping(TASK_ID);
+        // Wait for 1ms
+        clock_delay_usec(1000);
+    }
+
+    PROCESS_END();
+}
+\end{lstlisting}
