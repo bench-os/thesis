@@ -1,4 +1,28 @@
-\section{Result}
+\section{Results}
+
+The results are split in two parts.
+The first part is the context switching time value measured by our benchmarking framework.
+For the second part, we have measured again the real context switching time with the oscilloscope the same way as for the reference measurement.
+
+\paragraph{Context switching time measured by our framework} 
+The value measured by our framework is represented in the table \ref{tab:framework-measurement}.
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{llll}
+                        & \multicolumn{3}{c}{Time ($\mu$s)}          \\ \cline{2-4} 
+                        & \multicolumn{1}{c}{Mean} & Min  & Max  \\ \cline{2-4} 
+  From task 1 to task 2 & 7812                     & 7812 & 7812 \\
+  From task 2 to task 1 & 7812                     & 7812 & 7812
+  \end{tabular}
+  \caption{Context switching time measured by our benchmarking framework}
+  \label{tab:framework-measurement}
+  \end{table}
+
+\paragraph{Context switching time measured by the oscilloscope}
+Using the same setup as for the reference measurement, we have measured again the real context switching time.
+The figure \ref{fig:framework-value-wave} shows the voltage measured by the oscilloscope while using our framework.
+The table \ref{tab:framework-measurement} shows the duration of the two context switchings and the two tasks.
 
 \begin{figure}[!ht]
   \centering
@@ -20,13 +44,15 @@
   \label{tab:framework-measurement}
 \end{table}
 
-\subsection{Comparison with the reference measurement}
+\subsection{Discussion}
+
+\paragraph{Comparison with the reference measurement}
 
 \begin{table}[!ht]
   \centering
   \begin{tabular}{lll}
                         & \multicolumn{2}{c}{Time ($\mu$s)}                                     \\ \cline{2-3} 
-                        & \multicolumn{1}{c}{Reference} & Framework \\ \cline{2-3} 
+                        & \multicolumn{1}{c}{Without the framework} & With the framework \\ \cline{2-3} 
   From task 1 to task 2 & 14.68                                     & 1864                  \\
   From task 2 to task 1 & 14.88                                     & 1865                  \\
   Duration of task 1    & 1003                                      & 1003                  \\
@@ -36,12 +62,8 @@
   \label{tab:measurements-comparison}
 \end{table}
 
+\paragraph{Limitations of the framework}
 
-\subsection{Limitations of the framework}
 % As the next chapter explains, this framework idea encountered several limitations.
 % First, the devices does not have enough internal power to compute the context switching time or the interrupt latency with engough precision.
 % Second, we did not had enough time to build a framework able to measure the memory usage or the energy consumption.
-
-\paragraph{Framework overhead}
-
-\paragraph{Precision}
