@@ -197,3 +197,16 @@ PROCESS_THREAD(task, ev, data)
     PROCESS_END();
 }
 \end{lstlisting}
+
+\subsection{Experiment setup}
+
+For this experiment we used the Zolertia RE-MOTE (shown in figure \ref{fig:remote}) with the Contiki RTOS.
+This board use a Cortex-M3 at 32 MHz clock speed with 512KB of flash and 32 KB of RAM.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.7]{assets/remote.png}
+  \caption{\label{fig:remote}Zolertia RE-MOTE board}
+\end{figure}
+
+All computation are made in the board so the computer used to retrieve those value is irrelevant.
