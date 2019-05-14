@@ -35,4 +35,17 @@ RIOT follows some design objectives such as:
 \end{itemize}
 
 \subsection{Specificities}
+\paragraph{}
+%static memory for the kernel
+%dynamic memory
+RIOT OS enforces constant time for kernel tasks.
+The kernel exclusively uses static memory which garantees runtimes of \textit{O}(1) whereas dynamic memory is used for applications.
+
+The scheduler cycle is also performed in constant runtime thanks to a circular linked-list of threads.
+
 %tickless
+The main specificity of RIOT resides in its scheduler.
+The operating system includes a tickless scheduler.
+When there is no pending task, the operating system will switch to the \textit{idle} task which is the thread with the lowest priority.
+The CPU will then put itself in its deepest possible sleep mode (which depends on the device in use).
+In this state, the device can only be waken up by an interrupt (external or kernel-generated).
