@@ -1,4 +1,4 @@
-\section{Experiment}
+\section{\label{sec:internal-experiment}Experiment}
 
 The first experiment is focus on the context switching time.
 We implemented a simple application under Contiki.
@@ -29,9 +29,9 @@ This kind of scheduling allows us to know when a task is in the foreground and w
 With a preemptive scheduling, in the other hand, we don't know when the task is preempted.
 This issue is discussed later in our work.
 
-\subsection{Reference measurement}
+\subsection{\label{sec:reference-value}Reference value}
 
-We need a reference measurement for the context switching time in order to develop this benchmarking framework.
+We need a reference value for the context switching time in order to develop this benchmarking framework.
 This value would allow us to assess the performance of our framework.
 Commonly, the context switching time is measured using an oscilloscope.
 We updated our simple task by adding GPIO calls in order for the oscilloscope to detect it.
@@ -59,7 +59,7 @@ The two tasks use different GPIO in order to differenciate them with the oscillo
   }
 \end{lstlisting}
 
-\paragraph{Measurement setup}
+\subsubsection{Measurement setup}
 
 The oscilloscope used for the measurement was the Tektronix MSO 56 available at the Welcome Lab.
 We used two channels to measure the voltage of the two GPIOs used by the application.
@@ -73,7 +73,7 @@ Low value means that the task is sleeping in the background.
   \caption{\label{fig:measurement-value-wave}Voltage measurement of the two GPIOs; Each color represents a task}
 \end{figure}
 
-\paragraph{Measurement value}
+\subsubsection{Measurement value}
 
 The context switching time is the time during which no task is running.
 This is visible with the oscilloscope when both channels are low.
@@ -127,6 +127,9 @@ Every time a task is executed (inside an infinite loop, from an interrupt, ...) 
 By pinging the framework, the task shows that it runs in foreground.
 The framework will detect a context switching by comparing the active task ID with the previous one at each ping.
 If the ID's do not match, it means that the active task has changed and the framework will compute the elapsed time (computed in ticks) and print it.
+
+\subsubsection{Framework implementation}
+
 The source code of this benchmarking framework is shown in the listing \ref{lst:internal-bench-code}.
 
 \begin{lstlisting}[style=CStyle, label={lst:internal-bench-code}, caption={Source code of the benchmarking framework implemented in Contiki}]
@@ -198,10 +201,11 @@ PROCESS_THREAD(task, ev, data)
 }
 \end{lstlisting}
 
-\subsection{Experiment setup}
+\subsection{\label{sec:internal-setup}Experiment setup}
 
 For this experiment we used the Zolertia RE-MOTE (shown in figure \ref{fig:remote}) with the Contiki RTOS.
 This board use a Cortex-M3 at 32 MHz clock speed with 512KB of flash and 32 KB of RAM.
+Based on the RFC7228, this board is defined as a class-2 device.
 
 \begin{figure}
   \centering
