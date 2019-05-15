@@ -41,7 +41,36 @@ Using the Python librairy \href{https://github.com/fossasia/pslab-python}{pslab-
 
 \subsubsection{Framework implementation}
 
+% En utilisant le PSLab board, nous pouvons mesurer l'intervalle de temps entre un flanc descendant et une flanc montant sur le GPIO.
+% Cet intervalle représente le context switch étant donné qu'une task n'a la main mise.
 
+
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=1]{assets/external-benchmarking-framework-schema.pdf}
+  \caption{\label{fig:external-benchmarking-framework-schema}Interaction schema of the external benchmarking framework}
+\end{figure}
+
+\begin{lstlisting}[style=CStyle, language=python, label={lst:pslab-script-code}, caption={Call to the PSLab Python library}]
+  while True:
+    CS_TIME = I.MeasureInterval('ID1', 'ID1', 'falling', 'rising')
+\end{lstlisting}
+
+\begin{lstlisting}[style=CStyle, label={lst:internal-task-code}, caption={Source code of a task using the external benchmarking framework}]
+  PROCESS_THREAD(task, ev, data)
+  {
+      PROCESS_BEGIN();
+      while (1)
+      {
+          bench_off();
+          PROCESS_PAUSE();
+          bench_on();
+          clock_delay_usec(1000);
+      }
+      PROCESS_END();
+  }
+\end{lstlisting}
 
 \subsection{Experiment setup}
 For this second experiment, we used the same Zolertia RE-MOTE board described in section \ref{sec:internal-setup}.
