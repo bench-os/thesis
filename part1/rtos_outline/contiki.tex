@@ -51,11 +51,27 @@ Protothreads do not serve the same purpose as threads for the event-driven model
 The concept has been developped to bring a number of benefits of the multi-threaded programming model into Contiki
     and ease the developpement of applications.\\
 
-
-%dynamic loading
+%energy saving mechanisms
+Contiki does not provide any specific kernel energy saving mechanism.
+Instead, it let the application specific parts of the system implement such mechanism.
 
 \subsection{Specificities}
 \paragraph{}
 %contiki is specific by itself, aims for WSN
+%dynamic loading? is that necessary to develop that?
 %cooja
+Contiki integrates a tool called Cooja.
+Cooja is a network simulator which is designed to simulate a network using Contiki motes.
+Motes can be simulated at the hardware level or with a standard setup allowing faster response but with less precise system behaviour.
+It is an extremely powerful tool which makes developping and debugging tremendously easier even with a large-scale network.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.4]{assets/cooja.png}
+    \caption{\label{fig:cooja}Cooja interface}
+\end{figure}
+
 %rime https://pdfs.semanticscholar.org/9feb/7e0f0d3b507f2f3da60c1b2fea9d5e43449d.pdf
+%Contiki provides a low-power radio networking stack called Rime.
+%This stack can be used where the full IP stack is not needed.
+%The Rime stack can be tuned to 
