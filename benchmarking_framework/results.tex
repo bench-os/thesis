@@ -54,3 +54,50 @@ The table \ref{tab:frameworks-oscilloscope-comparison} shows a comparison of the
   \caption{Context switching times and task durations measured with the oscilloscope using our internal and external benchmarking frameworks}
   \label{tab:frameworks-oscilloscope-comparison}
 \end{table}
+
+\subsection{Discussions}
+
+\subsubsection{Internal benchmarking framework}
+
+By comparing with our reference measurement, the first assessment we can make is that our benchmarking framework does not compute the context switching time correctly.
+The framework measure a context switching time of 7812 $\mu$s where we expect a value of 14.68 $\mu$s.
+
+Second assessment we can make is that our framework add a huge overhead.
+When comparing the figure \ref{fig:measurement-value-wave} with the figure \ref{fig:internal-framework-value-wave}, the overhead is largely visible.
+By comparing the values measured by the oscilloscope, the reference measurement and the real context switching time while using our framework, we see that our framework add an overhead of 1850 $\mu$s.
+The table \ref{tab:measurements-comparison} shows this comparison.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{lll}
+                        & \multicolumn{2}{c}{Time ($\mu$s)}                                     \\ \cline{2-3} 
+                        & \multicolumn{1}{c}{No framework} & Framework \\ \cline{2-3} 
+  From task 1 to task 2 & 14.68                                     & 1864                  \\
+  From task 2 to task 1 & 14.88                                     & 1865                  \\
+  Duration of task 1    & 1003                                      & 1003                  \\
+  Duration of task 2    & 1003                                      & 1003                 
+  \end{tabular}
+  \caption{Comparison of the oscilloscope measurements}
+  \label{tab:measurements-comparison}
+\end{table}
+
+\paragraph{}{Limitations of the framework}
+As the results show, our framework suffers from several limitations.
+
+First, the devices can not compute the context switching time with enough precision.
+This lack of precision is due of the speed of the device clock that is not high enough.
+In our experiment, the Zolertia RE-MOTE used with Contiki could only use a timer with 128 ticks per second or 1 tick every 7812 $\mu$s.
+
+Second, our framework output its computed value through serial port.
+Printing out at least 32 characters for every context switch on the serial port even at 250 kbit/s took 1.2ms.
+One optimization could be to reduce the number of bits send or use a cache.
+
+\subsubsection{External benchmarking framework}
+
+The first thing we can see is that our external benchmarking framework is much more precise that our internal benchmarking framework.
+Even if the result does not match our excpectation, the results show an improvement.
+We went from a measurement error with a factor of more than 500 to a measurement error with a factor less than 2.
+
+Secondly, with the real context switching time measured at 14.87$\mu$s while our framework was on, our external benchmarking framework does not add an overhead.
+
+In conclusion, our external benchmarking framework is more precise than our internal benchmarking framework and does not add an overhead to the real context switching time.
