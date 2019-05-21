@@ -1,7 +1,9 @@
 \section{Reference value}
 
-We need a reference value for the context switching time in order to develop this benchmarking framework.
-This value would allow us to assess the performance of our framework.
+Our benchmarking framework will compute the context switching time but we need to know how well or how bad our framework performs.
+To assess the performance of our measurements using our benchmarking framework, we first need to compute the real context switching time.
+This real context switching time will be our reference value that we will be using during our entire work in order to determine if our framework outputs a correct context switching time with respect of an error margin.
+
 Commonly, the context switching time is measured using an oscilloscope.
 We updated our simple task by adding GPIO calls in order for the oscilloscope to detect it.
 The task will set up a GPIO, wait for 1ms, and then clear the GPIO.
