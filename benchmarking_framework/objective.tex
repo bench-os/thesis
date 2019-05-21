@@ -1,41 +1,74 @@
 \section{Objective}
 
-We want to build a framework hidden for the developer that he could run on any RTOS with any application. This framework would be present between the kernel space (the RTOS) and the user space (the application) and acts as a middleware as represented by the figure \ref{fig:bench-framework-layers}.
+Assess the performance of an RTOS is a primordial step during the development of an application in the embedded world.
+For example, computing the interrupt latency or the context switching time requires using an oscilloscope.
+However, this kind of device is costly and some developers can not afford this kind of ressources.
+Furthermore, working with external devices take time and can dramatically slow down the development process.
 
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[scale=1]{assets/bench-framework-layers.pdf}
-  \caption{\label{fig:bench-framework-layers}Internal benchmarking framework layers}
-\end{figure}
+For those reasons, we want to build a benchmarking framework hidden for the developer that he could run on any RTOS with any application.
+Ideally, this framework would respect the following criteria in order to be usefull for a real world application.
 
-The motivation for this framework is to have a system easy to use and completely hidden for the developer.
-By using as little configuration as needed, the developer would have access to usefull information for developping its application.
-The framework would be able to retrieve measurements such as the context switching time, the interrupt latency, the memory usage or the energy consumption.
-Such measurements are commonly retrieved using an oscilloscope.
-However, that kind of hardware is costly and not everyone can have access to such device.
+\paragraph{Widely distributed}
+By making our framework accessible on a large variety of RTOS, we allow developers to not limit themself to a specific set of RTOS.
+With this framework, they would be able to assess the performance of their applications regardless of the RTOS.
 
-An ideal use case for our benchmarking framework is explained in the section below.
+\paragraph{Providing a large variety of metrics}
+Our framework should be able to provide performance measurements on interrupt latency, context switching time.
+Those metrics are important for a real-time context applications.
+Also, using constrained devices requires to monitor the memory usage and the energy consumption of the applications.
+Our framework should be able to provide those metrics as well.
+
+\paragraph{Hidden for the developer}
+The developer would not need to worry about integrating our framework in its application.
+Using or not our framework should not change the source code of the application and allow the developer to directly deploy it in a production environment.
+
+\paragraph{Easy to use and to configure}
+Using an oscilloscope or any external device to benchmark an embedded application takes time and effort for the developer.
+Our framework should be able to improve the benchmarking process by being easy to use and easy to configure.
+
+\subsection{Narrowed objective}
+
+In the context of our thesis, we choose to focus our work on a restricted objective.
+We have decided to produce a proof-of-concept showing that it is possible to achieve our biggest objective given more time.
+For our proof-of-concept, we have reduce our framework implementation to a benchmarking of the context switching time on the Contiki RTOS.
+
+We choose to use Contiki for its cooperative scheduler.
+This kind of scheduler allows us to know when a task is in the foreground and when it goes to the background.
+With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
+This issue is discussed later in our work.
+In Contiki, the developer can use macros like \texttt{PROCESS\_PAUSE()} or \texttt{PROCESS\_WAIT\_EVENT()} to let other tasks run in a cooperative fashion.
+% https://github.com/contiki-os/contiki/wiki/Processes
+The complete list of macros and more information can be found in the \href{https://github.com/contiki-os/contiki/wiki/Processes}{Contiki processes documentation}.
+
+We choose to focus on the context switching time for the metric of our benchmarking framework because, in the context of embedded devices, the time spent between two tasks must be the smallest possible.
+Benchmarking the context switching time can help the developer to reduce the time lost between two tasks.
+Moreover, by considering the interrupt handler as a task, it is possible to compute the interrupt latency with the context switching time.
+
+From the criteria previously described, we have decided to reduce the first two by focusing only on Contiki and the context switching time.
+For the last two, we leave them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
+
+We left the goal to implement a framework capable of benchmarking the interrupt latency, the memory usage and the energy consumption of any RTOS to future work.
+
+\subsubsection{Use case}
+Ideally, the use case for any developer using our benchmarking framework would be the following.
 This scenario is hypothetic and does not represent the state of our work.
 
-\subsection{Use case}
-Ideally, using our benchmarking framework, the use case for any developer using a RTOS would be the following.
-
-The developer develops an application with multiple tasks on a specific RTOS on a specific device.
+The developer implements an application with multiple tasks on a Contiki on a specific device.
 The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
-The developer flashes its application on the device and the framework output continuously benchmarking information.
-The information contains context switching time, interrupt latency, memory usage and enery consumption.
+The developer flashes its application on the device and the framework output continuously benchmarking information including the context switching time between the tasks of the application.
 
-With this framework, the developer can optimize its application, change the device or even the RTOS.
-The framework, available on as much RTOS as possible, will help the developer to see which RTOS or devices is the best fit for its application.
+With this framework, the developer can optimize its application or change the device and check if the context switching time is improved.
 
-\subsection{Simple task}
-We implemented a simple application under Contiki.
+\subsubsection{Simple task}
+In order to experiment and test our benchmarking framework, we need to have an application running on Contiki.
+For this reason, we implemented a simple application.
+
 The application contains two indentical tasks.
 The tasks wait for 1ms in the foreground and then goes to the background letting the scheduler runs the next task.
 The tasks run in an infinite loop.
-The source code of the tasks are shown in the listing \ref{lst:simple-task-code}.
+The source code of one of the two tasks are shown in the listing \ref{lst:simple-task-code}.
 
-\begin{lstlisting}[style=CStyle, label={lst:simple-task-code}, caption={Source code of the simple task implemented in Contiki}]
+\begin{lstlisting}[style=CStyle, label={lst:simple-task-code}, caption={Source code of a task implemented in Contiki for the simple application}]
 PROCESS_THREAD(task, ev, data)
 {
     PROCESS_BEGIN();
@@ -50,9 +83,3 @@ PROCESS_THREAD(task, ev, data)
     PROCESS_END();
 }
 \end{lstlisting}
-
-
-We choose to use Contiki for this measurement for its cooperative scheduling.
-This kind of scheduling allows us to know when a task is in the foreground and when it goes to the background.
-With a preemptive scheduling, in the other hand, we don't know when the task is preempted.
-This issue is discussed later in our work.
