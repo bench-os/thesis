@@ -1,0 +1,16 @@
+\section{Integration in the kernel}
+
+Our first approach was to implement the framework inside the kernel of Contiki.
+Ideally, inside the kernel source code, we could measure the time that the scheduler takes to switch from a task to an other and we have our context switching time.
+
+This approach have some advantages.
+First, it make the framework completely hidden for the developer.
+This is great because it match one of our criteria for the framework.
+The developer could implement its application regardless of the framework operation.
+Then, one could use the framework on previously implemented application without changing the source code.
+
+However, we choose to abandon the approach of integrating the framework inside the kernel of Contiki for the following reasons.
+First, we are not sure that if we use this methodology we will measure the real context switching time.
+It is possible that some calls or functions are executed before the scheduler and that the framework will not take them into account.
+Finally, the scheduler implementation is strongly platform-dependent meaning that every platform have its own scheduler source code.
+It is impossible for us to integrate our framework for each existing platforms.

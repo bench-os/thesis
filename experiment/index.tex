@@ -1,0 +1,14 @@
+\chapter{Experiment}
+
+Before we start to develop our framework, we have contacted and discussed with some of the IoT communities.
+Via mailing lists, we communicated with the communities of RIOT OS, Contiki, FreeRTOS, mBed OS and Apache Mynewt.
+We also exchanged idea with IoT developers through forums on the web.
+Our main concern was to implement a framework that measure the context switching time without altering it.
+Indeed, we do not want our framework to slow down the application and adding an overhead.
+
+Unfortunately, the communities and the developpers could not help us.
+So, we decided to consider three different approaches.
+
+\input{experiment/kernel.tex}
+\input{experiment/extension.tex}
+\input{experiment/external.tex}
