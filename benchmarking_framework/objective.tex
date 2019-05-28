@@ -1,15 +1,15 @@
 \section{Objective}
 
-Assess the performance of an RTOS is a primordial step during the development of an application in the embedded world.
+Assessing the performance of an RTOS is a primordial step during the development of an application in the embedded world.
 For example, computing the interrupt latency or the context switching time requires using an oscilloscope.
-However, this kind of device is costly and some developers can not afford this kind of ressources.
-Furthermore, working with external devices take time and can dramatically slow down the development process.
+However, this kind of devices is costly and some developers can not afford them.
+Furthermore, working with external devices takes time and can dramatically slow down the development process.
 
-For those reasons, we want to build a benchmarking framework hidden for the developer that he could run on any RTOS with any application.
-Ideally, this framework would respect the following criteria in order to be usefull for a real world application.
+For those reasons, we wanted to build a benchmarking framework hidden from the developer that he could run on any RTOS with any application.
+Ideally, this framework would respect the following criteria in order to be useful for a real world application.
 
 \paragraph{Widely distributed}
-By making our framework accessible on a large variety of RTOS, we allow developers to not limit themself to a specific set of RTOS.
+By making our framework accessible on a large variety of RTOS, we allow developers not to limit themself to a specific set of RTOS.
 With this framework, they would be able to assess the performance of their applications regardless of the RTOS.
 
 \paragraph{Providing a large variety of metrics}
@@ -19,7 +19,7 @@ Also, using constrained devices requires to monitor the memory usage and the ene
 Our framework should be able to provide those metrics as well.
 
 \paragraph{Hidden for the developer}
-The developer would not need to worry about integrating our framework in its application.
+The developer should not need to worry about integrating our framework in its application.
 Using or not our framework should not change the source code of the application and allow the developer to directly deploy it in a production environment.
 
 \paragraph{Easy to use and to configure}
@@ -32,7 +32,7 @@ In the context of our thesis, we choose to focus our work on a restricted object
 We have decided to produce a proof-of-concept showing that it is possible to achieve our biggest objective given more time.
 For our proof-of-concept, we have reduce our framework implementation to a benchmarking of the context switching time on the Contiki RTOS.
 
-We choose to use Contiki for its cooperative scheduler.
+We chose to use Contiki for its cooperative scheduler.
 This kind of scheduler allows us to know when a task is in the foreground and when it goes to the background.
 With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
 This issue is discussed later in our work.
@@ -66,7 +66,7 @@ For this reason, we implemented a simple application.
 The application contains two indentical tasks.
 The tasks wait for 1ms in the foreground and then goes to the background letting the scheduler runs the next task.
 The tasks run in an infinite loop.
-The source code of one of the two tasks are shown in the listing \ref{lst:simple-task-code}.
+The source code of one of the two tasks is shown in the listing \ref{lst:simple-task-code}.
 
 \begin{lstlisting}[style=CStyle, label={lst:simple-task-code}, caption={Source code of a task implemented in Contiki for the simple application}]
 PROCESS_THREAD(task, ev, data)

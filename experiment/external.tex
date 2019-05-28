@@ -1,6 +1,6 @@
 \section{External devices}
 
-Your third and last approac was to use an external devices to monitor and measure the context switching time.
+Our third and last approach was to use an external devices to monitor and measure the context switching time.
 
 Our first idea was to implement it with Python3.7 on a desktop computer.
 Using the UART protocol over USB, the board sends a single byte containing the thread ID that is read by a Python script on the computer.
@@ -52,19 +52,19 @@ The figure \ref{fig:external-benchmarking-framework-schema} shows the connection
 To make some clarity, we have defined a specific role to each device.
 
 \subsubsection{The benchmarked board}
-It runs the RTOS Contiki with our benchmarking framework and our simple application.
+The benchmarked board runs the RTOS Contiki with our benchmarking framework and our simple application.
 It communicate with our computer through UART and with the PSLab using a single GPIO.
 Its role is to simply run the application.
 
 \subsubsection{The computer}
-It is the brain of the benchmarking framework.
+The computer is the brain of the benchmarking framework.
 It is responsible of communicating with both the benchmarked board and the PSLab through the UART protocol.
 It is its responsability to coordinate the benchmarked board and the PSLab in order to retrieve the context switching time.
 The computer is also the place where all the data are accumulated.
 
 \subsubsection{The PSLab}
-It is the eye of the benchmarking framework.
-It watch the benchmarked board through a single GPIO.
+The PSLab is the eye of the benchmarking framework.
+It watches the benchmarked board through a single GPIO.
 It use this port to compute the context switching time using its logical analyser.
 It receives its instruction from our computer through UART.
 
@@ -81,7 +81,7 @@ In order to implement this third approach, we need to update our simple task, cr
 \subsubsection{Protocol}
 
 We first need to define some sort of protocol to communicate between our three devices.
-The figure \ref{fig:external-protocol} shows the interactions between every devie.
+The figure \ref{fig:external-protocol} shows the interactions between every device.
 
 \begin{figure}[!ht]
   \centering
@@ -89,8 +89,8 @@ The figure \ref{fig:external-protocol} shows the interactions between every devi
   \caption{\label{fig:external-protocol}Schema of the protocol used between the devices}
 \end{figure}
 
-This first step is to start the Python script on the computer. It will read all the messages send by the board on the UART port.
-When the benchmarked board boot, it will send an init flag to the computer once its GPIO is setup and it is ready to transmit information through the GPIO.
+The first step is to start the Python script on the computer. It will read all the messages send by the board on the UART port.
+When the benchmarked board boots, it will send an init flag to the computer once its GPIO is setup and it is ready to transmit information through the GPIO.
 Once the computer read the init flag, it will send to the PSLab the instruction to read a time interval between a falling and a rising edge like shown in the figure \ref{fig:external-framework-context-switching-time-measurement}.
 Once a task is done in the benchmarked board, it will reset the GPIO that will trigger the PSLab measurement.
 This measurment is send to the computer and the computer will save the value.

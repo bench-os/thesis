@@ -8,13 +8,13 @@ This real context switching time will be our reference value that we will be usi
 
 In order to compute the real context switching time, we used an oscilloscope and two GPIOs.
 Each task of our simple application is responsible of one GPIO.
-Every time a task is run and goes to the foreground, it set its GPIO up.
-Once the task is finished and goes to the background, it reset its GPIO down.
+Every time a task is run and goes to the foreground, it sets its GPIO up.
+Once the task is finished and goes to the background, it resets its GPIO down.
 
 With the oscilloscope, we can mesure the voltage of the two GPIOs and compute the real context switching time from those measurements.
 The figure \ref{fig:real-context-switching-time-measurement} shows the different steps of our methodology.
 On this schema, the execution time of the two tasks are represented above the voltage measurements of the two GPIOs.
-The context switching time happen between the execution of the two tasks and is bordered with dotted lines in the schema.
+The context switching time happens between the execution of the two tasks and is bordered with dotted lines.
 
 \begin{figure}[!ht]
   \centering
@@ -23,11 +23,11 @@ The context switching time happen between the execution of the two tasks and is 
 \end{figure}
 
 The steps are the following.
-The first task set up its GPIO on step A.
+The first task sets up its GPIO on step A.
 The GPIO is in high position few nano seconds later on step A'.
 Once the first task is over, it resets its GPIO on step B which goes in low position on step B'.
 In the same way, the second task set up its GPIO on step C which goes in high position on step C' few nano seconds later and reset it on step D which goes in low position on step D'.
-The oscilloscope measure the context switching time between the step B' and the step C'.
+The oscilloscope measures the context switching time between the step B' and the step C'.
 The time for the GPIOs to rise up or down are around 10 nano seconds and can be omitted.
 
 \subsection{Setup}
@@ -63,7 +63,7 @@ We used two channels to measure the voltage of the two GPIOs used by the applica
 \subsection{Measurement value}
 
 The figure \ref{fig:measurement-value-wave} shows concretely the measurements made by our oscilloscope.
-As described in the methodology, high value means that the task is running in the foreground and wow value means that the task is sleeping in the background.
+As described in the methodology, high values means that the task is running in the foreground and low values means that the task is sleeping in the background.
 
 \begin{figure}[!ht]
   \centering
@@ -83,7 +83,7 @@ The measurements are shown in the table \ref{tab:reference-measurement}.
 With these results, we can see that the duration of both tasks is 1ms with no variation.
 We also extract with this measurement our reference value.
 From task 1 to task 2, we have 14.68$\mu$s of context switching time and from task 2 to task 1, we have 14.88$\mu$s.
-Our benchmarking framework should compute the context switching time of that same application and output a value between 13.30$\mu$s and 16.26$\mu$s for an error bound of 10\%.
+Our benchmarking framework should compute the context switching time of that same application and output a value between 13.30$\mu$s and 16.26$\mu$s.
 
 \begin{table}[!ht]
   \centering

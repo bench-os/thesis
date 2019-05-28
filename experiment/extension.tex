@@ -33,8 +33,7 @@ The context switch occurs between the steps A' and B and the framework can use t
 \subsection{Implementation}
 
 \subsubsection{Framework implementation}
-The implementation of the framework is easy to understand.
-It use a internal structure \texttt{bench\_context} to store the last thread ID received with a ping and a timer to mesure the potential context switch.
+The implementation uses an internal structure \texttt{bench\_context} to store the last thread ID received with a ping and a timer to mesure the potential context switch.
 Once a ping is received with the \texttt{bench\_ping(uint32\_t)} call, the framework store the new thread ID in its context and check if a change of thread IDs occurs with the \texttt{check\_change()} function.
 If the two thread IDs match, no context switch happened and the same task is running on the foreground.
 If the old thread ID does not match the new thread ID, it means a context switch just occur.
@@ -94,7 +93,7 @@ int check_change(void) {
 
 We wanted to make our benchmarking framework hidden for the developer.
 But in order to compute the context switching time, our simple task has to be changed to call the \texttt{bench\_ping(uint32\_t)} of our framework.
-The listing \ref{lst:bench-task-code} shows how we integrate our framework in the simple task.
+The listing \ref{lst:bench-task-code} shows how we integrated our framework in the simple task.
 
 \begin{lstlisting}[float, style=CStyle, label={lst:bench-task-code}, caption={Source code of the task with benchmarking framework calls}]
 PROCESS_THREAD(task, ev, data)
