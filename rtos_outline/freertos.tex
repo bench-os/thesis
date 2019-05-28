@@ -12,10 +12,31 @@ Since then, we can distinguish the FreeRTOS kernel and Amazon FreeRTOS which inc
 \paragraph{}
 %real time
 Similarly to RIOT OS, FreeRTOS is designed to be a real-time preemptive operating system aimed at embedded devices.
-Its strength comes from the fact that it is highly and easily configurable.
-%preemptive or cooperative
-%dynamic scheduling
-%scheduling algorithm
+Its strength comes from the fact that it is highly and easily configurable.\\
+
+%scheduler
+%http://richardgoyette.com/Research/Papers/FreeRTOSPaper.pdf
+For example, FreeRTOS supports preemptive or cooperative scheduling. 
+It also uses Dynamic Priority Scheduling which means that the priorities are defined during runtime.
+The user can choose which scheduling policy he wants by modifying the \texttt{configUSE\_PREEMPTION} variable in the \texttt{FreeRTOSConfig.h} file.
+In the cooperative case, the only action the scheduler performs is to increase the tick count.
+In the preemptive case, the scheduler increments the tick count and then checks if a task is in the unblocked state.
+If it is indeed the case, it checks the priority level of the task and compares it with the current task to see if a switch is required.\\
+
+%tasks and coroutines
+%https://www.freertos.org/taskandcr.html
+Since FreeRTOS uses the multi-threading paradigm, the code can be structured as a set of tasks.
+As explained in the first chapter, each task use its own stack and therefore has its own context.
+
+In addition to tasks, FreeRTOS includes a another mechanism called \texttt{co-routine}.
+Co-routines are similar to tasks but have some fundamental differences which justify their usage:
+\begin{itemize}
+    \item They share the same stack between them which greatly decrease the memory wasted in provisioning.
+    \item They use a cooperative scheduling between them but they can be used in an application using preemptive tasks.
+    \item The shared stack comes with more restrictions on how co-routines can be structured compared to regular tasks.
+\end{itemize}
+Co-routine have been implemented for very RAM constrained devices and are very rarely used those days.
+Nonetheless, they stay a relevant alternative to tasks for specific usages.
 %ipc
 %deadlock avoidance
 %scheduler suspension
