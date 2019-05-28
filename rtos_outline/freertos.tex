@@ -25,6 +25,7 @@ If it is indeed the case, it checks the priority level of the task and compares 
 
 %tasks and coroutines
 %https://www.freertos.org/taskandcr.html
+%https://www.researchgate.net/profile/Ming_Yuan_Zhu/publication/308692183_Understanding_FreeRTOS_A_Requirement_Analysis/links/57eb301108ae5d93a4816184.pdf
 Since FreeRTOS uses the multi-threading paradigm, the code can be structured as a set of tasks.
 As explained in the first chapter, each task use its own stack and therefore has its own context.
 
@@ -36,8 +37,13 @@ Co-routines are similar to tasks but have some fundamental differences which jus
     \item The shared stack comes with more restrictions on how co-routines can be structured compared to regular tasks.
 \end{itemize}
 Co-routine have been implemented for very RAM constrained devices and are very rarely used those days.
-Nonetheless, they stay a relevant alternative to tasks for specific usages.
+Nonetheless, they stay a relevant alternative to tasks for specific usages.\\
 %ipc
 %deadlock avoidance
 %scheduler suspension
+FreeRTOS also supports tickless idle mode, similarly to RIOT.
+Since FreeRTOS is highly configurable, the developer can activate this feature 
+    by setting the variable \texttt{configUSE\_TICKLESS\_IDLE} as 1 in \texttt{FreeRTOSConfig.h}.
+A custom built tickless idle mode can also be provided by the developer and used by setting the same variable to 2.
+This feature can be used when a default implementation in not provided for a certain board.
 %memory allocation
