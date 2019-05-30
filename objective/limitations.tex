@@ -1,0 +1,28 @@
+\section{Narrowed objective and limitations}
+
+Building a complete benchmarking framework is an ambitious work that requires a lot of time.
+In the scope of our thesis, we chose to narrow down our objective and produce only a proof-of-concept.
+By implementing this proof-of-concept framework, we want to show that it is possible to build a large benchmarking framework given more time and effort.
+
+For our proof-of-concept, we have reduce our framework implementation to a benchmarking of the context switching time RTOS that use a cooperative scheduler.
+From the criteria previously described, we have decided to reduce the first two by focusing only on a specific set of RTOS and the context switching time.
+For the last two, we leave them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
+
+We left the goal to implement a framework capable of benchmarking the interrupt latency, the memory usage and the energy consumption of any RTOS to future work.
+
+\subsection{Context-switching time centric framework}
+
+We chose to focus on the context switching time for the metric of our benchmarking framework because, in the context of embedded devices, the time spent between two tasks must be the smallest possible.
+Benchmarking the context switching time can help the developer to reduce the time lost between two tasks.
+Moreover, by considering the interrupt handler as a task, it is possible to compute the interrupt latency with the context switching time.
+
+\subsection{Scheduler limitations}
+
+We chose to only use RTOS with cooperative scheduler because this kind of scheduler allows us to know when a task is in the foreground and when it goes to the background.
+With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
+
+For that reason, we chose to focus our work on two RTOS: Contiki and FreeRTOS.
+
+For example, in Contiki, the developer can use macros like \texttt{PROCESS\_PAUSE()} or \texttt{PROCESS\_WAIT\_EVENT()} to let other tasks run in a cooperative fashion.
+% https://github.com/contiki-os/contiki/wiki/Processes
+The complete list of macros and more information can be found in the \href{https://github.com/contiki-os/contiki/wiki/Processes}{Contiki processes documentation}.
