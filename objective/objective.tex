@@ -3,39 +3,38 @@
 % https://www.electronicdesign.com/embedded/11-myths-about-embedded-benchmarking
 
 The first question one can ask is "What does benchmarking an embedded system means?".
-A benchmark measures performances of a defined system.
-In our case, an embedded system.
+A benchmark measures the performances of a defined system, in our case, an embedded system.
 Those performances can be measured in terms of latency, memory usage or even energy consumption.
-But we can also see benchmarks that include reliability, interoperability or stability measures.
-In the scope of our thesis, we choose to only focus on latency measurements.
+But we can also see benchmarks that include reliability, interoperability or stability measurements.
+In the scope of our thesis, we chose to only focus on latency measurements.
 
 In order to assess the performances of an application deployed on a RTOS, we wanted to build a benchmarking framework.
 
 \subsection{Motivations}
 
-In the RTOS world, benchmarks already exist and some of them are even commercialize.. 
+In the RTOS world, benchmarks already exist and some of them are even commercialized.
 % https://grahn.cse.bth.se/Papers/ParMiBench_crc.pdf -> ParMiBench
 % http://vhosts.eecs.umich.edu/mibench//Publications/MiBench.pdf -> MiBench
 % https://pure.tue.nl/ws/portalfiles/portal/46936147/640318-1.pdf
 % TODO - Donner des exemples de benchmarking
 However, those benchmarks are just workloads.
-They use a defined set of routines that is used to measure the performance of a RTOS.
+They use a defined set of routines that is used to measure the performances of a RTOS.
 This does not reflect the performances of a real-world application.
 A benchmark must be a tool that a developer can use to have a fair comparison of two systems.
 
 Developers find themselves using other tools to assess the performances of their applications.
 Let's take for example, the case of a developer who want to measure the latency of its application.
-A benchmark will only provide a latency measurement based on predefined tasks and with controlled environment.
-If our developer want to measure the real latency of its application, he will need to use an oscilloscope and take the time to do the measurements.
+A benchmark will only provide a latency measurement based on predefined tasks and within a controlled environment.
+If our developer wants to measure the real latency of its application, he will need to use an oscilloscope and take the time to do the measurements.
 
 However, this kind of devices is costly and some developers can not afford them.
-Furthermore, working with external devices takes time and can dramatically slow down the development process.
+Furthermore, working with external devices takes time and can dramatically slows down the development process.
 
 For those reasons, we wanted to build a benchmarking framework hidden from the developer that he could run on any RTOS with any application.
 
 Ideally, the use case for any developer using our benchmarking framework would be the following.
 This scenario is hypothetic and does not represent the state of our work.
-The developer implements an application with multiple tasks on a Contiki on a specific device.
+The developer implements an application with multiple tasks on a specific device.
 The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
 The developer flashes its application on the device and the framework output continuously performance measurement of the application.
 With this framework, the developer can optimize its application or change the device and check if the context switching time is improved.
@@ -45,8 +44,8 @@ With this framework, the developer can optimize its application or change the de
 Ideally, this framework would respect the following criteria in order to be useful for a real-world application.
 
 \paragraph{Widely distributed}
-By making our framework accessible on a large variety of RTOS, we allow developers not to limit themself to a specific set of RTOS.
-With this framework, they would be able to assess the performance of their applications regardless of the RTOS.
+By making our framework accessible on a large variety of RTOS, we allow developers not to limit themselves to a specific set of RTOS.
+With this framework, they would be able to assess the performance of their applications regardless of the platform.
 
 \paragraph{Providing a large variety of metrics}
 Our framework should be able to provide performance measurements on interrupt latency, context switching time.
@@ -64,11 +63,11 @@ Our framework should be able to improve the benchmarking process by being easy t
 
 \subsection{Approaches}
 
-In order to develop this framework, we were interested in three different approaches.
+In order to develop this framework, we explored in three different approaches.
 We introduced them here so that the reader have already in mind our three experiments but each one of them is described later in the chapter \ref{chap:experiment}.
 
 \paragraph{Integrating the framework in the kernel of the RTOS}
-Our first approach was to integrate the framework in the hearth of the RTOS.
+Our first approach was to integrate the framework in the heart of the RTOS.
 By focus our implementation in the kernel space, we would be able to retrieve performance measurements without altering the user space and the application.
 This approach is detailed in the section \ref{sec:kernel}.
 
