@@ -14,7 +14,7 @@ The tasks run in an infinite loop.
 \subsubsection{Implementation in Contiki}
 The source code of one of the two tasks is shown in the listing \ref{lst:simple-task-code}.
 It uses the \texttt{clock\_delay\_usec()} call to make the task wait for 1ms.
-Finally, we use the \texttt{PRCESS\_PAUSE()} macro to pause the task and let the other task do its iteration.
+Finally, we use the \texttt{PROCESS\_PAUSE()} macro to pause the task and let the other task do its iteration.
 
 \begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code}, caption={Source code of a task implemented in Contiki for the simple application}]
 PROCESS_THREAD(task, ev, data)
