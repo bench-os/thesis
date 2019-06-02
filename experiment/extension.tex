@@ -139,7 +139,8 @@ void bench_ping(uint32_t id)
 \end{lstlisting}
 
 When a change is detected, the framework will compute the context switching time by retrieving the current time and computing its difference with \texttt{current\_time} variable.
-The time is computed in ticks with the \texttt{RTIMER\_NOW()} method for a better precision.
+The time is computed in ticks for a better precision.
+To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT OS.
 The internal timer is then reset just before writting the measure into the serial port.
 Then the measure is outputted into the serial port using the \texttt{printf()} call.
 The code of this measurement is shown in the listing \ref{lst:measurement-code}.
@@ -160,23 +161,4 @@ bench_context.current_time = RTIMER_NOW(); // Ticks
 printf("[BENCH_CONTEXT_SWITCHING] %lu %lu %lu\n", previous_id, bench_context.new_id, result);
 \end{lstlisting}
 
-
-
-% For this second approach, we decided to develop our framework as a Contiki app.
-% The idea is to cause each task to ping the framework with its thread ID at the start and at the end of its execution.
-% In this way, the framework will keep track of which task is running and can detect a context switch and compute its duration.
-
-% In the figure \ref{fig:internal-framework-ping}, we can see an example of usage with two tasks.
-% The task 1 pings the framework at steps A and A' with its thread ID of 1, respectively the start and the end of its execution.
-% The task 2 do the same at steps B and B' but with its thread ID of 2.
-% The context switch occurs between the steps A' and B and the framework can use the received pings to deduce the context switching time.
-
-% \subsubsection{Framework implementation}
-% The implementation uses an internal structure \texttt{bench\_context} to store the last thread ID received with a ping and a timer to mesure the potential context switch.
-% Once a ping is received with the \texttt{bench\_ping(uint32\_t)} call, the framework store the new thread ID in its context and check if a change of thread IDs occurs with the \texttt{check\_change()} function.
-% If the two thread IDs match, no context switch happened and the same task is running on the foreground.
-% If the old thread ID does not match the new thread ID, it means a context switch just occur.
-% The context switching time is then computed using the timer stored in the context of the framework.
-% Finally, the time is reset.
-
-% The documented source code can be found in the listing \ref{lst:internal-bench-code}.
+All the source codes can be found in the \href{https://github.com/bench-os/bench-os}{Github repository}.

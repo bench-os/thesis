@@ -74,6 +74,8 @@
 % Front cover page
   \maketitle
 
+\cleardoublepage
+\pagenumbering{roman}
 
 %%%%%%% Abstract %%%%%
  \begin{abstract}
@@ -101,6 +103,9 @@
 \tableofcontents
 }
 
+\cleardoublepage
+\pagenumbering{arabic}
+
 \include{introduction}
 
 \part{Comparing RTOS from a theoretical point of view}
@@ -120,6 +125,13 @@
 %%%%%% Chap 5 %%%
 \include{results/index}
 
+%%%%%% Chap 6 %%%
+\include{further/index}
+
+\include{conclusion}
+
+\cleardoublepage
+\pagenumbering{roman}
 \listoffigures
 \listoftables
 
