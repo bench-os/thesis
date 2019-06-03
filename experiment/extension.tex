@@ -1,14 +1,14 @@
 \section{Implementing the framework as an extension of the RTOS \label{sec:extension}}
 
-For this second approach, the idea comes from our discussion with the community.
+For this second approach, the idea comes from our discussions with the communities.
 Instead of building the framework inside the kernel, we would implement the framework as a RTOS extension.
-The extension would provide calls that would be used in the user-space in the application.
+The extension would provide calls that would be used in the user-space of the application.
 
 \subsection{Definition of RTOS extension}
 
-Many RTOS allow developers to create their own extensions that will be used by other developers to enhance and add functionnalities to their applications.
-In these extensions, we can found libraries that allow the use of FTP or COAP or even a Shell.
-To use those extensions, the developer need to specify them in the \texttt{Makefile}.
+Many RTOS allow developers to create their own extensions that will be used by other developers to enhance and add functionalities to their applications.
+In these extensions, we can find libraries that integrates FTP, COAP or even a Shell.
+To use those extensions, the developer needs to specify them in the \texttt{Makefile}.
 Those libraries are called 'apps' for Contiki and 'modules' for RIOT OS.
 
 \begin{minipage}{.45\textwidth}
@@ -36,10 +36,9 @@ include $(RIOTBASE)/Makefile.include
 \end{lstlisting}
 \end{minipage}
 
-\subsection{Framework usage} % TODO - Find a better name
+\subsection{Framework utilization}
 
-Let's start by explaining how the framework works with this second approach.
-The idea is to be able to measure the context switching time without impacting the application.
+The idea of this second approach is to be able to measure the context switching time without impacting the application.
 With this in mind, we will make sure that our framework is called only two times per task iteration.
 From these calls, we can deduce the context switching time.
 The figure \ref{fig:internal-framework-ping} shows an example with two tasks.
@@ -58,7 +57,8 @@ The next sections describe the implementation of this framework and what happens
 
 \subsection{Using the framework with our simple application}
 
-To understand the implementation of the framework, we need to understand what happens when our simple application boots and then explain its implementation in the next section.
+To understand the implementation of the framework, we need to understand what happens when our simple application boots 
+  and then explain its implementation in the next section.
 
 In the startup of our application, the first task is launched.
 It will call the method \texttt{bench\_ping(TASK\_1)} where \texttt{TASK\_1} is the ID of the first task.
@@ -90,10 +90,10 @@ In this way, we have computed the context switching time between the first and t
 \subsection{Framework implementation}
 
 \subsubsection{Task source code}
-For our simple application source code, we just had to add the call \texttt{bench\_ping()} at the start and the end of each task.
-The listing \ref{lst:bench-task-code} shows how, in Contiki, the task source code have changed.
+For our simple application source code, we just added the call \texttt{bench\_ping()} at the start and the end of each task.
+The listing \ref{lst:bench-task-code} shows how the task source code is impacted in Contiki.
 
-\begin{lstlisting}[float, style=CStyle, label={lst:bench-task-code}, caption={Source code of the task with \texttt{bench\_ping()} calls}]
+\begin{lstlisting}[float, style=CStyle, label={lst:bench-task-code}, caption={Source code of the application task with \texttt{bench\_ping()} calls}]
 PROCESS_THREAD(task, ev, data)
 {
     PROCESS_BEGIN();
@@ -113,7 +113,8 @@ PROCESS_THREAD(task, ev, data)
 
 \subsubsection{Framework source code}
 
-For the framework context, we store the received ID in the \texttt{new\_id} variable and then use the \texttt{previous\_id} variable to check if a context switch occured.
+For the framework context, we store the received ID in the \texttt{new\_id} variable 
+  and then use the \texttt{previous\_id} variable to check if a context switch occured.
 The \texttt{current\_time} variable is the interval timer.
 The code of the framework context is shown in the listing \ref{lst:context-code}.
 
@@ -125,7 +126,8 @@ struct BContext {
 } bench_context;
 \end{lstlisting}
 
-The \texttt{bench\_ping()} method will just saved the received ID in the \texttt{new\_id} variable and then check if a change is detected like shown in the listing \ref{lst:bench-ping-code}.
+The \texttt{bench\_ping()} method will just saved the received ID in the \texttt{new\_id} variable 
+  and then check if a change is detected like shown in the listing \ref{lst:bench-ping-code}.
 
 \begin{lstlisting}[style=CStyle, float, label={lst:bench-ping-code}, caption={\texttt{bench\_ping()} implementation}]
 void bench_ping(uint32_t id)
@@ -138,11 +140,12 @@ void bench_ping(uint32_t id)
 }
 \end{lstlisting}
 
-When a change is detected, the framework will compute the context switching time by retrieving the current time and computing its difference with \texttt{current\_time} variable.
+When a change is detected, the framework will compute the context switching time 
+  by retrieving the current time and computing its difference with \texttt{current\_time} variable.
 The time is computed in ticks for a better precision.
 To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT OS.
 The internal timer is then reset just before writting the measure into the serial port.
-Then the measure is outputted into the serial port using the \texttt{printf()} call.
+Then the measure is written to the serial port using the \texttt{printf()} call.
 The code of this measurement is shown in the listing \ref{lst:measurement-code}.
 
 \begin{lstlisting}[style=CStyle, float, label={lst:measurement-code}, caption={Source code of the benchmarking framework implemented in Contiki}]
