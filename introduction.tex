@@ -5,7 +5,7 @@
 \section*{Context}
 
 %RTOS and IoT their impact and interconnections
-\subsection*{Embedded Systems, Real-Time Operating Systems and Internet of Things}
+\subsubsection*{Embedded Systems, Real-Time Operating Systems and Internet of Things}
 
 Embedded Systems have been around since a while now.
 %http://web.mit.edu/aeroastro/news/magazine/aeroastro6/mit-apollo.html
@@ -23,7 +23,7 @@ The age of the Internet of Things (IoT) as it is called brought countless of new
 Billions of those connected devices are now in use as of today with no sign of getting out of trend.
 
 %Benchmarking of RTOS
-\subsection*{Benchmarking of Real-Time Operating Systems}
+\subsubsection*{Benchmarking of Real-Time Operating Systems}
 
 A benchmark is a tool designed to assess the performances of a system.
 In computer science, softwares are used to benchmark the performances of computer hardware but also softwares.
@@ -38,7 +38,7 @@ We can cite \texttt{MiBench}, an embedded benchmark suite and also \texttt{ParMi
 We then came up with the idea of building a benchmarking tool not to benchmark the operating systems but the applications built on top of them.
 
 %riot summit
-\subsection*{RIOT Summit 2018}
+\subsubsection*{RIOT Summit 2018}
 In September 2018, we went to the RIOT Summit 2018 in Amsterdam in order to meet developers and researchers specialized in the RTOS area.
 
 This was the third summit of the RIOT community.
@@ -60,14 +60,46 @@ With their expertise and their advices, we got references to hardwares and softw
 %
 %Objectives
 %
-\section*{Objectives}
-%theory of rtos
-%framework
-%what it brings
+\section*{Objective}
+The objective of the present work is dual.
 
+%theory of rtos
+First, we wanted to gather information in order to present a theoretical state of the art about RTOS.
+The litterature about RTOS is really sparse and technical.
+We wanted to summarize and give an introduction of what makes the specificities of real-time operating systems.
+
+%framework
+Next, we implemented a proof-of-concept and explored multiple ways to build a benchmarking tool targeting RTOS applications.\\
+
+%what it brings
+We did not want to build a new benchmarking tool for RTOS as multiple tools are already available.
+We then developped the idea for the RTOS application benchmarking framework and discussed it with the RIOT community at the RIOT Summit.
+The feedback was positive and many found the idea really interesting to explore.
+We believe that a complete benchmarking tool for RTOS applications can benefit the industry 
+    and help it in designing better fitted applications in constraints environements.
 %
 %Outline
 %
 \section*{Outline}
+The present document is divided in two parts.\\
+
 %part1
+Chapter 1 of the first part is a summary of RTOS theory.
+It provides information needed in order to understand the second part.
+It also can be read independently from the rest of the document and gives a good glimpse at RTOS design.
+
+Chapter 2 provides a comparison of different RTOS from a theoretical point of view.
+We chose to study and analyze RIOT, Contiki and FreeRTOS.
+They give a good example of real implementation of the theory developped in the first chapter.
+We also developped our proof-of-concept framework for these OS, so they are then presented first.\\
+
 %part2
+Chapter 1 of the second part presents the different objectives we followed during our developpement and researches.
+The objectives shifted as we progressed and limitations were discovered.
+This chapter also describes the methodology we followed to get a reference value to compare to our benchmarks.
+
+Chapter 2 describes the experiments we performed.
+We tried different approaches and explained their operation.
+
+Chapter 3 presents our results.
+We performed comparisons with our differents benchmarks compared to the reference value we obtained.
