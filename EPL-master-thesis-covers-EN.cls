@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{eplmastersthesis}[2018/12/04 EPL Master''s Thesis class]
 
-\LoadClass[12pt, a4paper, openright, twoside]{report}
+\LoadClass[12pt, a4paper, openright]{report}
 
 % Usefull packages
 \usepackage[utf8x]{inputenc}
