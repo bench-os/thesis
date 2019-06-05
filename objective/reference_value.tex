@@ -83,6 +83,15 @@ The time for the GPIOs to rise up or down are around 10 nano seconds and can be 
 
 The oscilloscope used for the measurement was the \href{https://www.tek.com/oscilloscope/mso56}{Tektronix MSO 56} available at the Welcome Lab at UCLouvain.
 We used two channels to measure the voltage of the two GPIOs used by the application.
+The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real-time our measurements.
+A table resume the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
+Once we have retrieved 1000 measurements, we export our data in a flash thumb.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.25]{assets/oscilloscope-interface.png}
+    \caption{Interface of the oscilloscope\label{fig:oscilloscope-interface}}
+\end{figure}
 
 We updated our simple task by adding GPIO calls in order for the oscilloscope to detect it.
 The task will set up a GPIO, wait for 1ms, and then clear the GPIO.
@@ -139,41 +148,87 @@ The source code of the updated task is shown in the listing \ref{lst:gpio-task-c
     }
     \end{lstlisting}
 
+\subsubsection{Boards used}
+
+To perform our measurements, we have used two devices from Zolertia.
+The \href{https://github.com/Zolertia/Resources/wiki/RE-Mote}{RE-Mote} and the \href{https://github.com/Zolertia/Resources/wiki/The-Z1-mote}{Z1}.
+The CPU of the RE-Mote is a \href{https://developer.arm.com/ip-products/processors/cortex-m/cortex-m3}{ARM Cortex-M3} 32 MHz clock speed with 512 KB flash and 32 KB RAM.
+The Z1 have a \href{http://www.ti.com/product/MSP430F2617}{MSP430F2617} 16 MHz clock speed with 92KB flash and a 8KB RAM.
+
+With those specifications, the Zolertia RE-Mote categorizes itself as a Class 2 device and the Zolertia Z1 as a Class 1 device.
+Moreover, both Contiki and RIOT OS support those boards.
+
+\begin{figure}[!ht]
+    \begin{minipage}{.45\textwidth}
+        \centering
+        \includegraphics[scale=.5]{assets/remote.png}
+        \caption{Zolerta RE-Mote board}
+    \end{minipage}\hfill
+    \begin{minipage}{.45\textwidth}        
+        \centering
+        \includegraphics[scale=2.5]{assets/z1.png}
+        \caption{Zolerta Z1 board}
+    \end{minipage}
+\end{figure}
+
 \subsection{Measurement results}
 
-% The figure \ref{fig:measurement-value-wave} shows concretely the measurements made by our oscilloscope.
-% As described in the methodology, high values means that the task is running in the foreground and low values means that the task is sleeping in the background.
+In the end, we have four differents reference values.
+One for each board and for each RTOS.
+The results are divided by boards and the measurements from Contiki are compared side-by-side with the measurements from RIOT OS for more clarity.
 
-% \begin{figure}[!ht]
-%   \centering
-%   \includegraphics[scale=0.5]{assets/measurement-value-wave.png}
-%   \caption{\label{fig:measurement-value-wave}Voltage measurement of the two GPIOs; Each color represents a task}
-% \end{figure}
+\subsubsection{RE-Mote measurements}
+With the RE-Mote board, we have measured an average context switching time of $18.505\mu s$ for Contiki and $12.626 \mu s$ for RIOT OS.
+The table \ref{tab:reference-value-remote} shows the statistics of the measurements.
 
-% The context switching time is the time during which no task is running.
-% This is visible with the oscilloscope when both channels are low.
+\input{assets/reference-value-remote.tex}
 
-% With the oscilloscope, we made four measurements.
-% The first two measurements are the context switching times from task 1 to task 2 and from task 2 to task 1.
-% The other two measurements are the time taken by the two tasks.
-% These last measurements should be arround 1ms.
-% The measurements are shown in the table \ref{tab:reference-measurement}.
+The figure \ref{fig:reference-value-contiki-remote} and the figure \ref{fig:reference-value-riot-remote} show the distribution of the reference value with the RE-Mote board.
+Note that the y-axis is logarithmic.
+For the reference value of Contiki, we can see that the majority of the measurements is around $14 \mu s$.
+Some measurements are above $35 \mu s$ with extrema around $70 \mu s$.
+For RIOT, we find two distributions.
+One around $12.56\mu s$ and the other around $12.64\mu s$.
 
-% With these results, we can see that the duration of both tasks is 1ms with no variation.
-% We also extract with this measurement our reference value.
-% From task 1 to task 2, we have 14.68$\mu$s of context switching time and from task 2 to task 1, we have 14.88$\mu$s.
-% Our benchmarking framework should compute the context switching time of that same application and output a value between 13.30$\mu$s and 16.26$\mu$s.
+\begin{figure}[!ht]
+    \begin{minipage}{.45\textwidth}
+        \centering
+        \includegraphics[scale=.4]{assets/reference-value-contiki-remote.pdf}
+        \caption{Reference value distribution with Contiki on RE-Mote\label{fig:reference-value-contiki-remote}}
+    \end{minipage}\hfill
+    \begin{minipage}{.45\textwidth}        
+        \centering
+        \includegraphics[scale=.4]{assets/reference-value-riot-remote.pdf}
+        \caption{Reference value distribution with RIOT OS on RE-Mote\label{fig:reference-value-riot-remote}}
+    \end{minipage}
+\end{figure}
 
-% \begin{table}[!ht]
-%   \centering
-%   \begin{tabular}{llll}
-%                         & \multicolumn{3}{c}{Time ($\mu$s)}                              \\ \cline{2-4} 
-%                         & \multicolumn{1}{c}{Mean} & Min   & \multicolumn{1}{c}{Max} \\ \cline{2-4} 
-%   From task 1 to task 2 & 14.68                    & 14.35 & 14.79                   \\
-%   From task 2 to task 1 & 14.88                    & 14.33 & 14.97                   \\
-%   Duration of task 1    & 1003                     & 1003  & 1003                    \\
-%   Duration of task 2    & 1003                     & 1003  & 1003                   
-%   \end{tabular}
-%   \caption{Context switching times and task durations measured with the oscilloscope Tektronix MSO 56}
-%   \label{tab:reference-measurement}
-% \end{table}
+\subsubsection{Z1 measurements}
+With the Z1 board, we have measured an higher context switching time than with the RE-Mote board. The average context switching time for Contiki is $54.99\mu s$ and $30.6971 \mu s$ for RIOT OS.
+It is not a surprise that the RE-Mote board have a smallest context switching time than the Z1 board as the latter is a Class-1 device while the former is a Class-2 device.
+The table \ref{tab:reference-value-z1} shows the statistics of the measurements made with the Z1 board.
+
+\input{assets/reference-value-z1.tex}
+
+The figure \ref{fig:reference-value-contiki-z1} and the figure \ref{fig:reference-value-riot-z1} show the distribution of the reference value with the Z1 board.
+Note that the y-axis is logarithmic.
+This time, RIOT have a strong distribution around $27.625\mu s$.
+For Contiki, in the other hand, we have the majority of our measurements around $32\mu s$ but some measurements are above $100 \mu s$.
+
+\begin{figure}[!ht]
+    \begin{minipage}{.45\textwidth}
+        \centering
+        \includegraphics[scale=.4]{assets/reference-value-contiki-z1.pdf}
+        \caption{Reference value distribution with Contiki on Z1\label{fig:reference-value-contiki-z1}}
+    \end{minipage}\hfill
+    \begin{minipage}{.45\textwidth}        
+        \centering
+        \includegraphics[scale=.4]{assets/reference-value-riot-z1.pdf}
+        \caption{Reference value distribution with RIOT OS on Z1\label{fig:reference-value-riot-z1}}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{Resume}
+The table \ref{tab:reference-values-resume} resume our reference values with the two boards, the RE-Mote and the Z1, and the two RTOS, Contiki and RIOT OS.
+
+\input{assets/reference-values-resume.tex}
