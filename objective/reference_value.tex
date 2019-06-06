@@ -1,4 +1,4 @@
-\section{Reference value}
+\section{Reference value \label{sec:reference}}
 
 Our benchmarking framework will compute the context switching time but we need to know how well or how bad our framework performs.
 To assess the performance of our measurements, we first need to compute the real context switching time.
@@ -191,16 +191,16 @@ For RIOT, we find two distributions.
 One around $12.56\mu s$ and the other around $12.64\mu s$.
 
 \begin{figure}[!ht]
-    \begin{minipage}{.45\textwidth}
+    % \begin{minipage}{.45\textwidth}
         \centering
-        \includegraphics[scale=.4]{assets/reference-value-contiki-remote.pdf}
+        \includegraphics[scale=.7]{assets/reference-value-contiki-remote.pdf}
         \caption{Reference value distribution with Contiki on RE-Mote\label{fig:reference-value-contiki-remote}}
-    \end{minipage}\hfill
-    \begin{minipage}{.45\textwidth}        
+    % \end{minipage}\hfill
+    % \begin{minipage}{.45\textwidth}        
         \centering
-        \includegraphics[scale=.4]{assets/reference-value-riot-remote.pdf}
+        \includegraphics[scale=.7]{assets/reference-value-riot-remote.pdf}
         \caption{Reference value distribution with RIOT OS on RE-Mote\label{fig:reference-value-riot-remote}}
-    \end{minipage}
+    % \end{minipage}
 \end{figure}
 
 \subsubsection{Z1 measurements}
@@ -216,16 +216,16 @@ This time, RIOT have a strong distribution around $27.625\mu s$.
 For Contiki, in the other hand, we have the majority of our measurements around $32\mu s$ but some measurements are above $100 \mu s$.
 
 \begin{figure}[!ht]
-    \begin{minipage}{.45\textwidth}
+    % \begin{minipage}{.45\textwidth}
         \centering
-        \includegraphics[scale=.4]{assets/reference-value-contiki-z1.pdf}
+        \includegraphics[scale=.7]{assets/reference-value-contiki-z1.pdf}
         \caption{Reference value distribution with Contiki on Z1\label{fig:reference-value-contiki-z1}}
-    \end{minipage}\hfill
-    \begin{minipage}{.45\textwidth}        
+    % \end{minipage}\hfill
+    % \begin{minipage}{.45\textwidth}        
         \centering
-        \includegraphics[scale=.4]{assets/reference-value-riot-z1.pdf}
+        \includegraphics[scale=.7]{assets/reference-value-riot-z1.pdf}
         \caption{Reference value distribution with RIOT OS on Z1\label{fig:reference-value-riot-z1}}
-    \end{minipage}
+    % \end{minipage}
 \end{figure}
 
 \subsubsection{Resume}
