@@ -1,46 +1,44 @@
 \section{Scheduling}
 
-\paragraph{}
 The scheduler plays an important role in the design of a(n) (RT)OS.
-The performances of an operating system are deeply impacted by the scheduling algorithm implemented.
-As we'll see further in the thesis, it can also affect the energy consumption of the device.\\
+The performances of an OS are deeply impacted by the scheduling algorithm it uses.
+As we will see further in the thesis, it can also affect the energy consumption of the device.\\
+%TODO reference for where
 
 \subsection{Base concepts}
 
 % What is a scheduler
-\paragraph{}
-A scheduler is a process designed to choose which task will run at a certain point of time in the system.
+A scheduler is a process designed to choose which task will run at a certain time in the system.
 Different disciplines can be used, each one with multiple advantages and drawbacks.
-Some commonly used will be presented below in the next subsection.
+Some commonly used are presented below in the Subsection 1.2.2.
 
 % Preemptive vs non-preemptive (cooperative)
-\paragraph{}
-A scheduler is said \textit{preemptive} if tasks in the system can preempt each other.
-When a higher-priority task wants to execute, the scheduler can interrupt the lower-priority task and run the higher-priority one.
+A scheduler is said to be \textit{preemptive} if tasks in the system can preempt each other.
+When a higher-priority task wants to execute, the scheduler can interrupt a lower-priority task and run the higher-priority one.
 In the other hand, a scheduler is said \textit{non-preemptive} or \textit{cooperative}
-    if a task that has been allowed to start will execute until the end.
+    if a task that has been allowed to start will execute until it is complete.
 
 % online/offline
-\paragraph{}
 Another distinction we can make is to divide schedulers into \textit{online} and \textit{offline} schedulers.
 % online
-Online schedulers decide during runtime, based on various parameters (such as task priority for example), the ordering of the different tasks.
+Online schedulers decide of the ordering of the different tasks during runtime based on various parameters (such as task priority for example).
 A scheduler based on task priority is also called \textit{priority-based} scheduler.
 % offline
 On the contrary, offline schedulers (also known as \textit{table-driven} schedulers) perform their scheduling decisions at the start of the system.
 
 The impact of these characteristics in the design of an RTOS will be explained later in this chapter.
+%TODO reference
 
 \subsection{Scheduling policies}
 
 \subsubsection{First in, first out (FIFO)}
-Also known as First come, first serve (FCFS), FIFO is one of the simpliest scheduling algorithm.
+Also known as first come, first serve (FCFS), FIFO is one of the simpliest scheduling algorithm.
 Processes are queued into a data structure in their order of arrival.
-The first process to be enqueued is the first which will be executed.
+The first process to be enqueued is the first that will be executed.
 
 \subsubsection{Round-robin}
 The round-robin scheduling algorithm divides the time allocated to each process into fixed time slices.
-If a process doesn't terminate when his allocated time slice is expired, it is preempted and the scheduler switches to another task.
+If a process doesn not terminate when his allocated time slice is expired, the scheduler switches to another task.
 If a task terminates within its time slice, the scheduler simply switches to the next task.
 
 \subsubsection{Earliest deadline first (EDF)}
@@ -48,10 +46,10 @@ Earliest deadline first scheduling algorithm dynamically assigns a priority
     to each enqueued process (based on its deadline or an estimation of it) into a priority queue data structure.
 The scheduler then executes the process the closest to its deadline at each scheduling event.
 
-\subsubsection{Fixed priority preemptive scheduling}
+\subsubsection{Fixed-priority preemptive scheduling}
 Priority for each task is pre-assigned by the operating system.
 The scheduler arranges the tasks by order of priority.
-Higher priority tasks can interrupt lower priority tasks.
+Higher-priority tasks can interrupt lower-priority tasks.
 
 %\subsection{Real-Time Scheduling}
 %handbook chapter 2 12

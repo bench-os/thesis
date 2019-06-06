@@ -5,35 +5,29 @@
 %https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html
 %http://www.cs.virginia.edu/~son/cs414.f05/lec11.slides.pdf
 
-
-
-
-\paragraph{}
 In modern computer systems, memory management has evolved since early days techniques which were limited
     by early computer systems where each memory location was specified in the program.
 This led to critical errors and/or unpredictability when an incorrect location was specified.
 
-Nowadays, the memory management of (almost) every computer system follows the same principle.
-The memory of a computer system is can be divided into 2 distincts sections,
-    the static memory or \textit{stack} and the dynamic memory or \textit{heap}.
+Nowadays, the memory management of (almost) every computer system follows the same principle:
+the memory of a computer system can be divided into 2 distincts sections,
+    the static memory (\textit{stack}) and the dynamic memory (\textit{heap}).
 
 \subsection{Static memory management}
-\paragraph{}
 %stack
-By the time a program begins to execute, there must be some specific blocks of memory set aside for its use.
+By the time a program begins to execute, there must be some specific blocks of memory reserved for its use.
 This includes, for instance, the memory containing the program's own code.
-Morever, every static variable must have a specific memory set aside.
+Morever, every static variable must have a specific memory reserved.
 
 The static memory allocation is predetermined by the compiler
-    and will always be set aside for the program in the same manner at the beginning of every run.
+    and will always be reserved for the program in the same manner at the beginning of every run.
 
-This part of the memory operates as a \textit{stack} or Last-In First-Out (LIFO) queue.
+This part of the memory operates as a \textit{stack} or last-in first-out (LIFO) queue.
 The area of memory available for the use of the program will shrink and grow following the execution of the program,
 which makes it very fast and efficient with no fragmentation.
 %explain fragmentation?
 
 \subsection{Dynamic memory management}
-\paragraph{}
 %heap
 Sometimes, fixed memory size can be a problem.
 Static memory does not allow allocation of memory beyond what is declared initially.
@@ -43,40 +37,36 @@ It has no guarantee of efficient use of space, memory may become fragmented over
 
 It may be tedious for the inexperienced programmer to manage the heap
     but it allows a more flexible and shareable pool of memory for an efficient programming.
-To allocate memory on the heap, one must use \textit{malloc()} or \textit{calloc()} from stdlib.h (when available).
+To allocate memory on the heap, one must use \textit{malloc()} or \textit{calloc()} from the C code library stdlib.h (when available).
 There are multiple algorithms to allocate memory when calling these functions.
 The most common ones are presented below.
 
 % conventional algorithms
-\subsubsection{Sequential Fit Algorithm}
-\paragraph{}
-For this memory management algorithm, a single linked-list contains the unallocated blocks of memory.
-When needed, they are allocated using different policies.
+\subsubsection{Sequential fit algorithm}
+For this memory management algorithm, a single linkedvlist contains the unallocated blocks of memory.
+When needed, they are allocated using different policies:
 \begin{itemize}
-    \item First Fit: returns the first block large enough from the list.
-    \item Next Fit: similar to First Fit but starts where the pointer was left off at the previous iteration.
-    \item Best Fit: research through the whole list and returns the smallest block large enough to meet the request.
-    \item Worst Fit: returns the largest block from the list.
+    \item First fit: returns the first block large enough from the list.
+    \item Next fit: similar to first fit but starts where the pointer was left off at the previous iteration.
+    \item Best fit: research through the whole list and returns the smallest block large enough to meet the request.
+    \item Worst fit: returns the largest block from the list.
 \end{itemize}
 
-\subsubsection{Buddy Allocator Algorithm}
-\paragraph{}
-This algorithm makes use of an array of linked-lists.
-Each list from the array owns blocks from a distinct size.
+\subsubsection{Buddy allocator algorithm}
+This algorithm makes use of an array of linked lists.
+Each list from the array owns blocks of a distinct size.
 When requested, the buddy allocator algorithm finds the smallest but large enough block to meet the requirement from the array.
 It then picks one of the block from this position in the array.
 
 If the list is empty at the position where the best fitting block is located, it goes to the next position in the array
 and splits a block from this list to fill the empty position.
-The opposite can be applied too, two smaller blocks can ben merged to obtain a bigger one.
+The opposite can also be applied: two smaller blocks can be merged to obtain a bigger one.
 
-\subsubsection{Indexed Fit Algorithm}
-\paragraph{}
-This algorithm makes use of an indexed data structure to implement desired fit.
+\subsubsection{Indexed fit algorithm}
+This algorithm makes use of an indexed data structure to implement the desired fit.
 Some common data structures used for this algorithm are trees or hash tables.
 
-\subsubsection{Bitmapped Fit Algorithm}
-\paragraph{}
+\subsubsection{Bitmapped fit algorithm}
 A bitmap representing the usage of the heap is created.
 Each bit of the map corresponds to a part of the heap.
 If a part is used, the bitmap is set to 1.
