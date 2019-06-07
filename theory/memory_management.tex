@@ -4,14 +4,27 @@
 %http://www.csc.twu.ca/rsbook/Ch12/Ch12.4.html
 %https://www.gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html
 %http://www.cs.virginia.edu/~son/cs414.f05/lec11.slides.pdf
+%https://sites.uclouvain.be/SystInfo/notes/Theorie/html/C/malloc.html#organisation-de-la-memoire
 
 In modern computer systems, memory management has evolved since early days techniques which were limited
     by early computer systems where each memory location was specified in the program.
 This led to critical errors and/or unpredictability when an incorrect location was specified.
 
-Nowadays, the memory management of (almost) every computer system follows the same principle:
-the memory of a computer system can be divided into 2 distincts sections,
-    the static memory (\textit{stack}) and the dynamic memory (\textit{heap}).
+Nowadays, the memory management of (almost) every computer system follows the same principle.
+The memory of a computer system can be divided into 5 distincts sections:
+\begin{itemize}
+    \item The \texttt{text} segment or code segment consists of the compiled program code. It is read-only and initialized from the executable file.
+    \item The \texttt{data} segment contains the global and static variables, allocated and initialized before the start of the program.
+    \item The \texttt{bss} segment contains all global an static variables that are not initialized.
+    \item The \texttt{heap} is used for the dynamic memory allocation, and is managed via calls to new, delete, malloc, free, etc.
+    \item The \texttt{stack} is used for local variables. Space on the stack is reserved for local variables when they are declared.
+\end{itemize}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[]{assets/memory.pdf}
+    \caption{\label{fig:kernel-types}memory organization}
+\end{figure}
 
 \subsection{Static memory management}
 %stack

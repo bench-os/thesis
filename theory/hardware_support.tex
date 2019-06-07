@@ -14,6 +14,11 @@ Then, it explains what an hardware abstraction layer (HAL) is and how a RTOS use
 
 Constrained devices have been classified in 3 classes by the Internet Engineering Task Force (IETF) with the request for comments RFC7228 in May 2014.
 %TODO cite rfc
+IETF is a standards organization aiming at improving and maintaining the usability of the Internet.
+Therefore they play a certain role in the evolution of IoT technologies.
+We can argue that IETF is a competent authority over constraints devices since its domain of competence is the Internet.
+Nonetheless, the boundary between constrained embedded devices and the Internet is permeable.
+For the purpose of this thesis, the classification they made with RFC7228 is used.
 RFCs are informational or experimental documents published by engineers and computer scientists.
 Some of them become standards and some others \textit{de facto} standards.
 
@@ -43,8 +48,11 @@ In the embedded world, bare-metal programming is writing code that runs directly
 
 \paragraph{Class 1.}
 Those devices are able to talk to each other but via constrained protocols.
-The use of security protocols are too heavy for that class.
-RTOS mainly target this kind of devices.
+The use of security protocols are often too heavy for that class.
+%RTOS mainly target this kind of devices.
+RTOS generally require at least a few kB for the strict minimal functionalities to run.
+Therefore, they are not practical for class 0 devices (even if they could technically run) and mainly target class 1 or more powerful devices.
+
 
 \paragraph{Class 2.}
 Those devices are the less constrained and can use the same stacks of protocols used in personal computers and servers.

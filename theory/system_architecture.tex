@@ -3,7 +3,8 @@
 Operating systems for embedded devices started appearing in the 00's.
 Since then design choices have evolved with the technology, researches and trends.
 \\
-In this section, we will explain the different kernel architectures commonly found in RTOS and their impact on the operating system.
+In Section 1.1.6, we will explain the different kernel architectures commonly found in RTOS and their impact on the operating system.
+But beforehand, we will introduce some concepts that will help explaining the kernel architectures.
 
 \subsection{Kernel}
 The kernel is the center piece of an operating system.
@@ -17,7 +18,6 @@ The tasks a kernel usually manages consist in:
     \item Device drivers
     \item System calls
 \end{itemize}
-
 
 \subsection{User space and kernel space}
 Almost every operating system makes the distinction between user space and kernel space.
@@ -35,7 +35,6 @@ Each user-space process has its own memory space and cannot access the memory of
 \subsection{CPU modes}
 %https://minnie.tuhs.org/CompArch/Lectures/week07.html
 %https://blog.codinghorror.com/understanding-user-and-kernel-mode/
-\paragraph{}
 CPU run on different operating modes (also called states or levels).
 In kernel mode (also called privilege mode or unrestricted mode), the CPU may perform any operation without restriction.
 In user mode, direct access to hardware is prohibited.
@@ -116,10 +115,9 @@ From a maintainer point of view, it is also less complex, easier to understand a
 The microkernel architecture needs an IPC.
 A message-passing mechanism must be used and is inheritantly slower than a direct function calls.
 \\
-%TODO fix figure
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.7]{assets/kernel_types.pdf}
+    \includegraphics[scale=0.8]{assets/kernel_types.pdf}
     \caption{\label{fig:kernel-types}different kernel designs}
 \end{figure}
 
