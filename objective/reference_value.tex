@@ -31,13 +31,13 @@ PROCESS_THREAD(task, ev, data)
 }
 \end{lstlisting}
 
-\subsubsection{Implementation in RIOT OS}
+\subsubsection{Implementation in RIOT}
 The source code of on of the two tasks is shown in the listing \ref{lst:simple-task-code-riot}.
 We can not use the \texttt{xtimer\_usleep()} method as it will lead to a context switch.
 Instead, we used a for loop.
 The \texttt{thread\_yield()} call will perfom a context switch and let the other task run on iteration.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code-riot}, caption={Source code of a task implemented in RIOT OS for the simple application}]
+\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code-riot}, caption={Source code of a task implemented in RIOT for the simple application}]
 void *threadA(void *arg)
 {
     (void)arg;
@@ -125,11 +125,11 @@ The source code of the updated task is shown in the listing \ref{lst:gpio-task-c
   }
 \end{lstlisting}
 
-\subsubsection{Implemetation in RIOT OS}
+\subsubsection{Implemetation in RIOT}
 The source code of the updated task is shown in the listing \ref{lst:gpio-task-code-riot}.
 \texttt{gpio\_set()} and \texttt{gpio\_clear()} are used to respectively set and clear the GPIO used by the task.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code-riot}, caption={Source code of a task implemented in RIOT OS for the simple application}]
+\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code-riot}, caption={Source code of a task implemented in RIOT for the simple application}]
     void *thread(void *arg)
     {
         (void)arg;
@@ -156,7 +156,7 @@ The CPU of the RE-Mote is a \href{https://developer.arm.com/ip-products/processo
 The Z1 have a \href{http://www.ti.com/product/MSP430F2617}{MSP430F2617} 16 MHz clock speed with 92KB flash and a 8KB RAM.
 
 With those specifications, the Zolertia RE-Mote categorizes itself as a Class 2 device and the Zolertia Z1 as a Class 1 device.
-Moreover, both Contiki and RIOT OS support those boards.
+Moreover, both Contiki and RIOT support those boards.
 
 \begin{figure}[!ht]
     \begin{minipage}{.45\textwidth}
@@ -175,10 +175,10 @@ Moreover, both Contiki and RIOT OS support those boards.
 
 In the end, we have four differents reference values.
 One for each board and for each RTOS.
-The results are divided by boards and the measurements from Contiki are compared side-by-side with the measurements from RIOT OS for more clarity.
+The results are divided by boards and the measurements from Contiki are compared side-by-side with the measurements from RIOT for more clarity.
 
 \subsubsection{RE-Mote measurements}
-With the RE-Mote board, we have measured an average context switching time of $18.505\mu s$ for Contiki and $12.626 \mu s$ for RIOT OS.
+With the RE-Mote board, we have measured an average context switching time of $18.505\mu s$ for Contiki and $12.626 \mu s$ for RIOT.
 The table \ref{tab:reference-value-remote} shows the statistics of the measurements.
 
 \input{assets/reference-value-remote.tex}
@@ -204,7 +204,7 @@ One around $12.56\mu s$ and the other around $12.64\mu s$.
 \end{figure}
 
 \subsubsection{Z1 measurements}
-With the Z1 board, we have measured an higher context switching time than with the RE-Mote board. The average context switching time for Contiki is $54.99\mu s$ and $30.6971 \mu s$ for RIOT OS.
+With the Z1 board, we have measured an higher context switching time than with the RE-Mote board. The average context switching time for Contiki is $54.99\mu s$ and $30.6971 \mu s$ for RIOT.
 It is not a surprise that the RE-Mote board have a smallest context switching time than the Z1 board as the latter is a Class-1 device while the former is a Class-2 device.
 The table \ref{tab:reference-value-z1} shows the statistics of the measurements made with the Z1 board.
 
@@ -229,7 +229,7 @@ For Contiki, in the other hand, we have the majority of our measurements around 
 \end{figure}
 
 \subsubsection{Resume}
-The table \ref{tab:reference-values-resume} resume our reference values with the two boards, the RE-Mote and the Z1, and the two RTOS, Contiki and RIOT OS.
+The table \ref{tab:reference-values-resume} resume our reference values with the two boards, the RE-Mote and the Z1, and the two RTOS, Contiki and RIOT.
 
 \input{assets/reference-values-resume.tex}
 

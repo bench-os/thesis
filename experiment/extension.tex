@@ -9,7 +9,7 @@ The extension would provide calls that would be used in the user-space of the ap
 Many RTOS allow developers to create their own extensions that will be used by other developers to enhance and add functionalities to their applications.
 In these extensions, we can find libraries that integrates FTP, COAP or even a Shell.
 To use those extensions, the developer needs to specify them in the \texttt{Makefile}.
-Those libraries are called 'apps' for Contiki and 'modules' for RIOT OS.
+Those libraries are called 'apps' for Contiki and 'modules' for RIOT.
 
 \begin{minipage}{.45\textwidth}
 \begin{lstlisting}[style=CStyle, language=make, caption=Example of Makefile using the app \texttt{shell} with Contiki]
@@ -24,7 +24,7 @@ include $(CONTIKI)/Makefile.include
 \end{lstlisting}
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
-\begin{lstlisting}[style=CStyle, language=make, caption=Example of Makefile using the module \texttt{shell} with RIOT OS]
+\begin{lstlisting}[style=CStyle, language=make, caption=Example of Makefile using the module \texttt{shell} with RIOT]
 APPLICATION = example
 BOARD ?= native
 RIOTBASE ?= $(CURDIR)/../riot
@@ -143,7 +143,7 @@ void bench_ping(uint32_t id)
 When a change is detected, the framework will compute the context switching time 
   by retrieving the current time and computing its difference with \texttt{current\_time} variable.
 The time is computed in ticks for a better precision.
-To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT OS.
+To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT.
 The internal timer is then reset just before writting the measure into the serial port.
 Then the measure is written to the serial port using the \texttt{printf()} call.
 The code of this measurement is shown in the listing \ref{lst:measurement-code}.

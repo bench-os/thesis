@@ -1,4 +1,4 @@
-\section{RIOT OS}
+\section{RIOT}
 %TODO explain why we chose riot
 
 \subsection{Historic}
@@ -24,7 +24,7 @@ The project is currently supported by Freie Universität Berlin, INRIA and Hambu
 %ce que fait l'os
 %https://www.osrtos.com/rtos/riot/
 \paragraph{}
-RIOT OS is an open-source real-time operating system.
+RIOT is an open-source real-time operating system.
 The OS provides a lightweight operating system with multi-threading and real-time features running across a wide range of resource constrained devices.
 It runs on 8-bit, 16-bit and 32-bit platforms and only needs a minimum of 1,5 kB of RAM.
 A focus has been made on making RIOT standard-C and C++ compliant.
@@ -43,7 +43,7 @@ RIOT follows some design objectives such as:
 %https://hal.inria.fr/hal-00768685v1/document
 %static memory for the kernel
 %dynamic memory
-RIOT OS enforces constant time for kernel tasks.
+RIOT enforces constant time for kernel tasks.
 The kernel exclusively uses static memory which garantees runtimes of \textit{O}(1) whereas dynamic memory is used for applications.
 
 The scheduler cycle is also performed in constant runtime thanks to a circular linked-list of threads.

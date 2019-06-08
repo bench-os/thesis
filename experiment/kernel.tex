@@ -16,16 +16,16 @@ Then, one could use the framework on applications already running in production 
 
 \subsection{Limitations}
 
-Unfortunately, we choose to abandon the approach of integrating the framework inside the kernel of RIOT OS for the following reasons.
+Unfortunately, we choose to abandon the approach of integrating the framework inside the kernel of RIOT for the following reasons.
 First, we were not sure that if we used this methodology we would actually measure the real context switching time.
 It is possible that some calls or functions are executed before the scheduler and that the framework will not take them into account.
 
 Finally, the scheduler implementation is strongly platform-dependent meaning that every platform has its own scheduler source code.
 It is impossible for us to integrate our framework for each existing platforms.
 Some of them are even written in assembly code.
-The listing \ref{lst:cpus-riot} shows a truncated list of all the supported platforms by RIOT OS.
+The listing \ref{lst:cpus-riot} shows a truncated list of all the supported platforms by RIOT.
 
-\begin{lstlisting}[style=ascii-tree, label={lst:cpus-riot}, caption={Truncated list of platforms supported by RIOT OS}]
+\begin{lstlisting}[style=ascii-tree, label={lst:cpus-riot}, caption={Truncated list of platforms supported by RIOT}]
 cpu/
 ├── arm7_common
 ├── atmega1281
