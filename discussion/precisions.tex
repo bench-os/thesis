@@ -4,7 +4,7 @@ Based on our reference measurements from the section \ref{sec:reference}, we can
 To determine which approach perfom the best, the difference between the measured context switching time and the real one is used.
 Moreover, comparing the distributions of the measurements can affine the analysis.
 
-\subsection{Extension framework performance}
+\subsection{Extension approach performance}
 
 For our extension approach, we can say that it performs poorly.
 For example, on Contiki with the RE-Mote board, the expected context switching time is $18.505\mu s$ but our framework measured a context switching time of $31.6162\mu s$.
@@ -21,7 +21,7 @@ With a slow clock, it is not possible to have precise measures for the context s
 Unfortunately, we did not found any solution to overcome this problem.
 Therefore, it is not possible to compute the context switching time internally.
 
-\subsection{Devices framework performance}
+\subsection{Devices approach performance}
 
 With the devices approach, we have better results than with our first framework.
 First, the measurements done with the framework differ only by 2.8\% with both Contiki and RIOT.

@@ -1,4 +1,4 @@
-\section{Extension framework overhead issue\label{sec:overhead}}
+\section{Extension approach overhead issue\label{sec:overhead}}
 
 With our first approach, the framework adds to our simple application a large overhead of more than 2ms for every context switch.
 This is an issue for our benchmarking framework as it should have a minimal impact on our application.
@@ -29,7 +29,7 @@ This cache would be flushed and the values written on the serial port at appropr
 Either when the cache is full or with a framework method that would allow the developer to choose when to flush the cache.
 This way, the overhead occurs not at each context switch but only at appropriate time.
 
-\subsection{Overhead of the devices framework}
+\subsection{Overhead of the devices approach}
 
 In the other hand, the devices approache have a small impact on the system with an overhead of less than $3\mu s$ per context switch.
 Even if it is a small overhead, it is however present.
