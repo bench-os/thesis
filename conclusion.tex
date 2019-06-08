@@ -1,12 +1,33 @@
-\chapter*{Conclusion}
+\chapter*{Conclusion and possible improvements}
 
-\section{Going further with the framework}
+\section*{First objective}
+The first objective of the thesis was to summarize the theory underlying RTOS.
+We gathered what we consider the important features in a RTOS.
+In some points they are similar to general purpose OS but they often implement specificities that are not found in a regular OS.
+We presented 3 different embedded OS and compared them from a theoretical point-of-view.
 
-Computing the context switching time with the PSLab is the best way.
+\section*{Second Objective}
+The second objective was to develop a framework to benchmark RTOS applications.
+
+We started by developping a kernel-integrated framework but it proved more difficult than expected.
+This approach was not explored further.
+
+The second approach was to develop a middleware between the RTOS and the application.
+This method requires modifications in the application for it to call the framework.
+This approach caused a large overhead due to the serial port.
+
+The third approach was developped with the issues from the second approach in mind.
+With the help from the PSLab device, which serves as a monitoring device.
+The PSLab benchmarks the board using GPIO and results are collected with a computer connected to the PSLab.
+This method brought the best results but an overhead is still observed.
+
+\section*{Going further with the framework}
+
+Regarding the framework, computing the context switching time with the PSLab gives the closest results compared to the reference values.
 But, we could also use the idea behind the first approach to improve the framework.
 With the extension approach, it is possible to store more data in a cache while the application runs.
 Such information could be the memory usage of the application but also some statistics of the task utilization.
-It would possible to determine which task runs the most or which interrupt is the most called.
-Those data stored in the cache would be written on the serial port at appropriate times.
+It would possible to determine which task runs the most or which interrupt is called the most.
+Those datas stored in the cache would be written on the serial port at appropriate times.
 
 Moreover, the PSLab can be used to measure the power consumption of the boards.
