@@ -5,7 +5,7 @@
 \LoadClass[12pt, a4paper, openright]{report}
 
 % Usefull packages
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \RequirePackage{microtype}   % Improves typography
 \RequirePackage[T1]{fontenc}
