@@ -11,7 +11,7 @@ In modern computer systems, memory management has evolved since early days techn
 This led to critical errors and/or unpredictability when an incorrect location was specified.
 
 Nowadays, the memory management of (almost) every computer system follows the same principle.
-The memory of a computer system can be divided into 5 distincts sections:
+The memory of a computer system can be divided into 5 distincts sections\cite{systinfo}:
 \begin{itemize}
     \item The \texttt{text} segment or code segment consists of the compiled program code. It is read-only and initialized from the executable file.
     \item The \texttt{data} segment contains the global and static variables, allocated and initialized before the start of the program.
@@ -52,7 +52,7 @@ It may be tedious for the inexperienced programmer to manage the heap
     but it allows a more flexible and shareable pool of memory for an efficient programming.
 To allocate memory on the heap, one must use \textit{malloc()} or \textit{calloc()} from the C code library stdlib.h (when available).
 There are multiple algorithms to allocate memory when calling these functions.
-The most common ones are presented below.
+The most common ones are presented below\cite{mem-mgmt-algo}.
 
 % conventional algorithms
 \subsubsection{Sequential fit algorithm}

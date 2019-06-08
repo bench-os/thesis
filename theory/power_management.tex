@@ -13,20 +13,6 @@
 %read
 %https://www.sciencedirect.com/science/article/pii/S0167739X18329194
 
-
-% \paragraph{}
-% With the rise of cheap battery-powered embedded systems, the problem of energy efficiency becomes a non-negligeable stake.
-% Each RTOS has its own way to manage its energy consumption.
-% From a more general point of view, we can distinguish 2 ways to save energy in an embedded system.
-
-
-% \subsection{Hardware energy management}
-
-% At first, one could think that the hardware side of energy management is slightly out of context of the operating system means to save energy.
-% The fact is that, even if we can distinguish 2 categories, the hardware means to save energy are very often tied to the upper layers of the whole system.
-
-% \subsection{Software energy management}
-
 The focus on energy management is something fairly recent in the field of information technology (IT).
 With the rise of the Internet of Things (IoT), advancements have been made to allow operating systems to manage power consumption more efficiently.
 
@@ -35,7 +21,7 @@ Numerous communication stacks focused on IoT and low energy consumption have bee
 
 Unfortunately lesser attention has been paid to the design of energy-efficient OS for resource-constrained devices.
 Traditional hardware is limited in term of power management and the progress in this field required both software and hardware to evolve.
-We will present below some of the advancements made and the technologies developed in recent years.
+We will present below some of the advancements made and the technologies developed in recent years\cite{power-mgmt}.
 
 
 \subsection{Hardware power management}
@@ -50,7 +36,7 @@ Those peripherals enter what is called \textit{idle state} or \textit{sleep}.
 The clocks are physically switched off from the circuit with the addition of a logical gate and do not consume energy until reactivation.
 
 %power down mode? dynamic power
-\subsubsection{CPU power down modes}
+\subsubsection{CPU low-power modes}
 The recent advancements in CPU have introduced power-saving modes.
 This feature stops the CPU clocks so that it is put to sleep unless
     a scheduling event or interrupt is triggered and wakes up the CPU, with the help of a real-time clock (RTC) for example.
@@ -92,7 +78,7 @@ Tick suppression defines the principle of providing tick-less support for the sc
 
 In a regular scheduler, a periodic timer (tick interrupt) is used to track time.
 This tick interrupt wakes up the CPU to perform a scheduling cycle.
-Such a mechanism, even if punctual, is frequent and then depletes power in a non-negligeable way by entering and exiting sleep mode frequently.
+Such a mechanism, even if punctual, is frequent and then depletes power in a non-negligeable way by entering and exiting sleep mode frequently\cite{freertos-tick-supp}.
 
 In a tick-less scheduler, the tick interrupt is disabled when the idle task is running.
 Stopping the tick interrupt allows the CPU to remain in a deep power-saving state 
