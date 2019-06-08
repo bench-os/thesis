@@ -1,26 +1,37 @@
 \section{Extension framework overhead issue\label{sec:overhead}}
 
-Our first approach, the extension framework, add to our simple application a large overhead of more than 2ms.
+With our first approach, the framework adds to our simple application a large overhead of more than 2ms for every context switch.
 This is an issue for our benchmarking framework as it should have a minimal impact on our application.
+With such an overhead, the RTOS loose its real-time capabilities.
+It become impossible for the RTOS to react in time to interrupts.
 
 \subsection{Causes}
 
-This overhead is due to the way of how the measurements are send from the board to the computer.
-Indeed, to retrieve the measurements, the framework writte the value on the serial port.
+Sending measurements throught the serial port create this latency.
+Indeed, the framework send a string that contains the measured value in order for the computer to read it.
+For example, the listing \ref{lst:print-string} shows how the framework write the measurements on the serial port with the method \texttt{printf()} with Contiki
+
+\begin{lstlisting}[style=CStyle, float, label={lst:print-string}, caption={writting the measurements to the serial port with Contiki}]
+  printf("[BENCH_CONTEXT_SWITCHING] %lu %lu %lu\n", previous_id, bench_context.new_id, result);
+\end{lstlisting}
+
+The string \texttt{[BENCH\_CONTEXT\_SWITCHING]} is a flag used to differenciate framework outputs from the application outupts.
 However, printing out at least 32 characters for every context switch on the serial port even at 250 kbit/s took 1.2ms.
 
 \subsection{Solutions and improvements}
 
-To improve the extension framework, one optimization could be to reduce the number of bits send through the serial port.
+To improve the extension approach, one optimization could be to reduce the number of bits send through the serial port.
 By sending compressed data and using only a small number of bytes, it could be possible to reduce the overhead.
-But even with 8 bits for the flag an 32 bits for the value, 40 bits would take up to $160\mu s$ to be transmitted.
+But even with 8 bits for the flag an 32 bits for the context switching time, 40 bits would take up to $160\mu s$ to be transmitted.
 
 In addition to compress the data, another solution would be to use a cache storing the measurements.
 This cache would be flushed and the values written on the serial port at appropriate times.
 Either when the cache is full or with a framework method that would allow the developer to choose when to flush the cache.
+This way, the overhead occurs not at each context switch but only at appropriate time.
 
 \subsection{Overhead of the devices framework}
 
-In the other hand, the devices framework have a small impact on the system with an overhead of less than $3\mu s$.
+In the other hand, the devices approache have a small impact on the system with an overhead of less than $3\mu s$ per context switch.
 Even if it is a small overhead, it is however present.
-Our hypothesis on this overhead is that the framework calls have an impact on the system. % TODO Elaborate
+Our hypothesis on this overhead is that the framework calls, \texttt{bench\_on()} and \texttt{bench\_off()} have an impact on the system.
+However, there is no fact supporting this conclusion.
