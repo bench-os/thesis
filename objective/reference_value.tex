@@ -81,7 +81,7 @@ The time for the GPIOs to rise up or down are around 10 nano seconds and can be 
 
 \subsection{Measurement setup}
 
-The oscilloscope used for the measurement was the \href{https://www.tek.com/oscilloscope/mso56}{Tektronix MSO 56} available at the Welcome Lab at UCLouvain.
+The oscilloscope used for the measurement was the Tektronix MSO 56\footnote{\url{https://www.tek.com/oscilloscope/mso56}} available at the Welcome Lab at UCLouvain.
 We used two channels to measure the voltage of the two GPIOs used by the application.
 The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real-time our measurements.
 A table resume the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
@@ -146,14 +146,14 @@ The source code of the updated task is shown in the listing \ref{lst:gpio-task-c
         }
         return NULL;
     }
-    \end{lstlisting}
+\end{lstlisting}
 
 \subsubsection{Boards used}
 
 To perform our measurements, we have used two devices from Zolertia.
-The \href{https://github.com/Zolertia/Resources/wiki/RE-Mote}{RE-Mote} and the \href{https://github.com/Zolertia/Resources/wiki/The-Z1-mote}{Z1}.
-The CPU of the RE-Mote is a \href{https://developer.arm.com/ip-products/processors/cortex-m/cortex-m3}{ARM Cortex-M3} 32 MHz clock speed with 512 KB flash and 32 KB RAM.
-The Z1 have a \href{http://www.ti.com/product/MSP430F2617}{MSP430F2617} 16 MHz clock speed with 92KB flash and a 8KB RAM.
+The RE-Mote board\footnote{\url{https://github.com/Zolertia/Resources/wiki/RE-Mote}} and the Z1 board\footnote{\url{https://github.com/Zolertia/Resources/wiki/The-Z1-mote}}.
+The CPU of the RE-Mote is a ARM Cortex-M3\footnote{\url{https://developer.arm.com/ip-products/processors/cortex-m/cortex-m3}} 32 MHz clock speed with 512 KB flash and 32 KB RAM.
+The Z1 have a MSP430F2617\footnote{\url{http://www.ti.com/product/MSP430F2617}} 16 MHz clock speed with 92KB flash and a 8KB RAM.
 
 With those specifications, the Zolertia RE-Mote categorizes itself as a Class 2 device and the Zolertia Z1 as a Class 1 device.
 Moreover, both Contiki and RIOT support those boards.

@@ -21,15 +21,12 @@ Moreover, by considering the interrupt handler as a task, it is possible to comp
 We chose to only use RTOS with cooperative scheduler because this kind of scheduler allows us to know when a task is in the foreground and when it goes to the background.
 With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
 
-% For that reason, we chose to focus our work on two RTOS: Contiki and FreeRTOS.
-
 For example, in Contiki, the developer can use macros like \texttt{PROCESS\_PAUSE()} or \texttt{PROCESS\_WAIT\_EVENT()} to let other tasks run in a cooperative fashion.
-% https://github.com/contiki-os/contiki/wiki/Processes
-The complete list of macros and more information can be found in the \href{https://github.com/contiki-os/contiki/wiki/Processes}{Contiki processes documentation}.
+The complete list of macros and more information can be found in the Contiki processes documentation \cite{contiki-processes} \footnote{\url{https://github.com/contiki-os/contiki/wiki/Processes}}.
 
 RIOT, in the other hand, uses a preemptive scheduler.
 But it is possible to implement an application in a cooperative fashion.
 By defining the tasks priorities at the same value, it is possible to call \texttt{thread\_yield()} to provoke a context switch.
-More information can be found in the \href{https://riot-os.org/api/group__core__sched.html}{scheduler documentation} of RIOT.
+More information can be found in the scheduler documentation \cite{riot-scheduler} \footnote{\url{https://riot-os.org/api/group__core__sched.html}} of RIOT.
 
 For those reasons, we chose to focus our work on these two RTOS: Contiki and RIOT.

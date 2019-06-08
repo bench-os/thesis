@@ -30,12 +30,12 @@ Instead, we decided to use a device called the Pocket Science Lab to perform our
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.25]{assets/pslab.png}
-  \caption{\label{fig:pslab}Pocket Science Lab device from \href{https://pslab.io}{PSLab.io}}
+  \caption{\label{fig:pslab}Pocket Science Lab device from PSLab.io}
 \end{figure}
 
-The Pocket Science Lab device from \href{https://pslab.io}{PSLab.io} comes 
+The Pocket Science Lab device from PSLab.io\footnote{\url{https://pslab.io}} comes 
   with a built-in 4-Channel up to 2MSPS oscilloscope, multimeter, 4-Channel, 4 MHz logic analyser, and other digital instruments.
-Using the Python librairy \href{https://github.com/fossasia/pslab-python}{pslab-python}, we can communicate with the board and experiment with it.
+Using the Python librairy pslab-python\footnote{\url{https://github.com/fossasia/pslab-python}}, we can communicate with the board and experiment with it.
 With a device like the PSLab, we can leave the benchmarked board that contains our simple application untouched in terms of heavy computations.
 
 \subsection{Role of the different devices}
@@ -185,7 +185,7 @@ void bench_off()
 Finally, from the computer, we need to retrieve and store the interval measurements from the PSLab.
 To do so, we use a Python script shown in listing \ref{lst:python-pslab} that connects to the PSLab and retrieves the context switching time between a falling and a rising edge.
 
-The complete source code can be found on the \href{https://github.com/bench-os/bench-os}{Github repository}.
+The complete source code can be found on the Github repository\url{https://github.com/bench-os/bench-os}.
 
 \begin{lstlisting}[style=CStyle, language=python, caption={Python script to communicate with the PSLab and retrieve the interval measurements}, label={lst:python-pslab}]
 from PSL import sciencelab

@@ -1,7 +1,5 @@
 \section{Implementing a benchmarking framework}
 
-% https://www.electronicdesign.com/embedded/11-myths-about-embedded-benchmarking
-
 The first question one can ask is "What does benchmarking an embedded system means?".
 A benchmark measures the performances of a defined system, in our case, an embedded system.
 Those performances can be measured in terms of latency, memory usage or even energy consumption.
@@ -12,11 +10,7 @@ In order to assess the performances of an application deployed on a RTOS, we wan
 
 \subsection{Motivations}
 
-In the RTOS world, benchmarks already exist and some of them are even commercialized.
-% https://grahn.cse.bth.se/Papers/ParMiBench_crc.pdf -> ParMiBench
-% http://vhosts.eecs.umich.edu/mibench//Publications/MiBench.pdf -> MiBench
-% https://pure.tue.nl/ws/portalfiles/portal/46936147/640318-1.pdf
-% TODO - Donner des exemples de benchmarking
+In the RTOS world, benchmarks already exist and some of them are even commercialized. \cite{parmibench} \cite{mibench} \cite{performance-benchmarking}
 However, those benchmarks are just workloads.
 They use a defined set of routines that is used to measure the performances of a RTOS.
 This does not reflect the performances of a real-world application.
