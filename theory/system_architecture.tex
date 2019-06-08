@@ -3,7 +3,7 @@
 Operating systems for embedded devices started appearing in the 00's.
 Since then design choices have evolved with the technology, researches and trends.
 \\
-In Section 1.1.6, we will explain the different kernel architectures commonly found in RTOS and their impact on the operating system.
+In the subsection \ref{subsect:kernel-arch}, we will explain the different kernel architectures commonly found in RTOS and their impact on the operating system.
 But beforehand, we will introduce some concepts that will help explaining the kernel architectures.
 
 \subsection{Kernel}
@@ -20,6 +20,7 @@ The tasks a kernel usually manages consist in:
 \end{itemize}
 
 \subsection{User space and kernel space}
+%https://www.usna.edu/Users/cs/aviv/classes/ic221/s16/lec/11/lec.html
 Almost every operating system makes the distinction between user space and kernel space.
 The memory allowed to the operating system is divided into two distinct segments.
 The goal is to provide memory and hardware protection against malicious or faulty behaviors.
@@ -30,7 +31,12 @@ Due to its central position in the operating system, any bug in the kernel can l
 In order for an user process to use the hardware, it must ask permission to the kernel through an API so that the kernel performs the operation for the process.
 
 The second one, the user space is dedicated to all the code running outside of the kernel space such as applications, programs and libraries.
-Each user-space process has its own memory space and cannot access the memory of another process (unless they use shared memory).
+Each user-space process has its own memory space and cannot access the memory of another process (unless they use shared memory)\cite{usna}.
+
+In RTOS, the boundary between user space and kernel space may be only symbolic.
+Many of them (Contiki, RIOT, freeRTOS...) can run without memory management unit (MMU) 
+    which is responsible for the memory protection and therefore the separation between user and kernel spaces.
+An application could then potentially access kernel space even when it is not supposed to.
 
 \subsection{CPU modes}
 %https://minnie.tuhs.org/CompArch/Lectures/week07.html
@@ -41,13 +47,13 @@ In user mode, direct access to hardware is prohibited.
 
 Those modes prevent the application software from accessing the hardware directly.
 Applications are restricted to their address space 
-    and should use the operating system's abstract services in order to perform operations on the hardware.
+    and should use the operating system's abstract services in order to perform operations on the hardware\cite{TUHS}.
 
 \subsection{Interprocess communication}
 %https://www.geeksforgeeks.org/interprocess-communication-methods/
 Interprocess communication (IPC) designates the mechanisms used to share data between processes in an operating system.
 Those mechanisms can differ from OS to OS but are generally the same.
-We can notably cite:
+We can notably cite\cite{ipc}:
 \begin{itemize}
     \item Pipes
     \item Names pipes
@@ -65,7 +71,7 @@ When an interrupt happens, the state of the current program is saved
 The origin of an interrupt can be of all sort, 
     from changing running thread in a single core processor to pressing a key in a keyboard.
 
-\subsection{Kernel architecture}
+\subsection{Kernel architecture\label{subsect:kernel-arch}}
 
 \subsubsection{Monolithic architecture}
 % Explanation
@@ -86,16 +92,16 @@ Hence, the ISR is implicitly executed at higher priority than all the other task
 % Advantages
 The monolithic kernel architecture is comparatively quite fast, since ev\-ery\-thing is implemented under the same address space.
 % Disadvantages
-Nonetheless, due to its design, it is prompt to critical failures, difficult to understand, maintain and update.
+Nonetheless, due to its design, it is prompt to critical failures, difficult to understand, maintain and update\cite{OS_for_iot}\cite{comparison_iot_constrained_devices}.
 
 \subsubsection{Microkernel architecture}
 %Explanation
 In a microkernel architecture, the kernel is broken down into separate processes;
      the \texttt{microkernel}, a minimalistic kernel
-     and the \texttt{servers}, extending the functionalities of the said microkernel.
+     and the \texttt{servers}, extending the functionalities of the said microkernel\cite{comparison_iot_constrained_devices}.
 
 The servers functionalities are often features of the kernel that can run in the user space
-    rather than the kernel space (such as the file system, network features or device access).
+    rather than the kernel space (such as the file system, network features or device access)\cite{survey_resource_mgmt}.
 A message-passing communication mechanism is used to communicate between the kernel and the servers.
 The main purpose of the microkernel is to handle the communication between the application and the servers
     and to perform the critical operations, such as accessing input/output (I/O) device registers, that would be difficult or inefficient to perform in user space.
@@ -110,7 +116,7 @@ The overhead of interrupt handling is higher than with the monolithic architectu
 A microkernel architecture is considered more secure, as kernel-space functionalities and user-space functionalities are dissociated.
 It is also more reliable and resilient as if a server crashes, it does not stop the microkernel from running nor the other servers.
 The memory footprint can also be minimized since we can choose which server we want to use and only boot with those.
-From a maintainer point of view, it is also less complex, easier to understand and update.
+From a maintainer point of view, it is also less complex, easier to understand and update\cite{OS_for_iot}\cite{comparison_iot_constrained_devices}.
 % Disadvantages? more sys calls, slower due to IPC
 The microkernel architecture needs an IPC.
 A message-passing mechanism must be used and is inheritantly slower than a direct function calls.
