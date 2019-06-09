@@ -1,1 +1,17 @@
 \section{Comparison table}
+
+The table \ref{tab:rtos-comparison} summarize the comparison between RIOT, Contiki and FreeRTOS.
+
+\begin{table}[!ht]
+  \centering
+  \small
+  \setlength\tabcolsep{1pt}
+  \begin{tabular}{l|c|c|c|c|c|c}
+           & RAM size       & ROM size        & Scheduler type & Programming model &  License     & Communities \\ \hline
+  RIOT     & $\sim$1.5kB    & $\sim$5kB       & preemptive     & mutli-thread      &  LGPL2.1     & ++          \\
+  Contiki  & \textless{}2kB & \textless{}30kB & cooperative    & event-driven      & Revised BSD & +           \\
+  FreeRTOS & \textless{}1kB & \textless{}10kB & configurable   & mutli-thread      & MIT         & -          
+  \end{tabular}
+  \caption{RTOS comparisons}
+  \label{tab:rtos-comparison}
+  \end{table}
