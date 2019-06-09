@@ -56,6 +56,8 @@ void *threadA(void *arg)
 
 In order to compute the real context switching time, we used an oscilloscope and two GPIOs.
 Each task of our simple application is responsible of one GPIO.
+In order for the task to use the GPIO, they need to be updated.
+We describe this change in the subsection \ref{sec:measurement-setup}.
 Every time a task is run and goes to the foreground, it sets its GPIO up.
 Once the task is finished and goes to the background, it resets its GPIO down.
 
@@ -79,9 +81,9 @@ The oscilloscope measures the context switching time between the step B' and the
 The time for the GPIOs to rise up or down are around 10 nano seconds and can be omitted.
 
 
-\subsection{Measurement setup}
+\subsection{Measurements setup\label{sec:measurement-setup}}
 
-The oscilloscope used for the measurement was the Tektronix MSO 56\footnote{\url{https://www.tek.com/oscilloscope/mso56}} available at the Welcome Lab at UCLouvain.
+The oscilloscope used for the measurements was the Tektronix MSO 56\cite{mso56} available at the Welcome Lab at UCLouvain.
 We used two channels to measure the voltage of the two GPIOs used by the application.
 The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real time our measurements.
 A table resumes the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
@@ -151,9 +153,9 @@ The source code of the updated task is shown in the listing \ref{lst:gpio-task-c
 \subsubsection{Boards used}
 
 To perform our measurements, we have used two devices from Zolertia.
-The RE-Mote board\footnote{\url{https://github.com/Zolertia/Resources/wiki/RE-Mote}} and the Z1 board\footnote{\url{https://github.com/Zolertia/Resources/wiki/The-Z1-mote}}.
-The CPU of the RE-Mote is a ARM Cortex-M3\footnote{\url{https://developer.arm.com/ip-products/processors/cortex-m/cortex-m3}} 32 MHz clock speed with 512 KB flash and 32 KB RAM.
-The Z1 have a MSP430F2617\footnote{\url{http://www.ti.com/product/MSP430F2617}} 16 MHz clock speed with 92KB flash and a 8KB RAM.
+The RE-Mote board\cite{zolertia-remote} and the Z1 board\cite{zolertia-z1}.
+The CPU of the RE-Mote is a ARM Cortex-M3\cite{arm-cortex-m3} 32 MHz clock speed with 512 KB flash and 32 KB RAM.
+The Z1 have a MSP430F2617\cite{msp430} 16 MHz clock speed with 92KB flash and a 8KB RAM.
 
 With those specifications, the Zolertia RE-Mote categorizes itself as a Class 2 device and the Zolertia Z1 as a Class 1 device.
 Moreover, both Contiki and RIOT support those boards.

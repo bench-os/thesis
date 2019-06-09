@@ -6,7 +6,7 @@ By implementing this proof-of-concept framework, we want to show that it is poss
 
 From the criteria previously described, we have decided to reduce the first two by focusing only on a specific set of RTOS and a specific metric.
 We have reduce our framework implementation to a benchmarking of the context switching time and to RTOS that use a cooperative scheduler.
-For the last two criteria, we leave them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
+For the last two criteria, we keep them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
 
 By implementing a proof-of-concept, we want to show that it is possible to build a complete framework capable of benchmarking the interrupt latency, the memory usage and the energy consumption of any RTOS.
 
@@ -22,11 +22,11 @@ We chose to only use RTOS with cooperative scheduler because this kind of schedu
 With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
 
 For example, in Contiki, the developer can use macros like \texttt{PROCESS\_PAUSE()} or \texttt{PROCESS\_WAIT\_EVENT()} to let other tasks run in a cooperative fashion.
-The complete list of macros and more information can be found in the Contiki processes documentation \cite{contiki-processes} \footnote{\url{https://github.com/contiki-os/contiki/wiki/Processes}}.
+The complete list of macros and more information can be found in the Contiki processes documentation \cite{contiki-processes}.
 
 RIOT, in the other hand, uses a preemptive scheduler.
 But it is possible to implement an application in a cooperative fashion.
 By defining the tasks priorities at the same value, it is possible to call \texttt{thread\_yield()} to provoke a context switch.
-More information can be found in the scheduler documentation \cite{riot-scheduler} \footnote{\url{https://riot-os.org/api/group__core__sched.html}} of RIOT.
+More information can be found in the scheduler documentation \cite{riot-scheduler} of RIOT.
 
 For those reasons, we chose to focus our work on these two RTOS: Contiki and RIOT.

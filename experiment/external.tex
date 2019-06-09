@@ -47,6 +47,7 @@ To make some clarity, we have defined a specific role to each device.
 \subsubsection{The benchmarked board}
 The benchmarked board runs the RTOS of our choice with the benchmarking framework and the simple application.
 It communicates with the computer through UART and with the PSLab using a single GPIO.
+The GPIO channel is used for timing computation while the UART channel is used to flash and read any serial output from the board by the computer.
 Its role is to simply run the application and change the state of the GPIO depending on the tasks status.
 
 \subsubsection{The computer}
@@ -77,7 +78,7 @@ The same process occurs for the task 2.
 The task 2 set up the GPIO at step C.
 The GPIO is in high position at step C'.
 Finally, the task 2 reset the GPIO at the end of its execution at step D and the GPIO will be in position low at step D'.
-From our measurements made with the reference value, we know that the rising time of the GPIO is around 10 nanoseconds so it can be omitted.
+From our measurements made with the reference value, we know that the rising and falling times of the GPIO is around 10 nanoseconds so it can be omitted.
 
 \begin{figure}[!ht]
   \centering
