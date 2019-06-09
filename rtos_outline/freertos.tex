@@ -12,6 +12,11 @@ Since then, we can distinguish the FreeRTOS kernel and Amazon FreeRTOS which inc
 Similarly to RIOT, FreeRTOS is designed to be a real-time preemptive operating system aimed at embedded devices.
 Its strength comes from the fact that it is highly and easily configurable.\\
 
+%license
+%https://www.freertos.org/a00114.html
+Both the FreeRTOS kernel and Amazon FreeRTOS are provided under the MIT license.
+This license gives pretty much no restriction on reusability of the software.\\
+
 %scheduler
 %http://richardgoyette.com/Research/Papers/FreeRTOSPaper.pdf
 For example, FreeRTOS supports preemptive or cooperative scheduling. 
@@ -43,5 +48,9 @@ FreeRTOS also supports tickless idle mode, similarly to RIOT.
 Since FreeRTOS is highly configurable, the developer can activate this feature 
     by setting the variable \texttt{configUSE\_TICKLESS\_IDLE} as 1 in \texttt{FreeRTOSConfig.h}.
 A custom built tickless idle mode can also be provided by the developer and used by setting the same variable to 2.
-This feature can be used when a default implementation in not provided for a certain board.
+This feature can be used when a default implementation in not provided for a certain board.\\
 %memory allocation
+
+From a community standpoint, FreeRTOS makes the distinction between official an supported code base and user contributed code.
+The first is developped by Amazon Web Services when the second is available on a distinct \href{https://interactive.freertos.org/hc/en-us}{website}.%TODO fix href
+The project is very Amazon-centric and makes it difficult to federate a community.
