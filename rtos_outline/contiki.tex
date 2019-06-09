@@ -5,29 +5,29 @@
 \subsection{Historic}
 %https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1367266
 %https://ercim-news.ercim.eu/en76/rd/contiki-bringing-ip-to-sensor-networks
-Contiki was created in 2003 by Adam Dunkels. %http://dunkels.com/adam/
+Contiki\cite{contiki} was created in 2003 by Adam Dunkels\cite{AdamDunkels}. %http://dunkels.com/adam/
 At the time, it was the first operating system to provide IP connectivity to sensor networks.
-It did so thanks to $\mu$IP, a lightweight TCP/IP stack intended for tiny microcontrollers,
+It did so thanks to $\mu$IP\cite{uip}, a lightweight TCP/IP stack intended for tiny microcontrollers,
     also developped by Adam Dunkels at the Swedish Institute of Computer Science (now RISE SICS).%https://github.com/adamdunkels/uip
 
 Further developpement of Contiki has been supported by various industries and research institutes 
     such as Texas Instruments, Atmel, Cisco, ENEA, ETH Zurich, Redwire, RWTH Aachen University, 
-    Oxford University, SAP, Sensinode, Swedish Institute of Computer Science, ST Microelectronics and Zolertia.
+    Oxford University, SAP, Sensinode, Swedish Institute of Computer Science, ST Microelectronics and Zolertia\cite{Contiki2}.
 %death?
 
 \subsection{Characteristics and features}
 The developpement of Contiki started with the need to bring connectivity to small sensor devices with limited capabilities.
-By definition, Contiki is not a real-time operating system and has not been designed as such.\\
+By definition, Contiki is not a real-time operating system and has not been designed as such.
 
 %license
-Contiki is distributed under a 3-clauses BSD license (also known as Revised BSD license).
+\paragraph{License} Contiki is distributed under a 3-clauses BSD license (also known as Revised BSD license).
 The advertising clause from the original BSD license which stated that "all advertising materials mentioning features or use of the software
 must display an acknowledgement to the organization" is removed.
 This 3-clauses license gives the right to redistribute source code and binares with or without modifications
-    and the software is provided "as is".\\
+    and the software is provided "as is".
 
 %memory allocation/stack and kernel/event driven
-Contiki operates with the event-driven model.
+\paragraph{Technicals} Contiki operates with the event-driven model.
 Processes are implemented as event handlers that run to completion.
 An event handler can be defined as a procedure that performs a specific action in response to an event.
 Because event handlers cannot block, the same stack can be shared among them.
@@ -44,7 +44,7 @@ This library is optional an can be used with programs that explicitly require it
 
 %protothreads
 %http://dunkels.com/adam/dunkels05using.pdf
-In order to implement its event-driven system, Contiki comes with a mechanism called \textit{protothread}.
+In order to implement its event-driven system, Contiki comes with a mechanism called \textit{protothread}\cite{protothreads}.
 The concept of protothreads was also developped by Adam Dunkels with the help of other researchers.
 The goal of the protothread programming abstraction is to make it easier for developpers to develop, debug and maintain code written in the event-driven model.
 
@@ -59,10 +59,10 @@ The concept has been developped to bring a number of benefits of the multi-threa
 
 %energy saving mechanisms
 Contiki does not provide any specific kernel energy saving mechanism.
-Instead, it let the application specific parts of the system implement such mechanism.\\
+Instead, it let the application specific parts of the system implement such mechanism.
 
 %https://github.com/contiki-os/contiki/wiki/Pull-Request-Policy
-From a community perspective, Contiki revolves around a group of core members (a.k.a. the merge team).
+\paragraph{Community} From a community perspective, Contiki revolves around a group of core members (a.k.a. the merge team)\cite{contikipr}.
 Every contribution has to be reviewed by a certain number (1 or 2 depending the topic) of core members before it can be merged.
 This organization left the project stalled for years now.
 Pull requests are not merged anymore into the project.

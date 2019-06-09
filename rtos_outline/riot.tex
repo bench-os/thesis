@@ -2,7 +2,7 @@
 %TODO explain why we chose riot
 
 \subsection{Historic}
-%license?
+
 The RIOT project started privately in 2008.
 It started as a part of the FeuerWhere project (\url{http://feuerwhere.mi.fu-berlin.de}), 
     where firefighters would be tracked with embedded devices during an intervention.
@@ -11,7 +11,7 @@ The goal was to design an ad-hoc self configurating network of sensors used
 
 % https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6142316
 In 2010, a fork from the FeuerWare software developped for the FeuerWhere project was made.
-Developpement continued for $\mu$kleos, a microkernel based operating system for embedded devices.
+Developpement continued for $\mu$kleos\cite{microkleos}, a microkernel based operating system for embedded devices.
 The focus of this system was modularity and Internet compliance with the integration of IETF protocols such as 6LoWPAN, RPL and TCP.
 
 In 2013, RIOT went public.
@@ -27,10 +27,10 @@ The OS provides a lightweight operating system with multi-threading and real-tim
 It runs on 8-bit, 16-bit and 32-bit platforms and only needs a minimum of 1,5 kB of RAM.
 A focus has been made on making RIOT standard-C and C++ compliant.
 
-RIOT is distributed under the LGPL2.1 license which provides unrestricted commercial or private use, modification and distribution if it is not a derivative work.
+\paragraph{License} RIOT is distributed under the LGPL2.1 license which provides unrestricted commercial or private use, modification and distribution if it is not a derivative work.
 With LGPL license, RIOT is also provided "as is", without any warranty of any kind.
 
-The RIOT project aims to bridge the gap between operating systems for Wireless Sensor Networks (WSN) and traditional fully-fledge operating systems.
+\paragraph{Technicals} The RIOT project aims to bridge the gap between operating systems for Wireless Sensor Networks (WSN) and traditional fully-fledge operating systems.
 RIOT follows some design objectives such as:
 \begin{itemize}
     \item Energy efficiency
@@ -40,7 +40,7 @@ RIOT follows some design objectives such as:
 \end{itemize}
 
 %https://github.com/RIOT-OS/RIOT/wiki/RIOT-Community-Processes
-The RIOT community can be characterized in 3 categories:
+\paragraph{Community} The RIOT community can be characterized in 3 categories\cite{RIOTComm}:
 \begin{itemize}
     \item Contributors are people who contributed to the project, from code contribution to technical or non-technical discussions.
     \item Maintainers who contributed noticeably on the project.
@@ -57,7 +57,7 @@ The RIOT community can be characterized in 3 categories:
 RIOT enforces constant time for kernel tasks.
 The kernel exclusively uses static memory which garantees runtimes of \textit{O}(1) whereas dynamic memory is used for applications.
 
-The scheduler cycle is also performed in constant runtime thanks to a circular linked-list of threads.
+The scheduler cycle is also performed in constant runtime thanks to a circular linked-list of threads\cite{riotspec}.
 
 %tickless
 The main specificity of RIOT resides in its scheduler.

@@ -14,12 +14,12 @@ Its strength comes from the fact that it is highly and easily configurable.\\
 
 %license
 %https://www.freertos.org/a00114.html
-Both the FreeRTOS kernel and Amazon FreeRTOS are provided under the MIT license.
-This license gives pretty much no restriction on reusability of the software.\\
+\paragraph{License} Both the FreeRTOS kernel and Amazon FreeRTOS are provided under the MIT license\cite{FreeRTOSlicense}.
+This license gives pretty much no restriction on reusability of the software.
 
 %scheduler
 %http://richardgoyette.com/Research/Papers/FreeRTOSPaper.pdf
-For example, FreeRTOS supports preemptive or cooperative scheduling. 
+\paragraph{Technicals} For example, FreeRTOS supports preemptive or cooperative scheduling\cite{goyette}. 
 It also uses Dynamic Priority Scheduling which means that the priorities are defined during runtime.
 The user can choose which scheduling policy he wants by modifying the \texttt{configUSE\_PREEMPTION} variable in the \texttt{FreeRTOSConfig.h} file.
 In the cooperative case, the only action the scheduler performs is to increase the tick count.
@@ -32,7 +32,7 @@ If it is indeed the case, it checks the priority level of the task and compares 
 Since FreeRTOS uses the multi-threading paradigm, the code can be structured as a set of tasks.
 As explained in the first chapter, each task use its own stack and therefore has its own context.
 
-In addition to tasks, FreeRTOS includes a another mechanism called \texttt{co-routine}.
+In addition to tasks, FreeRTOS includes a another mechanism called \texttt{co-routine}\cite{freertos-tasks-coroutines}\cite{freertos-tasks-coroutines2}.
 Co-routines are similar to tasks but have some fundamental differences which justify their usage:
 \begin{itemize}
     \item They share the same stack between them which greatly decrease the memory wasted in provisioning.
@@ -48,9 +48,9 @@ FreeRTOS also supports tickless idle mode, similarly to RIOT.
 Since FreeRTOS is highly configurable, the developer can activate this feature 
     by setting the variable \texttt{configUSE\_TICKLESS\_IDLE} as 1 in \texttt{FreeRTOSConfig.h}.
 A custom built tickless idle mode can also be provided by the developer and used by setting the same variable to 2.
-This feature can be used when a default implementation in not provided for a certain board.\\
+This feature can be used when a default implementation in not provided for a certain board.
 %memory allocation
 
-From a community standpoint, FreeRTOS makes the distinction between official an supported code base and user contributed code.
+\paragraph{Community} From a community standpoint, FreeRTOS makes the distinction between official an supported code base and user contributed code.
 The first is developped by Amazon Web Services when the second is available on a distinct \href{https://interactive.freertos.org/hc/en-us}{website}.%TODO fix href
 The project is very Amazon-centric and makes it difficult to federate a community.
