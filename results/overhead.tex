@@ -1,24 +1,24 @@
 \section{Overhead}
 
-One of our first concerns was to implement a framework that does not impact to our simple application.
-The benchmarking framework shoul be hidden for the developer.
-Enabling the framework should not altering the good use of the application.
+One of our first concerns was to implement a framework that does not impact our simple application.
+The benchmarking framework should be hidden for the developer.
+Enabling the framework should not alter the good use of the application.
 
-To mesure the impact of our approaches, we used the same setup than with our reference value and retrieve 1000 measurements of the context switching time.
-We compared those measurements with our reference value and compute the overhead of our framework.
+To measure the impact of our approaches, we used the same setup than with our reference value and retrieved 1000 measurements of the context switching time.
+We compared those measurements with our reference value and computed the overhead of our framework.
 The oscilloscope measurements are shown in the figure \ref{fig:overhead-reference-value-contiki-z1}.
 
 \subsection{Extension approach overhead}
 
-The extension approach have a large overhead of more than 2ms for with RE-Mote board and more than 3ms with the Z1 board on both Contiki and RIOT.
-On the figure \ref{fig:overhead-extension-contiki-z1}, we can see the overhead of the first approach with the measurements made by the oscilloscope.
-We discuss later why our extension approach add such a latency in the section \ref{sec:overhead}.
+The extension approach has a large overhead of more than 2 ms for with RE-Mote board and more than 3 ms with the Z1 board on both Contiki and RIOT.
+In the figure \ref{fig:overhead-extension-contiki-z1}, we can see the overhead of the first approach with the measurements made with the oscilloscope.
+We discuss later why our extension approach adds so much latency in the section \ref{sec:overhead}.
 
 \subsection{Devices approach overhead}
 
-The devices approach, in the other hand, have a small overhead of less than $3\mu s$ with either the RE-Mote or the Z1 boards on both Contiki and RIOT.
-On the figure \ref{fig:overhead-devices-contiki-z1}, we can see the overhead of the devices approach.
-The devices approach add a much more smaller overhead to our simple application than the extension approach.
+The devices approach, on the other hand, has a small overhead of less than 3 $\mu$s with either the RE-Mote or the Z1 boards on both Contiki and RIOT.
+In the figure \ref{fig:overhead-devices-contiki-z1}, we can see the overhead of the devices approach.
+The devices approach adds a much more smaller overhead to our simple application than the extension approach.
 This difference between the overhead of the two approaches is discussed in the section \ref{sec:overhead}.
 
 \begin{figure}[!ht]

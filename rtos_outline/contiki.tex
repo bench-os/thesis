@@ -8,15 +8,15 @@
 Contiki\cite{contiki} was created in 2003 by Adam Dunkels\cite{AdamDunkels}. %http://dunkels.com/adam/
 At the time, it was the first operating system to provide IP connectivity to sensor networks.
 It did so thanks to $\mu$IP\cite{uip}, a lightweight TCP/IP stack intended for tiny microcontrollers,
-    also developped by Adam Dunkels at the Swedish Institute of Computer Science (now RISE SICS).%https://github.com/adamdunkels/uip
+    also developed by Adam Dunkels at the Swedish Institute of Computer Science (now RISE SICS).%https://github.com/adamdunkels/uip
 
-Further developpement of Contiki has been supported by various industries and research institutes 
+Further development of Contiki has been supported by various industries and research institutes 
     such as Texas Instruments, Atmel, Cisco, ENEA, ETH Zurich, Redwire, RWTH Aachen University, 
     Oxford University, SAP, Sensinode, Swedish Institute of Computer Science, ST Microelectronics and Zolertia\cite{Contiki2}.
 %death?
 
 \subsection{Characteristics and features}
-The developpement of Contiki started with the need to bring connectivity to small sensor devices with limited capabilities.
+The development of Contiki started with the need to bring connectivity to small sensor devices with limited capabilities.
 By definition, Contiki is not a real-time operating system and has not been designed as such.
 
 %license
@@ -35,7 +35,7 @@ Also, locking mechanisms are not needed as event handlers do not run concurrentl
 Instead of having multiple stacks for multiple threads (which must be over-provisioned or they risk to run out of memory), a single stack can then be used.
 
 This model does not come without problems, as it is sometimes tedious for programmers to manage.
-For example, a time-consumming process such as a cryptocraphic operation can monopolize the CPU for quite some time 
+For example, a time-consuming process such as a cryptographic operation can monopolize the CPU for quite some time 
     and make the system unable to respond to external events. 
 In a preemptive multi-threading system, the computation can be preempted to react to an external event 
     and continue the process later.
@@ -45,8 +45,8 @@ This library is optional an can be used with programs that explicitly require it
 %protothreads
 %http://dunkels.com/adam/dunkels05using.pdf
 In order to implement its event-driven system, Contiki comes with a mechanism called \textit{protothread}\cite{protothreads}.
-The concept of protothreads was also developped by Adam Dunkels with the help of other researchers.
-The goal of the protothread programming abstraction is to make it easier for developpers to develop, debug and maintain code written in the event-driven model.
+The concept of protothreads was also developed by Adam Dunkels with the help of other researchers.
+The goal of the protothread programming abstraction is to make it easier for developers to develop, debug and maintain code written in the event-driven model.
 
 Protothreads can be defined as lightweight stackless threads providing a blocking context on top of an event-driven system.
 They can be used to perform non-preemptive concurrency or cooperative multitasking.
@@ -54,12 +54,12 @@ Programs written for an event-driven model typically have to be implemented as e
 With protothreads, programs can be written in a sequential fashion without designing explicit state machines.
 
 Protothreads do not serve the same purpose as threads for the event-driven model.
-The concept has been developped to bring a number of benefits of the multi-threaded programming model into Contiki
-    and ease the developpement of applications.\\
+The concept has been developed to bring a number of benefits of the multi-threaded programming model into Contiki
+    and ease the development of applications.\\
 
 %energy saving mechanisms
 Contiki does not provide any specific kernel energy saving mechanism.
-Instead, it let the application specific parts of the system implement such mechanism.
+Instead, it lets the application specific parts of the system implement such mechanisms.
 
 %https://github.com/contiki-os/contiki/wiki/Pull-Request-Policy
 \paragraph{Community} From a community perspective, Contiki revolves around a group of core members (a.k.a. the merge team)\cite{contikipr}.
@@ -74,7 +74,7 @@ Pull requests are not merged anymore into the project.
 Contiki integrates a tool called Cooja.
 Cooja is a network simulator which is designed to simulate a network using Contiki motes.
 Motes can be simulated at the hardware level or with a standard setup allowing faster response but with less precise system behaviour.
-It is an extremely powerful tool which makes developping and debugging tremendously easier even with a large-scale network.
+It is an extremely powerful tool which makes developing and debugging tremendously easier even with a large-scale network.
 
 \begin{figure}[!h]
     \centering

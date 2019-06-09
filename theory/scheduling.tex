@@ -15,7 +15,7 @@ Some commonly used are presented below in the Subsection \ref{subsect:sched_poli
 % Preemptive vs non-preemptive (cooperative)
 A scheduler is said to be \textit{preemptive} if tasks in the system can preempt each other.
 When a higher-priority task wants to execute, the scheduler can interrupt a lower-priority task and run the higher-priority one.
-In the other hand, a scheduler is said \textit{non-preemptive} or \textit{cooperative}
+On the other hand, a scheduler is said \textit{non-preemptive} or \textit{cooperative}
     if a task that has been allowed to start will execute until it is complete.
 
 % online/offline
@@ -29,13 +29,13 @@ On the contrary, offline schedulers (also known as \textit{table-driven} schedul
 \subsection{Scheduling policies\label{subsect:sched_policies}}
 
 \subsubsection{First in, first out (FIFO)}
-Also known as first come, first serve (FCFS), FIFO is one of the simpliest scheduling algorithm.
+Also known as first come, first serve (FCFS), FIFO is one of the simplest scheduling algorithms.
 Processes are queued into a data structure in their order of arrival.
 The first process to be enqueued is the first that will be executed.
 
 \subsubsection{Round-robin}
 The round-robin scheduling algorithm divides the time allocated to each process into fixed time slices.
-If a process doesn not terminate when his allocated time slice is expired, the scheduler switches to another task.
+If a process does not terminate when his allocated time slice is expired, the scheduler switches to another task.
 If a task terminates within its time slice, the scheduler simply switches to the next task.
 
 \subsubsection{Earliest deadline first (EDF)}

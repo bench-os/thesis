@@ -11,7 +11,7 @@ In modern computer systems, memory management has evolved since early days techn
 This led to critical errors and/or unpredictability when an incorrect location was specified.
 
 Nowadays, the memory management of (almost) every computer system follows the same principle.
-The memory of a computer system can be divided into 5 distincts sections\cite{systinfo}:
+The memory of a computer system can be divided into 5 distinct sections\cite{systinfo}:
 \begin{itemize}
     \item The \texttt{text} segment or code segment consists of the compiled program code. It is read-only and initialized from the executable file.
     \item The \texttt{data} segment contains the global and static variables, allocated and initialized before the start of the program.
@@ -30,7 +30,7 @@ The memory of a computer system can be divided into 5 distincts sections\cite{sy
 %stack
 By the time a program begins to execute, there must be some specific blocks of memory reserved for its use.
 This includes, for instance, the memory containing the program's own code.
-Morever, every static variable must have a specific memory reserved.
+Moreover, every static variable must have a specific memory reserved.
 
 The static memory allocation is predetermined by the compiler
     and will always be reserved for the program in the same manner at the beginning of every run.
@@ -56,7 +56,7 @@ The most common ones are presented below\cite{mem-mgmt-algo}.
 
 % conventional algorithms
 \subsubsection{Sequential fit algorithm}
-For this memory management algorithm, a single linkedvlist contains the unallocated blocks of memory.
+For this memory management algorithm, a single linked list contains the unallocated blocks of memory.
 When needed, they are allocated using different policies:
 \begin{itemize}
     \item First fit: returns the first block large enough from the list.

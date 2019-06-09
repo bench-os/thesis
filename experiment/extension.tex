@@ -65,10 +65,10 @@ In the startup of our application, the first task is launched.
 It will call the method \texttt{bench\_ping(TASK\_1)} where \texttt{TASK\_1} is the ID of the first task.
 At this point, we enter in the framework space like shown in the figure \ref{fig:extension-activity-framework}.
 The framework will check if the received ID from the \texttt{bench\_ping()} call is already stored in its context.
-If the received ID match the one stored in the context or if no ID is stored in the context, no context switch occcured and the framework reset its internal timer.
-It also store the received ID in its context.
+If the received ID match the one stored in the context or if no ID is stored in the context, no context switch occcured and the framework will reset its internal timer.
+It also stores the received ID in its context.
 The stored ID is now \texttt{TASK\_1}.
-Once the first task ends its iteration and will let the other task runs, it call the same method \texttt{bench\_ping(TASK\_1)} with its ID.
+Once the first task ends its iteration and let the other task run, it calls the same method \texttt{bench\_ping(TASK\_1)} with its ID.
 Once again, the framework checks the received ID and no change is detected.
 It resets its internal timer.
 The stored ID is still \texttt{TASK\_1}.
@@ -145,7 +145,7 @@ When a change is detected, the framework will compute the context switching time
   by retrieving the current time and computing its difference with the \texttt{current\_time} variable.
 The time is computed in ticks for a better precision.
 To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT.
-The internal timer is then reset just before writting the measure into the serial port.
+The internal timer is then reset just before writing the measure into the serial port.
 Then the measure is written to the serial port using the \texttt{printf()} call.
 The code of this measurement is shown in the listing \ref{lst:measurement-code}.
 

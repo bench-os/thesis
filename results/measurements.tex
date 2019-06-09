@@ -11,13 +11,13 @@ The Contiki measurements are displayed side-by-side with the RIOT one for more c
 \subsection{Extension approach measurements}
 
 \subsubsection{RE-Mote board measurements}
-With Contiki, the framework outputs measurements with an average of $31.6162\mu s$.
-With $0\mu s$ as the minimum value and $457.7636\mu s$ as the maximum value, the measurements have a large distribution.
-We have a difference of $13.1112 \mu s$ between the measured context switching time and the real one measured with the oscilloscope.
+With Contiki, the framework outputs measurements with an average of 31.6162 $\mu$s.
+With 0$\mu$s as the minimum value and 457.7636 $\mu$s as the maximum value, the measurements have a large distribution.
+We have a difference of 13.1112 $\mu$s between the measured context switching time and the real one measured with the oscilloscope.
 
-With RIOT, the framework outputs a constant context switching time of $17\mu s$.
-All 1000 measurements were equal to $17\mu s$.
-Thus, the difference with the real context switching time is $4.374\mu s$.
+With RIOT, the framework outputs a constant context switching time of 17 $\mu$s.
+All 1000 measurements were equal to 17 $\mu$s.
+Thus, the difference with the real context switching time is 4.374 $\mu$s.
 
 Both measurements were above the real context switching time given by the reference value.
 The table \ref{tab:extension-framework-remote} shows the measurement for Contiki and RIOT for the RE-Mote board.
@@ -25,12 +25,12 @@ The table \ref{tab:extension-framework-remote} shows the measurement for Contiki
 \input{assets/extension-framework-remote.tex}
 
 \subsubsection{Z1 board measurements}
-On the Class-1 Z1 board, the framework gave an average context switching time of $90.5761\mu s$ with Contiki.
-Once again, on Contiki, our values were largely distributed between $30.5175\mu s$ and $976.5625\mu s$.
-The average context switching time measured is $35.4991 \mu s$ above the real context switching time.
+On the Class-1 Z1 board, the framework gave an average context switching time of 90.5761 $\mu$s with Contiki.
+Once again, on Contiki, our values were largely distributed between 30.5175 $\mu$s and 976.5625 $\mu$s.
+The average context switching time measured is 35.4991 $\mu$s above the real context switching time.
 
-With RIOT, most of the values where equal to $40 \mu s$ with an average of $40.252\mu s$.
-This put the measurements $12.553\mu s$ above the real context switching time.
+With RIOT, most of the values were equal to 40 $\mu$s with an average of 40.252 $\mu$s.
+This put the measurements 12.553 $\mu$s above the real context switching time.
 
 The table \ref{tab:extension-framework-z1} shows the measurement for Contiki and RIOT for the Z1 board.
 
@@ -39,10 +39,10 @@ The table \ref{tab:extension-framework-z1} shows the measurement for Contiki and
 \subsection{Devices approach measurement}
 
 \subsubsection{RE-Mote board measurements}
-On the RE-Mote board, the devices approach outputs an average context switching time of $19.0329\mu s$ on Contiki.
-This measurement differs from the real context switching time by only $2.85\%$.
-They are $0.5279\mu s$ above the reference measurements.
-The majority of the values were around $14\mu s$ but some of them were above $40\mu s$.
+On the RE-Mote board, the devices approach outputs an average context switching time of 19.0329 $\mu$s on Contiki.
+This measurement differs from the real context switching time by only 2.85$\%$.
+They are 0.5279 $\mu$s above the reference measurements.
+The majority of the values were around 14 $\mu$s but some of them were above 40 $\mu$s.
 The figure \ref{fig:devices-framework-contiki-remote} show the distribution of the measurements made with Contiki.
 
 \begin{figure}[!ht]
@@ -51,10 +51,10 @@ The figure \ref{fig:devices-framework-contiki-remote} show the distribution of t
       \caption{devices approach measurements distribution with Contiki on the RE-Mote board\label{fig:devices-framework-contiki-remote}}
 \end{figure}
 
-With RIOT, the average context switching was $12.9832\mu s$.
-For RIOT, the measurement were either around $12.95 \mu s$ or around $13 \mu s$.
+With RIOT, the average context switching was 12.9832 $\mu$s.
+For RIOT, the measurement were either around 12.95 $\mu$s or around 13 $\mu$s.
 The figure \ref{fig:devices-framework-riot-remote} shows this disparity.
-The measured context switching time is above the real context switching time by $0.3572\mu s$.
+The measured context switching time is above the real context switching time by 0.3572 $\mu$s.
 This represents an offset of $2.82\%$ from the reference measurements.
 
 \begin{figure}[!ht]
@@ -68,10 +68,10 @@ The table \ref{tab:devices-framework-remote} shows the measurement for Contiki a
 \input{assets/devices-framework-remote.tex}
 
 \subsubsection{Z1 board measurements}
-With the second approach, on the Z1 board, the framwork found an average context switching time of $54.99\mu s$ with Contiki.
-The framework measurements were $0.15\%$ off from the real measurements by being $0.087\mu s$ below them.
+With the second approach, on the Z1 board, the framwork found an average context switching time of 54.99 $\mu$s with Contiki.
+The framework measurements were $0.15\%$ off from the real measurements by being 0.087 $\mu$s below them.
 However, with Contiki the measured values are more scattered like shown in the figure \ref{fig:devices-framework-contiki-z1}.
-The minimum measured context switching time is $32.5625\mu s$ and the maximum one is $314.5\mu s$.
+The minimum measured context switching time is 32.5625 $\mu$s and the maximum one is 314.5 $\mu$s.
 
 \begin{figure}[!ht]
       \centering
@@ -79,9 +79,9 @@ The minimum measured context switching time is $32.5625\mu s$ and the maximum on
       \caption{devices approach measurements distribution with Contiki on the Z1 board\label{fig:devices-framework-contiki-z1}}
 \end{figure}
 
-With RIOT, the framework outputted an average context switching time of $30.6971\mu s$.
-The difference with the real context switching time is $2.9981\mu s$ making the framework measurements more than $10\%$ above the reference measurements.
-In the other hand, the framework measurements gave the same distribution as the one found with the oscilloscope in the section \ref{sec:ref-measurements} with the figure \ref{fig:reference-value-riot-z1}.
+With RIOT, the framework outputted an average context switching time of 30.6971 $\mu$s.
+The difference with the real context switching time is 2.9981 $\mu$s making the framework measurements more than $10\%$ above the reference measurements.
+On the other hand, the framework measurements gave the same distribution as the one found with the oscilloscope in the section \ref{sec:ref-measurements} with the figure \ref{fig:reference-value-riot-z1}.
 The measured measurements distribution is shown in the figure \ref{fig:devices-framework-riot-z1}.
 
 \begin{figure}[!ht]

@@ -4,29 +4,29 @@ Building a complete benchmarking framework is an ambitious work that requires a 
 In the scope of our thesis, we chose to narrow down our objective and produce only a proof-of-concept.
 By implementing this proof-of-concept framework, we want to show that it is possible to build a large benchmarking framework given more time and effort.
 
-From the criteria previously described, we have decided to reduce the first two by focusing only on a specific set of RTOS and a specific metric.
-We have reduce our framework implementation to a benchmarking of the context switching time and to RTOS that use a cooperative scheduler.
-For the last two criteria, we keep them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
+From the criteria previously described, we decided to reduce the first two by focusing only on a specific set of RTOS and a specific metric.
+We reduced our framework implementation to a benchmarking of the context switching time and to RTOS that use a cooperative scheduler.
+For the last two criteria, we kept them untouched in order to build a benchmarking framework the most hidden and easy-to-use for the developer.
 
 By implementing a proof-of-concept, we want to show that it is possible to build a complete framework capable of benchmarking the interrupt latency, the memory usage and the energy consumption of any RTOS.
 
 \subsection{Context-switching time centric framework}
 
 We chose to focus on the context switching time for the metric of our benchmarking framework because, in the context of embedded devices, the time spent between two tasks must be the smallest possible.
-Benchmarking the context switching time can help the developer to reduce the time lost between two tasks.
+Benchmarking the context switching time can help the developer reduce the time lost between two tasks.
 Moreover, by considering the interrupt handler as a task, it is possible to compute the interrupt latency with the context switching time.
 
 \subsection{Scheduler limitations}
 
 We chose to only use RTOS with cooperative scheduler because this kind of scheduler allows us to know when a task is in the foreground and when it goes to the background.
-With a preemptive scheduler, in the other hand, we do not know when the task is preempted.
+With a preemptive scheduler, on the other hand, we do not know when the task is preempted.
 
 For example, in Contiki, the developer can use macros like \texttt{PROCESS\_PAUSE()} or \texttt{PROCESS\_WAIT\_EVENT()} to let other tasks run in a cooperative fashion.
 The complete list of macros and more information can be found in the Contiki processes documentation \cite{contiki-processes}.
 
-RIOT, in the other hand, uses a preemptive scheduler.
+RIOT, on the other hand, uses a preemptive scheduler.
 But it is possible to implement an application in a cooperative fashion.
 By defining the tasks priorities at the same value, it is possible to call \texttt{thread\_yield()} to provoke a context switch.
 More information can be found in the scheduler documentation \cite{riot-scheduler} of RIOT.
 
-For those reasons, we chose to focus our work on these two RTOS: Contiki and RIOT.
+For those reasons, we chose to focus our work on these RTOS: Contiki and RIOT.

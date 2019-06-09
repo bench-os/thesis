@@ -25,7 +25,7 @@ Let's take for example, the case of a developer who want to measure the latency 
 A benchmark will only provide a latency measurement based on predefined tasks and within a controlled environment.
 If our developer wants to measure the real latency of its application, he will need to use an oscilloscope and take the time to do the measurements.
 
-However, this kind of devices is costly and some developers can not afford them.
+However, these devices are expensive and some developers can not afford them.
 Furthermore, working with external devices takes time and can dramatically slows down the development process.
 
 For those reasons, we wanted to build a benchmarking framework that the developer could run on any RTOS with any application.
@@ -34,7 +34,7 @@ Ideally, the use case for any developer using our benchmarking framework would b
 This scenario is hypothetic and does not represent the state of our work.
 The developer implements an application with multiple tasks on a specific device.
 The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
-The developer flashes its application on the device and the framework output continuously performance measurement of the application.
+The developer flashes its application on the device and the framework outputs continuous performance measurement of the application.
 With this framework, the developer can optimize its application or change the device and check if the measurements are improved.
 
 \subsection{Criteria}
@@ -53,7 +53,7 @@ Our framework should be able to provide those metrics as well.
 
 \paragraph{Hidden for the developer}
 The developer should not need to worry about integrating our framework in its application.
-Using or not our framework should not change the source code of the application and allow the developer to directly deploy it in a production environment.
+Using it or not, our framework should not change the source code of the application and allow the developer to directly deploy it in a production environment.
 
 \paragraph{Easy to use and to configure}
 Using an oscilloscope or any external device to benchmark an embedded application takes time and effort for the developer.
@@ -61,12 +61,17 @@ Our framework should be able to improve the benchmarking process by being easy t
 
 \subsection{Approaches}
 
-In order to develop this framework, we explored in three different approaches.
+In order to develop this framework, we explored three different approaches.
 We introduced them here so that the reader have already in mind our three experiments but each one of them is described later in the chapter \ref{chap:experiment}.
 
 \paragraph{Integrating the framework in the kernel of the RTOS}
+<<<<<<< HEAD
 Our first approach is to integrate the framework in the heart of the RTOS.
 By focus our implementation in the kernel space, we would be able to retrieve performance measurements without altering the user space and the application.
+=======
+Our first approach was to integrate the framework in the heart of the RTOS.
+By focusing our implementation in the kernel space, we would be able to retrieve performance measurements without altering the user space and the application.
+>>>>>>> Update with victor's review
 This approach is detailed in the section \ref{sec:kernel}.
 
 \paragraph{Implementing the framework as an extension of the RTOS}

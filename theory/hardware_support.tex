@@ -12,7 +12,7 @@ Then, it explains what an hardware abstraction layer (HAL) is and how a RTOS use
 
 \subsection{Constrained devices classes}
 
-Constrained devices have been classified in 3 classes by the Internet Engineering Task Force (IETF) with the request for comments RFC7228\cite{RFC7228} in May 2014.
+Constrained devices have been classified into 3 classes by the Internet Engineering Task Force (IETF) with the request for comments RFC7228\cite{RFC7228} in May 2014.
 IETF is a standards organization aiming at improving and maintaining the usability of the Internet.
 Therefore they play a certain role in the evolution of IoT technologies.
 We can argue that IETF is a competent authority over constraints devices since its domain of competence is the Internet.
@@ -38,15 +38,15 @@ Table \ref{tab:constrained-devices-classes} resumes the different constrained de
 \end{table}
 
 \paragraph{Class 0.}
-Those devices are the most constrained.
-There are typically sensor nodes (or motes) in a sensor network.
+These devices are the most constrained.
+They are typically sensor nodes (or motes) in a sensor network.
 There are so constrained that they cannot access Internet without the help of a larger devices.
 The source code of a RTOS is often too heavy to fit in such devices.
 Instead Class-0 devices are usually used bare metal.
 In the embedded world, bare-metal programming is writing code that runs directly on the hardware without any abstraction such as an OS.
 
 \paragraph{Class 1.}
-Those devices are able to talk to each other but via constrained protocols.
+These devices are able to talk to each other but via constrained protocols.
 The use of security protocols are often too heavy for that class.
 %RTOS mainly target this kind of devices.
 RTOS generally require at least a few kB for the strict minimal functionalities to run.
@@ -54,7 +54,7 @@ Therefore, they are not practical for class 0 devices (even if they could techni
 
 
 \paragraph{Class 2.}
-Those devices are the less constrained and can use the same stacks of protocols used in personal computers and servers.
+These devices are the less constrained and can use the same stacks of protocols used in personal computers and servers.
 General-purpose OS can be used for this kind of devices but the class-2 devices can benefit from lightweight and energy-efficient protocols.
 
 \subsection{Hardware abstraction layer}
