@@ -6,16 +6,16 @@ In this way, our framework would be able to intercept interrupts and context swi
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=1]{assets/proxy-framework.pdf}
-  \caption{Benchmarking framework proxy\label{fig:proxy-framework}}
+  \caption{benchmarking framework proxy\label{fig:proxy-framework}}
 \end{figure}
 
 
-However, our main concern was to implement a framework that measures the context switching time without altering it.
+However, our main concern was to implement a framework that measures the context switching time without altering it or impacting the application.
 Indeed, we do not want our framework to slow down the application by adding an overhead.
 To discuss this issue, we have contacted and discussed with some IoT communities.
 Via mailing lists, we communicated with communities from RIOT, Contiki, FreeRTOS, mBed OS and Apache Mynewt.
 We also exchanged ideas with IoT developers through forums on the web.
-The different communities gave us some advices and helped us elaborate our three successive approaches.
+The different communities gave us some advices and helped us elaborate our three following approaches.
 These three approaches are described in this chapter.
 
 \input{experiment/kernel.tex}

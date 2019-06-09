@@ -5,7 +5,7 @@ To assess the performance of our measurements, we first need to compute the real
 This real context switching time will be our reference value.
 
 \subsection{Simple application}
-In order to experiment and test our benchmarking framework, we need to have a simple application on every tested RTOS.
+In order to experiment and test our benchmarking framework, we need to have a simple application for every tested RTOS.
 
 The application contains two indentical tasks.
 The tasks wait for 1ms in the foreground and then goes to the background letting the scheduler runs the next task.
@@ -16,7 +16,7 @@ The source code of one of the two tasks is shown in the listing \ref{lst:simple-
 It uses the \texttt{clock\_delay\_usec()} call to make the task wait for 1ms.
 Finally, we use the \texttt{PROCESS\_PAUSE()} macro to pause the task and let the other task do its iteration.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code}, caption={Source code of a task implemented in Contiki for the simple application}]
+\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code}, caption={source code of a task implemented in Contiki for the simple application}]
 PROCESS_THREAD(task, ev, data)
 {
     PROCESS_BEGIN();
@@ -37,7 +37,7 @@ We can not use the \texttt{xtimer\_usleep()} method as it will lead to a context
 Instead, we used a for loop.
 The \texttt{thread\_yield()} call will perfom a context switch and let the other task run on iteration.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code-riot}, caption={Source code of a task implemented in RIOT for the simple application}]
+\begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code-riot}, caption={source code of a task implemented in RIOT for the simple application}]
 void *threadA(void *arg)
 {
     (void)arg;
@@ -67,7 +67,7 @@ The context switching time happens between the execution of the two tasks and is
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=1]{assets/real-context-switching-time-measurement.pdf}
-  \caption{\label{fig:real-context-switching-time-measurement}Steps in the methodology to compute the real context switching time}
+  \caption{\label{fig:real-context-switching-time-measurement}steps in the methodology to compute the real context switching time}
 \end{figure}
 
 The steps are the following.
@@ -83,14 +83,14 @@ The time for the GPIOs to rise up or down are around 10 nano seconds and can be 
 
 The oscilloscope used for the measurement was the Tektronix MSO 56\footnote{\url{https://www.tek.com/oscilloscope/mso56}} available at the Welcome Lab at UCLouvain.
 We used two channels to measure the voltage of the two GPIOs used by the application.
-The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real-time our measurements.
-A table resume the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
+The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real time our measurements.
+A table resumes the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
 Once we have retrieved 1000 measurements, we export our data in a flash thumb.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.25]{assets/oscilloscope-interface.png}
-    \caption{Interface of the oscilloscope\label{fig:oscilloscope-interface}}
+    \caption{interface of the oscilloscope\label{fig:oscilloscope-interface}}
 \end{figure}
 
 We updated our simple task by adding GPIO calls in order for the oscilloscope to detect it.
@@ -101,7 +101,7 @@ The two tasks use different GPIO in order to differenciate them with the oscillo
 The source code of the updated task is shown in the listing \ref{lst:gpio-task-code}.
 \texttt{GPIO\_SET\_PIN()} and \texttt{GPIO\_CLR\_PIN()} are used to respectively set and clear the GPIO used by the task.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code}, caption={Source code of the task with GPIO calls}]
+\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code}, caption={source code of the task with GPIO calls}]
   PROCESS_THREAD(task, ev, data)
   {
       PROCESS_BEGIN();
@@ -129,7 +129,7 @@ The source code of the updated task is shown in the listing \ref{lst:gpio-task-c
 The source code of the updated task is shown in the listing \ref{lst:gpio-task-code-riot}.
 \texttt{gpio\_set()} and \texttt{gpio\_clear()} are used to respectively set and clear the GPIO used by the task.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code-riot}, caption={Source code of a task implemented in RIOT for the simple application}]
+\begin{lstlisting}[style=CStyle, float, label={lst:gpio-task-code-riot}, caption={source code of a task implemented in RIOT for the simple application}]
     void *thread(void *arg)
     {
         (void)arg;
@@ -171,7 +171,7 @@ Moreover, both Contiki and RIOT support those boards.
     \end{minipage}
 \end{figure}
 
-\subsection{Measurement results\label{sec:ref-measurements}}
+\subsection{Measurements results\label{sec:ref-measurements}}
 
 In the end, we have four differents reference values.
 One for each board and for each RTOS.
@@ -194,12 +194,12 @@ One around $12.56\mu s$ and the other around $12.64\mu s$.
     % \begin{minipage}{.45\textwidth}
         \centering
         \includegraphics[scale=.7]{assets/reference-value-contiki-remote.pdf}
-        \caption{Reference measurements distribution with Contiki on the RE-Mote board\label{fig:reference-value-contiki-remote}}
+        \caption{reference measurements distribution with Contiki on the RE-Mote board\label{fig:reference-value-contiki-remote}}
     % \end{minipage}\hfill
     % \begin{minipage}{.45\textwidth}        
         \centering
         \includegraphics[scale=.7]{assets/reference-value-riot-remote.pdf}
-        \caption{Reference measurements distribution with RIOT on the RE-Mote board\label{fig:reference-value-riot-remote}}
+        \caption{reference measurements distribution with RIOT on the RE-Mote board\label{fig:reference-value-riot-remote}}
     % \end{minipage}
 \end{figure}
 
@@ -212,19 +212,19 @@ The table \ref{tab:reference-value-z1} shows the statistics of the measurements 
 
 The figure \ref{fig:reference-value-contiki-z1} and the figure \ref{fig:reference-value-riot-z1} show the distribution of the reference value with the Z1 board.
 Note that the y-axis is logarithmic.
-This time, RIOT have a strong distribution around $27.625\mu s$.
+This time, RIOT have a normal distribution around $27.625\mu s$.
 For Contiki, in the other hand, we have the majority of our measurements around $32\mu s$ but some measurements are above $100 \mu s$.
 
 \begin{figure}[!ht]
     % \begin{minipage}{.45\textwidth}
         \centering
         \includegraphics[scale=.7]{assets/reference-value-contiki-z1.pdf}
-        \caption{Reference measurements distribution with Contiki on the Z1 board\label{fig:reference-value-contiki-z1}}
+        \caption{reference measurements distribution with Contiki on the Z1 board\label{fig:reference-value-contiki-z1}}
     % \end{minipage}\hfill
     % \begin{minipage}{.45\textwidth}        
         \centering
         \includegraphics[scale=.7]{assets/reference-value-riot-z1.pdf}
-        \caption{Reference measurements distribution with RIOT on the Z1 board\label{fig:reference-value-riot-z1}}
+        \caption{reference measurements distribution with RIOT on the Z1 board\label{fig:reference-value-riot-z1}}
     % \end{minipage}
 \end{figure}
 
@@ -233,5 +233,5 @@ The table \ref{tab:reference-values-resume} resume our reference values with the
 
 \input{assets/reference-values-resume.tex}
 
-Those values will be used during our measurements as the real context switching time on the two boards and with the two RTOS.
-We will compare our measurements with those to assess the performance of our benchmarking framework.
+Those values will be used during our experiments as the real context switching time on the two boards and with the two RTOS.
+To assess the performance of our benchmarking framework, we will compare the framework measurements with the reference measurements.

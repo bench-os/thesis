@@ -1,7 +1,7 @@
 \section{Integrating the framework in the kernel of the RTOS \label{sec:kernel}}
 
 Our first approach was to implement the framework inside the kernel of the RTOS.
-Using this method, we can compute the time it takes for a context switch directly in the scheduler.
+Using this method, we can compute the time it takes for a context switch to occur directly in the scheduler.
 In RTOS, when a task goes to the background, the scheduler goes in foreground and resume the next task.
 The framework would be able to compute the time between the first and the last call of the scheduler computing this way the context switching time.
 
@@ -11,21 +11,21 @@ This approach has some advantages.
 First, it make the framework completely hidden for the developer.
 This is great because it match one of our criteria for the framework.
 The developer could implement its application regardless of the framework operation.
-In results, no source code in the user-space should be altered making it possible to use the framework on previously implemented application.
+In results, no source code in the user space should be altered making it possible to use the framework on previously implemented application.
 Then, one could use the framework on applications already running in production only by updating the RTOS.
 
 \subsection{Limitations}
 
-Unfortunately, we choose to abandon the approach of integrating the framework inside the kernel of RIOT for the following reasons.
+Unfortunately, we chose to abandon the approach of integrating the framework inside the kernel of RTOS for the following reasons.
 First, we were not sure that if we used this methodology we would actually measure the real context switching time.
 It is possible that some calls or functions are executed before the scheduler and that the framework will not take them into account.
 
 Finally, the scheduler implementation is strongly platform-dependent meaning that every platform has its own scheduler source code.
 It is impossible for us to integrate our framework for each existing platforms.
 Some of them are even written in assembly code.
-The listing \ref{lst:cpus-riot} shows a truncated list of all the supported platforms by RIOT.
+For example, the listing \ref{lst:cpus-riot} shows a truncated list of all the supported platforms by RIOT.
 
-\begin{lstlisting}[style=ascii-tree, label={lst:cpus-riot}, caption={Truncated list of platforms supported by RIOT}]
+\begin{lstlisting}[style=ascii-tree, label={lst:cpus-riot}, caption={truncated list of platforms supported by RIOT}]
 cpu/
 ├── arm7_common
 ├── atmega1281

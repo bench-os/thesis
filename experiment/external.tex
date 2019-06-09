@@ -7,7 +7,7 @@ This approach is later mentionned as the devices approach.
 \subsection{Choice of the external device}
 
 Our first idea was to implement it with Python3.7 on a desktop computer.
-Using the UART protocol over USB, the board sends a single byte containing the thread ID that is read by a Python script on the computer.
+Using the Universal Asynchronous Receiver-Transmitter (UART) protocol over USB, the board sends a single byte containing the thread ID that is read by a Python script on the computer.
 
 The motivations for using this alternative are:
 \begin{itemize}
@@ -25,7 +25,7 @@ However, after discussing with the embedded community, we abandonned this idea f
 \end{itemize}
 
 
-Instead, we decided to use a device called the Pocket Science Lab to perform our experiments.
+Instead, we decided to use a device called the Pocket Science Lab (PSLab) to perform our experiments.
 
 \begin{figure}[!ht]
   \centering
@@ -35,7 +35,7 @@ Instead, we decided to use a device called the Pocket Science Lab to perform our
 
 The Pocket Science Lab device from PSLab.io\footnote{\url{https://pslab.io}} comes 
   with a built-in 4-Channel up to 2MSPS oscilloscope, multimeter, 4-Channel, 4 MHz logic analyser, and other digital instruments.
-Using the Python librairy pslab-python\footnote{\url{https://github.com/fossasia/pslab-python}}, we can communicate with the board and experiment with it.
+Using the Python library \texttt{pslab-python}\footnote{\url{https://github.com/fossasia/pslab-python}}, we can communicate with the board and experiment with it.
 With a device like the PSLab, we can leave the benchmarked board that contains our simple application untouched in terms of heavy computations.
 
 \subsection{Role of the different devices}
@@ -63,7 +63,7 @@ The board receives its instructions and sends the measures through UART with the
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=1]{assets/external-benchmarking-framework-schema.pdf}
-  \caption{\label{fig:external-benchmarking-framework-schema}Interaction schema of the devices used in the framework}
+  \caption{\label{fig:external-benchmarking-framework-schema}interaction schema of the devices used in the framework}
 \end{figure}
 
 \subsection{Usage of the Pocket Science Lab}
@@ -72,7 +72,7 @@ The PSLab monitors a single GPIO and measures the context switching time from it
 The figure \ref{fig:external-framework-context-switching-time-measurement} shows the steps in the measurement with the PSLab.
 Each task will set the GPIO up at the start of its execution and then reset the GPIO once it ended.
 In our example, the task 1 set up the GPIO at the step A and the GPIO is in high position at step A'.
-Once the task 1 is finished, it reset the GPIO at the step B that will be in position at step B'.
+Once the task 1 is finished, it reset the GPIO at the step B that will be in low position at step B'.
 The same process occurs for the task 2.
 The task 2 set up the GPIO at step C.
 The GPIO is in high position at step C'.
@@ -82,13 +82,13 @@ From our measurements made with the reference value, we know that the rising tim
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=1]{assets/external-framework-context-switching-time-measurement.pdf}
-  \caption{\label{fig:external-framework-context-switching-time-measurement}Measurement of the context switching time with a single GPIO}
+  \caption{\label{fig:external-framework-context-switching-time-measurement}measurement of the context switching time with a single GPIO}
 \end{figure}
 
 \subsection{Using the framework with our simple application}
 
 To understand the framework implementation, it is important to understand what happens when our simple application boots, 
-  both from the point of view of the benchmarked board or from the point of view of the PSLab and the computer.
+  both from the point of view of the benchmarked board and from the point of view of the PSLab and the computer.
 
 \subsubsection{Point of view of the benchmarked board}
 When the application boots, it will initialize the framework.
@@ -103,7 +103,7 @@ The second task goes in the foreground and will also call \texttt{bench\_on()} a
 The PSLab will listen for an interval between a falling and a rising edge.
 In the figure \ref{fig:external-framework-context-switching-time-measurement}, this interval happens between the step B' and C'.
 For reminder, the rising time can be omitted.
-Once the PSLab detects an interval, it computes its time.
+Once the PSLab detects an interval, it computes its duration.
 This interval time is the context switching time.
 This measure is sent to the computer that will store it.
 
@@ -115,7 +115,7 @@ First, our simple application needs to initialize the framework and start its ta
 Then, we need to add \texttt{bench\_on()} and \texttt{bench\_off()} respectively at the start and at the end of the two tasks.
 The code of the updated application is shown in the listing \ref{lst:external-app-code}.
 
-\begin{lstlisting}[style=CStyle, float, caption={Source code of the simple application in Contiki}, label={lst:external-app-code}]
+\begin{lstlisting}[style=CStyle, float, caption={source code of the simple application in Contiki}, label={lst:external-app-code}]
 #include "contiki.h"
 #include "sys/clock.h"
 #include "bench-context-switching.h"
@@ -162,7 +162,7 @@ During the initializiation, the framework will setup the GPIO as an output port.
 The listing \ref{lst:external-init-code} shows this process.
 The \texttt{bench\_on()} and \texttt{bench\_off()} will just set or reset the GPIO like shown in the listing \ref{lst:external-on-off-code}.
 
-\begin{lstlisting}[style=CStyle, caption={Initializiation of the framework in Contiki}, label={lst:external-init-code}]
+\begin{lstlisting}[style=CStyle, caption={initializiation of the framework in Contiki}, label={lst:external-init-code}]
 void bench_init()
 {
     GPIO_SOFTWARE_CONTROL(GPIO_PORT_TO_BASE(GPIO_C_NUM), GPIO_PIN_MASK(2));
@@ -185,7 +185,7 @@ void bench_off()
 Finally, from the computer, we need to retrieve and store the interval measurements from the PSLab.
 To do so, we use a Python script shown in listing \ref{lst:python-pslab} that connects to the PSLab and retrieves the context switching time between a falling and a rising edge.
 
-The complete source code can be found on the Github repository\url{https://github.com/bench-os/bench-os}.
+The complete source code can be found on the Github repository\footnote{\url{https://github.com/bench-os/bench-os}}.
 
 \begin{lstlisting}[style=CStyle, language=python, caption={Python script to communicate with the PSLab and retrieve the interval measurements}, label={lst:python-pslab}]
 from PSL import sciencelab

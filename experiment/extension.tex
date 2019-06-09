@@ -2,7 +2,7 @@
 
 For this second approach, the idea comes from our discussions with the communities.
 Instead of building the framework inside the kernel, we would implement the framework as a RTOS extension.
-The extension would provide calls that would be used in the user-space of the application.
+The extension would provide calls that would be used in the user space of the application.
 This approach is later mentionned as the extension approach.
 
 \subsection{Definition of RTOS extension}
@@ -13,7 +13,7 @@ To use those extensions, the developer needs to specify them in the \texttt{Make
 Those libraries are called 'apps' for Contiki and 'modules' for RIOT.
 
 \begin{minipage}{.45\textwidth}
-\begin{lstlisting}[style=CStyle, language=make, caption=Example of Makefile using the app \texttt{shell} with Contiki]
+\begin{lstlisting}[style=CStyle, language=make, caption=example of Makefile using the app \texttt{shell} with Contiki]
 CONTIKI_PROJECT = example
 all: $(CONTIKI_PROJECT)
 CONTIKI = ../contiki
@@ -25,7 +25,7 @@ include $(CONTIKI)/Makefile.include
 \end{lstlisting}
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
-\begin{lstlisting}[style=CStyle, language=make, caption=Example of Makefile using the module \texttt{shell} with RIOT]
+\begin{lstlisting}[style=CStyle, language=make, caption=example of Makefile using the module \texttt{shell} with RIOT]
 APPLICATION = example
 BOARD ?= native
 RIOTBASE ?= $(CURDIR)/../riot
@@ -44,26 +44,26 @@ With this in mind, we will make sure that our framework is called only two times
 From these calls, we can deduce the context switching time.
 The figure \ref{fig:internal-framework-ping} shows an example with two tasks.
 The first task starts at the step A and ends at the step A'.
-A context switch occurs between the step A' and the step B, this latter being the start of the second task.
+The context switch occurs between the step A' and the step B, this latter step being the start of the second task.
 The step B' is the end of the second task.
-The idea is to call the framework at each step, A, A', B and B'.
+The idea is to call the framework at each step, A, A', B and B', providing a unique ID.
 The context switching time is measured between the step A' and B.
-The next sections describe the implementation of this framework and what happens when it is used with our simple application.
+The next sections describe the implementation of this framework and how it is used with our simple application.
 
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=1]{assets/internal-framework-ping.pdf}
-  \caption{\label{fig:internal-framework-ping}Pings to the framework}
+  \caption{\label{fig:internal-framework-ping}pings to the framework}
 \end{figure}
 
 \subsection{Using the framework with our simple application}
 
 To understand the implementation of the framework, we need to understand what happens when our simple application boots 
-  and then explain its implementation in the next section.
+  and then explain its implementation.
 
 In the startup of our application, the first task is launched.
 It will call the method \texttt{bench\_ping(TASK\_1)} where \texttt{TASK\_1} is the ID of the first task.
-At this point, we enter in the framework-space like shown in the figure \ref{fig:extension-activity-framework}.
+At this point, we enter in the framework space like shown in the figure \ref{fig:extension-activity-framework}.
 The framework will check if the received ID from the \texttt{bench\_ping()} call is already stored in its context.
 If the received ID match the one stored in the context or if no ID is stored in the context, no context switch occcured and the framework reset its internal timer.
 It also store the received ID in its context.
@@ -85,16 +85,16 @@ In this way, we have computed the context switching time between the first and t
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.7]{assets/extension-activity-framework.pdf}
-  \caption{Activity flow of the framework\label{fig:extension-activity-framework}}
+  \caption{activity flow of the framework\label{fig:extension-activity-framework}}
 \end{figure}
 
 \subsection{Framework implementation}
 
-\subsubsection{Task source code}
+\subsubsection{Application source code}
 For our simple application source code, we just added the call \texttt{bench\_ping()} at the start and the end of each task.
 The listing \ref{lst:bench-task-code} shows how the task source code is impacted in Contiki.
 
-\begin{lstlisting}[float, style=CStyle, label={lst:bench-task-code}, caption={Source code of the application task with \texttt{bench\_ping()} calls}]
+\begin{lstlisting}[float, style=CStyle, label={lst:bench-task-code}, caption={source code of the application task with \texttt{bench\_ping()} calls}]
 PROCESS_THREAD(task, ev, data)
 {
     PROCESS_BEGIN();
@@ -119,7 +119,7 @@ For the framework context, we store the received ID in the \texttt{new\_id} vari
 The \texttt{current\_time} variable is the interval timer.
 The code of the framework context is shown in the listing \ref{lst:context-code}.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:context-code}, caption={Framework context implementation}]
+\begin{lstlisting}[style=CStyle, float, label={lst:context-code}, caption={framework context implementation}]
 struct BContext {
   uint32_t previous_id;
   uint32_t new_id;
@@ -142,14 +142,14 @@ void bench_ping(uint32_t id)
 \end{lstlisting}
 
 When a change is detected, the framework will compute the context switching time 
-  by retrieving the current time and computing its difference with \texttt{current\_time} variable.
+  by retrieving the current time and computing its difference with the \texttt{current\_time} variable.
 The time is computed in ticks for a better precision.
 To retrieve the time in ticks, we used \texttt{RTIMER\_NOW()} in Contiki and \texttt{xtimer\_now().ticks32} in RIOT.
 The internal timer is then reset just before writting the measure into the serial port.
 Then the measure is written to the serial port using the \texttt{printf()} call.
 The code of this measurement is shown in the listing \ref{lst:measurement-code}.
 
-\begin{lstlisting}[style=CStyle, float, label={lst:measurement-code}, caption={Source code of the benchmarking framework implemented in Contiki}]
+\begin{lstlisting}[style=CStyle, float, label={lst:measurement-code}, caption={source code of the benchmarking framework implemented in Contiki}]
 // Compute the difference
 clock_time_t previous = bench_context.current_time;
 clock_time_t current = RTIMER_NOW();

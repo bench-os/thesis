@@ -2,15 +2,19 @@
 
 The first question one can ask is "What does benchmarking an embedded system means?".
 A benchmark measures the performances of a defined system, in our case, an embedded system.
-Those performances can be measured in terms of latency, memory usage or even energy consumption.
+Those performances can be measured in terms of latency, memory usage or even power consumption.
 But we can also see benchmarks that include reliability, interoperability or stability measurements.
-In the scope of our thesis, we chose to only focus on latency measurements.
 
-In order to assess the performances of an application deployed on a RTOS, we wanted to build a benchmarking framework.
+As part of our work, we want to answer two questions.
+
+\begin{itemize}
+  \item Is it possible to implement a benchmarking framework able to measure precise performance metrics, such as the context switching time, without using an oscilloscope?
+  \item Is it possible to implement a benchmarking framework aware of the RTOS that could give usefull metrics such as the memory usage or the power consumption? % TODO Reformulate this question
+\end{itemize}
 
 \subsection{Motivations}
 
-In the RTOS world, benchmarks already exist and some of them are even commercialized. \cite{parmibench} \cite{mibench} \cite{performance-benchmarking}
+In the RTOS world, benchmarks already exist and some of them are even commercialized. \cite{mibench, parmibench, performance-benchmarking}
 However, those benchmarks are just workloads.
 They use a defined set of routines that is used to measure the performances of a RTOS.
 This does not reflect the performances of a real-world application.
@@ -24,14 +28,14 @@ If our developer wants to measure the real latency of its application, he will n
 However, this kind of devices is costly and some developers can not afford them.
 Furthermore, working with external devices takes time and can dramatically slows down the development process.
 
-For those reasons, we wanted to build a benchmarking framework hidden from the developer that he could run on any RTOS with any application.
+For those reasons, we wanted to build a benchmarking framework that the developer could run on any RTOS with any application.
 
 Ideally, the use case for any developer using our benchmarking framework would be the following.
 This scenario is hypothetic and does not represent the state of our work.
 The developer implements an application with multiple tasks on a specific device.
 The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
 The developer flashes its application on the device and the framework output continuously performance measurement of the application.
-With this framework, the developer can optimize its application or change the device and check if the context switching time is improved.
+With this framework, the developer can optimize its application or change the device and check if the measurements are improved.
 
 \subsection{Criteria}
 
@@ -61,13 +65,13 @@ In order to develop this framework, we explored in three different approaches.
 We introduced them here so that the reader have already in mind our three experiments but each one of them is described later in the chapter \ref{chap:experiment}.
 
 \paragraph{Integrating the framework in the kernel of the RTOS}
-Our first approach was to integrate the framework in the heart of the RTOS.
+Our first approach is to integrate the framework in the heart of the RTOS.
 By focus our implementation in the kernel space, we would be able to retrieve performance measurements without altering the user space and the application.
 This approach is detailed in the section \ref{sec:kernel}.
 
 \paragraph{Implementing the framework as an extension of the RTOS}
 The majority of RTOS allow user to develop their own extension without altering the kernel source code.
-We choose to investigate this opportunity with our second approach.
+We chose to investigate this opportunity with our second approach.
 The framework would be an extension of RTOS.
 This implementation is explained in the section \ref{sec:extension}.
 
