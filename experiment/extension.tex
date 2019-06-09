@@ -3,7 +3,7 @@
 For this second approach, the idea comes from our discussions with the communities.
 Instead of building the framework inside the kernel, we would implement the framework as a RTOS extension.
 The extension would provide calls that would be used in the user space of the application.
-This approach is later mentionned as the extension approach.
+This approach is later mentioned as the extension approach.
 
 \subsection{Definition of RTOS extension}
 
@@ -40,7 +40,7 @@ include $(RIOTBASE)/Makefile.include
 \subsection{Framework utilization}
 
 The idea of this second approach is to be able to measure the context switching time without impacting the application.
-With this in mind, we will make sure that our framework is called only two times per task iteration.
+With this in mind, we will make sure that our framework is called only twice per task iteration.
 From these calls, we can deduce the context switching time.
 The figure \ref{fig:internal-framework-ping} shows an example with two tasks.
 The first task starts at the step A and ends at the step A'.
@@ -75,7 +75,7 @@ The stored ID is still \texttt{TASK\_1}.
 
 Now, the second task starts and call the framework with \texttt{bench\_ping(TASK\_2)} where \texttt{TASK\_2} is the ID of the second task.
 The framework will detect an ID change by comparing the received ID, \texttt{TASK\_2}, with the stored ID in its context, \texttt{TASK\_1}.
-This change means that a context switch occured.
+This change means that a context switch occurred.
 We are between the step A' and B in the figure \ref{fig:internal-framework-ping}.
 The framework will measure the context switching time by computing the difference between the actual timer and its internal timer.
 The measure is then written on the serial port to be read by an external source like a computer.
@@ -114,8 +114,8 @@ PROCESS_THREAD(task, ev, data)
 
 \subsubsection{Framework source code}
 
-For the framework context, we store the received ID in the \texttt{new\_id} variable 
-  and then use the \texttt{previous\_id} variable to check if a context switch occured.
+In the framework context, we store the received ID in the \texttt{new\_id} variable 
+  and then use the \texttt{previous\_id} variable to check if a context switch occurred.
 The \texttt{current\_time} variable is the interval timer.
 The code of the framework context is shown in the listing \ref{lst:context-code}.
 

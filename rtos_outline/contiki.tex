@@ -23,7 +23,7 @@ By definition, Contiki is not a real-time operating system and has not been desi
 \paragraph{License} Contiki is distributed under a 3-clauses BSD license (also known as Revised BSD license).
 The advertising clause from the original BSD license which stated that "all advertising materials mentioning features or use of the software
 must display an acknowledgement to the organization" is removed.
-This 3-clauses license gives the right to redistribute source code and binares with or without modifications
+This 3-clauses license gives the right to redistribute source code and binaries with or without modifications
     and the software is provided "as is".
 
 %memory allocation/stack and kernel/event driven
@@ -32,12 +32,12 @@ Processes are implemented as event handlers that run to completion.
 An event handler can be defined as a procedure that performs a specific action in response to an event.
 Because event handlers cannot block, the same stack can be shared among them.
 Also, locking mechanisms are not needed as event handlers do not run concurrently.
-Instead of having multiple stacks for multiple threads (which must be over-provisioned or they risk to run out of memory), a single stack can then be used.
+Instead of having multiple stacks for multiple threads (which must be over-provisioned or they risk running out of memory), a single stack can then be used.
 
 This model does not come without problems, as it is sometimes tedious for programmers to manage.
 For example, a time-consuming process such as a cryptographic operation can monopolize the CPU for quite some time 
     and make the system unable to respond to external events. 
-In a preemptive multi-threading system, the computation can be preempted to react to an external event 
+In a preemptive multithreading system, the computation can be preempted to react to an external event 
     and continue the process later.
 To fix this issue, Contiki makes use of an application library that implements preemptible threads.
 This library is optional an can be used with programs that explicitly require it.\\
@@ -54,16 +54,16 @@ Programs written for an event-driven model typically have to be implemented as e
 With protothreads, programs can be written in a sequential fashion without designing explicit state machines.
 
 Protothreads do not serve the same purpose as threads for the event-driven model.
-The concept has been developed to bring a number of benefits of the multi-threaded programming model into Contiki
+The concept has been developed to bring a number of benefits of the multithreaded programming model into Contiki
     and ease the development of applications.\\
 
 %energy saving mechanisms
 Contiki does not provide any specific kernel energy saving mechanism.
-Instead, it lets the application specific parts of the system implement such mechanisms.
+Instead, it lets the application-specific parts of the system implement such mechanisms.
 
 %https://github.com/contiki-os/contiki/wiki/Pull-Request-Policy
 \paragraph{Community} From a community perspective, Contiki revolves around a group of core members (a.k.a. the merge team)\cite{contikipr}.
-Every contribution has to be reviewed by a certain number (1 or 2 depending the topic) of core members before it can be merged.
+Every contribution has to be reviewed by a certain number (1 or 2 depending on the topic) of core members before it can be merged.
 This organization left the project stalled for years now.
 Pull requests are not merged anymore into the project.
 
@@ -73,7 +73,7 @@ Pull requests are not merged anymore into the project.
 %cooja
 Contiki integrates a tool called Cooja.
 Cooja is a network simulator which is designed to simulate a network using Contiki motes.
-Motes can be simulated at the hardware level or with a standard setup allowing faster response but with less precise system behaviour.
+Motes can be simulated at the hardware level or with a standard setup allowing faster response but with less precise system behavior.
 It is an extremely powerful tool which makes developing and debugging tremendously easier even with a large-scale network.
 
 \begin{figure}[!h]

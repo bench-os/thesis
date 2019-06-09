@@ -5,13 +5,13 @@ With two RTOS, Contiki and RIOT, and two boards, the RE-mote and the Z1 boards, 
 With our first approach, we discover that using the internal real-time clock to compute the context switching time is not suited for our benchmarking framework.
 Moreover, outputting measurements to the serial port induce a large overhead that could prevent the benchmarked application to run correctly.
 
-The second approach help our framework to gather precise measurements.
+The second approach helps our framework to gather precise measurements.
 With the PSLab as the external devices, the framework was able to measure precisely the context switching time on both Contiki and RIOT.
 
-When comparing the distribution of the two approaches with the real context switching time distribution, it is clear that the devices approach is the best fit for our benchmarking framework.
+When comparing the distribution of the two approaches to the real context switching time distribution, it is clear that the devices approach is the best fit for our benchmarking framework.
 
 The figure \ref{fig:comparison-all-contiki-remote} and the figure \ref{fig:comparison-all-contiki-z1} show the comparison between the first and the second approach on the RE-mote and the Z1 boards with Contiki.
-With a large distribution, it is difficult to see the difference between the reference distribution and the devices approaches measurements distribution.
+With a large distribution, it is difficult to see the difference between the reference distribution and the devices approach measurements distribution.
 However, we can see that the distribution of the extension approach measurements does not match the distribution of our reference measurements.
 
 \begin{figure}[!ht]
@@ -27,8 +27,8 @@ However, we can see that the distribution of the extension approach measurements
 \end{figure}
 
 The figure \ref{fig:comparison-all-riot-remote} and the figure \ref{fig:comparison-all-riot-z1} show the comparison between the first and the second approach on the RE-mote and the Z1 boards with RIOT.
-The devices approach is the closest from the reference meaasurements.
-As the distribution measurements is more narrow with RIOT than with Contiki, the difference is more visible.
+The devices approach is the closest to the reference measurements.
+As the distribution measurements is narrower with RIOT than with Contiki, the difference is more visible.
 
 \begin{figure}[!ht]
   \centering

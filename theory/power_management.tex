@@ -19,8 +19,8 @@ With the rise of the Internet of Things (IoT), advancements have been made to al
 Numerous communication stacks focused on IoT and low energy consumption have been developed in the last decade.
 %TODO cite examples
 
-Unfortunately lesser attention has been paid to the design of energy-efficient OS for resource-constrained devices.
-Traditional hardware is limited in term of power management and the progress in this field required both software and hardware to evolve.
+Unfortunately less attention has been paid to the design of energy-efficient OS for resource-constrained devices.
+Traditional hardware is limited in terms of power management and the progress in this field required both software and hardware to evolve.
 We will present below some of the advancements made and the technologies developed in recent years\cite{power-mgmt}.
 
 
@@ -44,7 +44,7 @@ This feature stops the CPU clocks so that it is put to sleep unless
 
 \subsubsection{Real-time clock wake up support}
 % https://www.electronics-tutorials.ws/connectivity/real-time-clocks.html
-When a CPU is in sleep mode, there is two possibilities to wake it up with an on-chip RTC or by an external event.
+When a CPU is in sleep mode, there are two possibilities to wake it up with an on-chip RTC or by an external event.
 The on-chip RTC is a low-frequency clock (usually around 32kHz) that does not drain a lot of battery life.
 RTC can include alarm functions: timers that when reached, trigger the RTC to wake up the processor.
 
@@ -62,7 +62,7 @@ The voltage is continuously monitored and adjusted during the runtime.
 
 \subsubsection{Peripherals state control}
 Peripherals state control makes use of the clock-gating feature provided by the hardware.
-Thanks to this feature, only the peripherals clocks required by the application at a certain point in time are active.
+Thanks to this feature, only the peripheral clocks required by the application at a certain point in time are active.
 The other clocks are gated and do not consume energy.
 
 \subsubsection{Sleep mode}
@@ -78,7 +78,7 @@ Tick suppression defines the principle of providing tick-less support for the sc
 
 In a regular scheduler, a periodic timer (tick interrupt) is used to track time.
 This tick interrupt wakes up the CPU to perform a scheduling cycle.
-Such a mechanism, even if punctual, is frequent and then depletes power in a non-negligeable way by entering and exiting sleep mode frequently\cite{freertos-tick-supp}.
+Such a mechanism, even if punctual, is frequent and then depletes power in a non-negligible way by entering and exiting sleep mode frequently\cite{freertos-tick-supp}.
 
 In a tick-less scheduler, the tick interrupt is disabled when the idle task is running.
 Stopping the tick interrupt allows the CPU to remain in a deep power-saving state 

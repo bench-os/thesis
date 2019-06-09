@@ -7,20 +7,20 @@
 %RTOS and IoT their impact and interconnections
 \subsubsection*{Embedded Systems, Real-Time Operating Systems and Internet of Things}
 
-Embedded Systems have been around since a while now.
+Embedded Systems have been around for a while now.
 %http://web.mit.edu/aeroastro/news/magazine/aeroastro6/mit-apollo.html
-One of the well known first modern embedded system was the Apollo Guidance Computer (AGC) designed in the 60's
+One of the first well-known modern embedded systems was the Apollo Guidance Computer (AGC) designed in the 60's
     which contributed to the monumental success of sending a man on the Moon.
-By its design, the software that was developped for it would become a precursor of what is now known as Real-Time Operating Systems.
-Although not necessarly, Real-Time Operating Systems (RTOS) are well often used inside embedded systems and countless examples exist to prove it.
-We already mentioned the aerospace industry which is certainly in high demand of embedded systems, 
+By its design, the software that was developed for it would become a precursor of what is now known as Real-Time Operating Systems.
+Although not necessarily, Real-Time Operating Systems (RTOS) are well often used inside embedded systems and countless examples exist to prove it.
+We already mentioned the aerospace industry which is certainly in high demand for embedded systems, 
     but we can also mention the automotive, medical or military industries.
 From a more consumer point of view we can mention home automation, digital cameras or even washing machines.
 
 In the past two decades, embedded devices benefited from the explosion of the Internet which brought them 
     the ability to communicate and interact with each other and more globally with anything connected to the Internet.
 The age of the Internet of Things (IoT) as it is called brought countless of new applications for embedded systems.
-Billions of those connected devices are now in use as of today with no sign of getting out of trend.
+Billions of those connected devices are now in use as of today with no sign of getting out of the trend.
 
 %Benchmarking of RTOS
 \subsubsection*{Benchmarking of Real-Time Operating Systems}
@@ -30,7 +30,7 @@ In computer science, softwares are used to benchmark the performances of compute
 %https://www.hammerdb.com/
 Compilers or database management systems (dbms) are a good example; many tools are available to benchmark them such as HammerDB.
 
-Preliminary researches we made for this thesis revealed that solutions already exist in order to benchmark real-time operating systems.
+Preliminary research we made for this thesis revealed that solutions already exist in order to benchmark real-time operating systems.
 We can cite \texttt{MiBench}\cite{mibench}, an embedded benchmark suite and also \texttt{ParMiBench}\cite{parmibench}, its equivalent for multiprocessor systems.
 
 We then came up with the idea of building a benchmarking tool not to benchmark the operating systems but the applications built on top of them.
@@ -40,7 +40,7 @@ We then came up with the idea of building a benchmarking tool not to benchmark t
 In September 2018, we went to the RIOT Summit 2018 in Amsterdam in order to meet developers and researchers specialized in the RTOS area.
 
 This was the third summit of the RIOT community.
-Every year the members of the community gather and talk about their projects and the future work for RIOT-OS.
+Every year the members of the community gather and talk about their projects and the future work for RIOT.
 The summit was divided into two days. 
 During the first day, 12 speakers presented their work. 
 On the second day, tutorials were given and breakout groups ended the summit.
@@ -48,12 +48,12 @@ On the second day, tutorials were given and breakout groups ended the summit.
 By talking to developers that were present at the summit, we learned that the STM32F4 series microcontroller is a good choice to perform a benchmark on RTOS. 
 With its ARM Cortex-M4 based MCU, it compiles a large variety of RTOS.
 
-Additionaly, we discussed about our idea to use a logical analyzer to perform time analysis. 
+Additionally, we discussed our idea to use a logical analyzer to perform time analysis. 
 Gilles Doffe from Savoir-faire Linux confirmed our opinion about using this kind of devices for our benchmarking.
 
-During this summit, we discovered a large number of application of RIOT-OS and RTOS in general.
-We talked to some of the maintainers of RIOT-OS and other developers. 
-With their expertise and their advices, we got references to hardwares and softwares that could be useful for our work.
+During this summit, we discovered a large number of applications of RIOT and RTOS in general.
+We talked to some of the maintainers of RIOT and other developers. 
+With their expertise and their advice, we got references to hardwares and softwares that could be useful for our work.
 
 %
 %Objectives
@@ -63,7 +63,7 @@ The objective of the present work is dual.
 
 %theory of rtos
 First, we wanted to gather information in order to present a theoretical state of the art about RTOS.
-The litterature about RTOS is really sparse and technical.
+The literature of RTOS is really sparse and technical.
 We wanted to summarize and give an introduction of what makes the specificities of real-time operating systems.
 
 %framework
@@ -71,10 +71,10 @@ Next, we implemented a proof-of-concept and explored multiple ways to build a be
 
 %what it brings
 We did not want to build a new benchmarking tool for RTOS as multiple tools are already available.
-We then developped the idea for the RTOS application benchmarking framework and discussed it with the RIOT community at the RIOT Summit.
+We then developed the idea for the RTOS application benchmarking framework and discussed it with the RIOT community at the RIOT Summit.
 The feedback was positive and many found the idea really interesting to explore.
 We believe that a complete benchmarking tool for RTOS applications can benefit the industry 
-    and help it in designing better fitted applications in constraints environements.
+    and help it in designing better fitted applications in constraint environments.
 %
 %Outline
 %
@@ -84,11 +84,11 @@ The present document is divided in two parts.\\
 %part1
 Chapter 1 of the first part is a summary of RTOS theory.
 It provides information needed in order to understand the second part.
-It also can be read independently from the rest of the document and gives a good glimpse at RTOS design.
+It can also be read independently from the rest of the document and gives a good glimpse at RTOS design.
 
 Chapter 2 provides a comparison of different RTOS from a theoretical point of view.
 We chose to study and analyze RIOT, Contiki and FreeRTOS.
-They give a good example of real implementation of the theory developped in the first chapter.
+They give a good example of a real implementation of the theory developed in the first chapter.
 We also developed our proof-of-concept framework for these OS, so they are then presented first.\\
 
 %part2

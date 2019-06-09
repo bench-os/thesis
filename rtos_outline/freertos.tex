@@ -29,10 +29,10 @@ If it is indeed the case, it checks the priority level of the task and compares 
 %tasks and coroutines
 %https://www.freertos.org/taskandcr.html
 %https://www.researchgate.net/profile/Ming_Yuan_Zhu/publication/308692183_Understanding_FreeRTOS_A_Requirement_Analysis/links/57eb301108ae5d93a4816184.pdf
-Since FreeRTOS uses the multi-threading paradigm, the code can be structured as a set of tasks.
-As explained in the first chapter, each task use its own stack and therefore has its own context.
+Since FreeRTOS uses the multithreading paradigm, the code can be structured as a set of tasks.
+As explained in the first chapter, each task uses its own stack and therefore has its own context.
 
-In addition to tasks, FreeRTOS includes a another mechanism called \texttt{co-routine}\cite{freertos-tasks-coroutines}\cite{freertos-tasks-coroutines2}.
+In addition to tasks, FreeRTOS includes another mechanism called \texttt{co-routine}\cite{freertos-tasks-coroutines}\cite{freertos-tasks-coroutines2}.
 Co-routines are similar to tasks but have some fundamental differences which justify their usage:
 \begin{itemize}
     \item They share the same stack between them which greatly decrease the memory wasted in provisioning.
@@ -47,10 +47,10 @@ Nonetheless, they stay a relevant alternative to tasks for specific usages.\\
 FreeRTOS also supports tickless idle mode, similarly to RIOT.
 Since FreeRTOS is highly configurable, the developer can activate this feature 
     by setting the variable \texttt{configUSE\_TICKLESS\_IDLE} as 1 in \texttt{FreeRTOSConfig.h}.
-A custom built tickless idle mode can also be provided by the developer and used by setting the same variable to 2.
+A custom-built tickless idle mode can also be provided by the developer and used by setting the same variable to 2.
 This feature can be used when a default implementation in not provided for a certain board.
 %memory allocation
 
-\paragraph{Community} From a community standpoint, FreeRTOS makes the distinction between official an supported code base and user contributed code.
-The first is developped by Amazon Web Services when the second is available on a distinct \href{https://interactive.freertos.org/hc/en-us}{website}.%TODO fix href
+\paragraph{Community} From a community standpoint, FreeRTOS makes the distinction between official and supported code base and user-contributed code.
+The first is developed by Amazon Web Services when the second is available on a distinct \href{https://interactive.freertos.org/hc/en-us}{website}.%TODO fix href
 The project is very Amazon-centric and makes it difficult to federate a community.

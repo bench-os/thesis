@@ -1,17 +1,17 @@
 \section{System architecture}
 
 Operating systems for embedded devices started appearing in the 00's.
-Since then design choices have evolved with the technology, researches and trends.
+Since then design choices have evolved with the technology, research and trends.
 \\
 In the subsection \ref{subsect:kernel-arch}, we will explain the different kernel architectures commonly found in RTOS and their impact on the operating system.
-But beforehand, we will introduce some concepts that will help explaining the kernel architectures.
+But beforehand, we will introduce some concepts that will help explain the kernel architectures.
 
 \subsection{Kernel}
 The kernel is the center piece of an operating system.
 The role of the kernel is to manage every critical function of an operating system.
 The kernel could technically run by itself but it would not be very practical.
 An operating system is built around its kernel and in the case of an RTOS, kernel design is critical for ensuring strict deadlines.
-The tasks a kernel usually manages consist in:
+The tasks a kernel usually manages consist of:
 \begin{itemize}
     \item Memory management
     \item Process and CPU scheduler
@@ -28,7 +28,7 @@ The goal is to provide memory and hardware protection against malicious or fault
 The first one, the kernel space, is dedicated to operations the most related to the hardware.
 It is reserved for the most sensitive operations of the operating system.
 Due to its central position in the operating system, any bug in the kernel can lead to system failure.
-In order for an user process to use the hardware, it must ask permission to the kernel through an API so that the kernel performs the operation for the process.
+In order for a user process to use the hardware, it must ask permission from the kernel through an API so that the kernel performs the operation for the process.
 
 The second one, the user space is dedicated to all the code running outside of the kernel space such as applications, programs and libraries.
 Each user-space process has its own memory space and cannot access the memory of another process (unless they use shared memory)\cite{usna}.
@@ -104,7 +104,7 @@ The servers functionalities are often features of the kernel that can run in the
     rather than the kernel space (such as the file system, network features or device access)\cite{musaddiq2018survey}.
 A message-passing communication mechanism is used to communicate between the kernel and the servers.
 The main purpose of the microkernel is to handle the communication between the application and the servers
-    and to perform the critical operations, such as accessing input/output (I/O) device registers, that would be difficult or inefficient to perform in user space.
+    and to perform critical operations, such as accessing input/output (I/O) device registers, that would be difficult or inefficient to perform in user space.
 
 % Interrupt handling
 Interrupt requests are handled by transforming them into messages to the appropriate handling task.
@@ -121,7 +121,7 @@ From a maintainer point of view, it is also less complex, easier to understand a
 The microkernel architecture needs an IPC.
 A message-passing mechanism must be used and is inheritantly slower than a direct function calls.
 \\
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.8]{assets/kernel_types.pdf}
     \caption{\label{fig:kernel-types}different kernel designs}
@@ -131,6 +131,6 @@ A message-passing mechanism must be used and is inheritantly slower than a direc
 % Complete by mentioning other types?
 Of course there are more architectures than what is listed above.
 But in the context of this thesis, we considered that explaining each one in detail would not be relevant.
-The two designs presented are the most common and provide a good preview of at what a kernel looks like.
+The two designs presented are the most common and provide a good preview of what a kernel looks like.
 Also, the following parts of this thesis will expand on this
     and we will see in practice what each RTOS uses from the theory.

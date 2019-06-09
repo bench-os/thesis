@@ -2,7 +2,7 @@
 
 Our third and last approach was to use an external device to compute the context switching time.
 In this way, all the heavy computational processes are done outside of the benchmarked board.
-This approach is later mentionned as the devices approach.
+This approach is later mentioned as the devices approach.
 
 \subsection{Choice of the external device}
 
@@ -16,7 +16,7 @@ The motivations for using this alternative are:
   \item Using Python3.7, we can achieve a time precision at the nanosecond.
 \end{itemize}
 
-However, after discussing with the embedded community, we abandonned this idea for the following reasons:
+However, after discussing with the embedded community, we abandoned this idea for the following reasons:
 \begin{itemize}
   \item There is buffering happening on the USB-serial chip on the board, on the PC's USB hardware, in the PC USB-serial driver 
     and also in the desktop operating systems;
@@ -34,7 +34,7 @@ Instead, we decided to use a device called the Pocket Science Lab (PSLab) to per
 \end{figure}
 
 The Pocket Science Lab device from PSLab.io\footnote{\url{https://pslab.io}} comes 
-  with a built-in 4-Channel up to 2MSPS oscilloscope, multimeter, 4-Channel, 4 MHz logic analyser, and other digital instruments.
+  with a built-in 4-channel up to 2MSPS oscilloscope, multimeter, 4-channel, 4 MHz logic analyzer, and other digital instruments.
 Using the Python library \texttt{pslab-python}\footnote{\url{https://github.com/fossasia/pslab-python}}, we can communicate with the board and experiment with it.
 With a device like the PSLab, we can leave the benchmarked board that contains our simple application untouched in terms of heavy computations.
 
@@ -52,7 +52,7 @@ Its role is to simply run the application and change the state of the GPIO depen
 
 \subsubsection{The computer}
 The computer is the brain of the benchmarking framework.
-It is responsible of communicating with both the benchmarked board and the PSLab through the UART protocol.
+It is responsible for communicating with both the benchmarked board and the PSLab through the UART protocol.
 It coordinates the benchmarked board and the PSLab in order to retrieve the context switching time.
 The computer is also the place where all the data are gathered.
 
@@ -93,17 +93,17 @@ To understand the framework implementation, it is important to understand what h
 
 \subsubsection{Point of view of the benchmarked board}
 When the application boots, it will initialize the framework.
-An initializiation is required to use the GPIO.
-Once the initializiation is done, the first task starts.
+An initialization is required to use the GPIO.
+Once the initialization is done, the first task starts.
 It will call \texttt{bench\_on()} from the framework.
-In the framework-space, \texttt{bench\_on()} will have for effect to set the GPIO up.
+In the framework space, \texttt{bench\_on()} will have for effect to set the GPIO up.
 When the task is done, it will call \texttt{bench\_off()} that will reset the GPIO.
-The second task goes in the foreground and will also call \texttt{bench\_on()} and, latter, \texttt{bench\_off()}.
+The second task goes in the foreground and will also call \texttt{bench\_on()} and, later, \texttt{bench\_off()}.
 
 \subsubsection{Point of view of the PSLab and the computer}
 The PSLab will listen for an interval between a falling and a rising edge.
 In the figure \ref{fig:external-framework-context-switching-time-measurement}, this interval happens between the step B' and C'.
-For reminder, the rising time can be omitted.
+For a reminder, the rising time can be omitted.
 Once the PSLab detects an interval, it computes its duration.
 This interval time is the context switching time.
 This measure is sent to the computer that will store it.
@@ -159,11 +159,11 @@ PROCESS_THREAD(task_1, ev, data)
 // task_2 is identical to task_1
 \end{lstlisting}
 
-During the initializiation, the framework will setup the GPIO as an output port. 
+During the initialization, the framework will setup the GPIO as an output port. 
 The listing \ref{lst:external-init-code} shows this process.
 The \texttt{bench\_on()} and \texttt{bench\_off()} will just set or reset the GPIO like shown in the listing \ref{lst:external-on-off-code}.
 
-\begin{lstlisting}[style=CStyle, caption={initializiation of the framework in Contiki}, label={lst:external-init-code}]
+\begin{lstlisting}[style=CStyle, caption={initialization of the framework in Contiki}, label={lst:external-init-code}]
 void bench_init()
 {
     GPIO_SOFTWARE_CONTROL(GPIO_PORT_TO_BASE(GPIO_C_NUM), GPIO_PIN_MASK(2));

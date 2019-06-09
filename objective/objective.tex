@@ -9,7 +9,7 @@ As part of our work, we want to answer two questions.
 
 \begin{itemize}
   \item Is it possible to implement a benchmarking framework able to measure precise performance metrics, such as the context switching time, without using an oscilloscope?
-  \item Is it possible to implement a benchmarking framework aware of the RTOS that could give usefull metrics such as the memory usage, the power consumption or the CPU utilization? % TODO Reformulate this question
+  \item Is it possible to implement a benchmarking framework aware of the RTOS that could give useful metrics such as the memory usage, the power consumption or the CPU utilization? % TODO Reformulate this question
 \end{itemize}
 
 \subsection{Motivations}
@@ -18,20 +18,20 @@ In the RTOS world, benchmarks already exist and some of them are even commercial
 However, those benchmarks are just workloads.
 They use a defined set of routines that is used to measure the performances of a RTOS.
 This does not reflect the performances of a real-world application.
-A benchmark must be a tool that a developer can use to have a fair comparison of two systems.
+A benchmark must be a tool that a developer can use to make a fair comparison of two systems.
 
 Developers find themselves using other tools to assess the performances of their applications.
-Let's take for example, the case of a developer who want to measure the latency of its application.
+Let's take for example, the case of a developer who wants to measure the latency of its application.
 A benchmark will only provide a latency measurement based on predefined tasks and within a controlled environment.
 If our developer wants to measure the real latency of its application, he will need to use an oscilloscope and take the time to do the measurements.
 
-However, these devices are expensive and some developers can not afford them.
-Furthermore, working with external devices takes time and can dramatically slows down the development process.
+However, these devices are expensive and some developers cannot afford them.
+Furthermore, working with external devices takes time and can dramatically slow down the development process.
 
 For those reasons, we wanted to build a benchmarking framework that the developer could run on any RTOS with any application.
 
 Ideally, the use case for any developer using our benchmarking framework would be the following.
-This scenario is hypothetic and does not represent the state of our work.
+This scenario is hypothetical and does not represent the state of our work.
 The developer implements an application with multiple tasks on a specific device.
 The developer wants to measure the performance of its application and, to do so, set a flag in the Makefile of its application to turn on the benchmarking framework.
 The developer flashes its application on the device and the framework outputs continuous performance measurement of the application.
@@ -62,7 +62,7 @@ Our framework should be able to improve the benchmarking process by being easy t
 \subsection{Approaches}
 
 In order to develop this framework, we explored three different approaches.
-We introduced them here so that the reader have already in mind our three experiments but each one of them is described later in the chapter \ref{chap:experiment}.
+We introduced them here so that the reader has already in mind our three experiments but each one of them is described later in the chapter \ref{chap:experiment}.
 
 \paragraph{Integrating the framework in the kernel of the RTOS}
 Our first approach was to integrate the framework in the heart of the RTOS.

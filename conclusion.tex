@@ -2,7 +2,7 @@
 
 \section*{First objective}
 The first objective of the thesis was to summarize the theory underlying RTOS.
-We gathered what we consider the important features in a RTOS.
+We gathered what we consider the important features in RTOS.
 In some points they are similar to general purpose OS but they often implement specificities that are not found in a regular OS.
 We presented 3 different embedded OS and compared them from a theoretical point-of-view.
 
@@ -10,9 +10,9 @@ We presented 3 different embedded OS and compared them from a theoretical point-
 The second objective was to develop a proof-of-concept showing to implementing a framework to benchmark RTOS applications is possible.
 We had two questions regarding this framework.
 The first question was to know if it is possible to build a benchmarking framework capable of performing precise measurements without the use of an oscilloscope.
-The second one was to determine if such a framework could be able to retrieve information usefull in the context of a RTOS.
+The second one was to determine if such a framework could be able to retrieve information useful in the context of RTOS.
 
-We started by developping a kernel-integrated framework but it proved more difficult than expected.
+We started by developing a kernel-integrated framework but it proved more difficult than expected.
 This approach was not explored further.
 
 The second approach was to develop a middleware between the RTOS and the application.
@@ -20,20 +20,20 @@ This method requires modifications in the application for it to call the framewo
 This approach caused a large overhead due to the serial port.
 Moreover, it was not able to perform precise measurements.
 
-The third approach was developped with the issues from the second approach in mind.
-With the help from the PSLab device, which serves as a monitoring device.
+The third approach was developed with the issues from the second approach in mind.
+With the help of the PSLab device, which serves as a monitoring device.
 The PSLab benchmarks the board using GPIO and results are collected with a computer connected to the PSLab.
 This method brought the best results but an overhead is still observed.
 
-In the end, we can answer to our first question by the affirmative.
-We were able to implement a framework capable of measuring with enough precision the context switching time of an application running on a RTOS.
+In the end, we can answer our first question in the affirmative.
+We were able to implement a framework capable of measuring with enough precision the context switching time of an application running on RTOS.
 
 \subsection*{Going further with the framework}
 
 For our second question, improving the framework is possible.
 With the extension approach, it is possible to store more data in a cache while the application runs.
 Such information could be the memory usage of the application but also some statistics of the CPU utilization.
-It would possible to determine which task runs the most or which interrupt is called the most.
-Those datas stored in the cache would be written on the serial port at appropriate times.
+It would be possible to determine which task runs the most or which interrupt is called the most.
+Those data stored in the cache would be written on the serial port at appropriate times.
 
 Moreover, the PSLab is a customizable tool that can be used to measure the power consumption of the boards.

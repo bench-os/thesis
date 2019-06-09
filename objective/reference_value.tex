@@ -7,7 +7,7 @@ This real context switching time will be our reference value.
 \subsection{Simple application}
 In order to experiment and test our benchmarking framework, we need to have a simple application for every tested RTOS.
 
-The application contains two indentical tasks.
+The application contains two identical tasks.
 The tasks wait for 1 ms in the foreground and then goes to the background letting the scheduler run the next task.
 The tasks run in an infinite loop.
 
@@ -33,9 +33,9 @@ PROCESS_THREAD(task, ev, data)
 
 \subsubsection{Implementation in RIOT}
 The source code of on of the two tasks is shown in the listing \ref{lst:simple-task-code-riot}.
-We can not use the \texttt{xtimer\_usleep()} method as it will lead to a context switch.
+We cannot use the \texttt{xtimer\_usleep()} method as it will lead to a context switch.
 Instead, we used a for loop.
-The \texttt{thread\_yield()} call will perfom a context switch and let the other task run on iteration.
+The \texttt{thread\_yield()} call will perform a context switch and let the other task run on iteration.
 
 \begin{lstlisting}[style=CStyle, float, label={lst:simple-task-code-riot}, caption={source code of a task implemented in RIOT for the simple application}]
 void *threadA(void *arg)
@@ -58,13 +58,13 @@ In order to compute the real context switching time, we used an oscilloscope and
 Each task of our simple application is responsible of one GPIO.
 In order for the task to use the GPIO, they need to be updated.
 We describe this change in the subsection \ref{sec:measurement-setup}.
-Every time a task is runned and goes to the foreground, it sets its GPIO up.
+Every time a task is run and goes to the foreground, it sets its GPIO up.
 Once the task is finished and goes to the background, it resets its GPIO down.
 
 With the oscilloscope, we can measure the voltage of the two GPIOs and compute the real context switching time from those measurements.
 The figure \ref{fig:real-context-switching-time-measurement} shows the different steps of our methodology.
-On this schema, the execution time of the two tasks are represented above the voltage measurements of the two GPIOs.
-The context switching time happens between the execution of the two tasks and is bordered with dotted lines.
+On this schema, the execution time of the two tasks is represented above the voltage measurements of the two GPIOs.
+The context switching time happens between the execution of the two tasks and is bordered by dotted lines.
 
 \begin{figure}[!ht]
   \centering
@@ -74,18 +74,18 @@ The context switching time happens between the execution of the two tasks and is
 
 The steps are the following.
 The first task sets up its GPIO on step A.
-The GPIO is in high position few nano seconds later on step A'.
+The GPIO is in high position few nanoseconds later on step A'.
 Once the first task is over, it resets its GPIO on step B which goes in low position on step B'.
-In the same way, the second task set up its GPIO on step C which goes in high position on step C' few nano seconds later and reset it on step D which goes in low position on step D'.
+In the same way, the second task set up its GPIO on step C which goes in high position on step C' few nanoseconds later and reset it on step D which goes to low position on step D'.
 The oscilloscope measures the context switching time between the step B' and the step C'.
-The time for the GPIOs to rise up or down are around 10 nano seconds and can be omitted.
+The time for the GPIOs to rise up or down is around 10 nanoseconds and can be omitted.
 
 
 \subsection{Measurements setup\label{sec:measurement-setup}}
 
 The oscilloscope used for the measurements was the Tektronix MSO 56\cite{mso56} available at the Welcome Lab at UCLouvain.
 We used two channels to measure the voltage of the two GPIOs used by the application.
-The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real-time our measurements.
+The interface of the oscilloscope, shown in the figure \ref{fig:oscilloscope-interface}, allows us to directly see in real time our measurements.
 A table resume the measurements displayed in the graph below while we can check the voltage of our two GPIOs in the bottom-right window.
 Once we have retrieved 1000 measurements, we export our data to a flash thumb.
 
@@ -157,7 +157,7 @@ The RE-Mote board\cite{zolertia-remote} and the Z1 board\cite{zolertia-z1}.
 The CPU of the RE-Mote is a ARM Cortex-M3\cite{arm-cortex-m3} 32 MHz clock speed with 512 kB flash and 32 kB RAM.
 The Z1 have a MSP430F2617\cite{msp430} 16 MHz clock speed with 92 kB flash and a 8 kB RAM.
 
-With those specifications, the Zolertia RE-Mote categorizes itself as a Class 2 device and the Zolertia Z1 as a Class 1 device.
+With those specifications, the Zolertia RE-Mote categorizes itself as a Class-2 device and the Zolertia Z1 as a Class-1 device.
 Moreover, both Contiki and RIOT support those boards.
 
 \begin{figure}[!ht]
@@ -206,7 +206,7 @@ One around 12.56 $\mu$s and the other around 12.64 $\mu$s.
 \end{figure}
 
 \subsubsection{Z1 measurements}
-With the Z1 board, we have measured an higher context switching time than with the RE-Mote board. The average context switching time for Contiki is 54.99 $\mu$s and 30.6971 $\mu$s for RIOT.
+With the Z1 board, we have measured a higher context switching time than with the RE-Mote board. The average context switching time for Contiki is 54.99 $\mu$s and 30.6971 $\mu$s for RIOT.
 It is not a surprise that the RE-Mote board have a smaller context switching time than the Z1 board as the latter is a Class-1 device while the former is a Class-2 device.
 The table \ref{tab:reference-value-z1} shows the statistics of the measurements made with the Z1 board.
 
@@ -214,8 +214,8 @@ The table \ref{tab:reference-value-z1} shows the statistics of the measurements 
 
 The figure \ref{fig:reference-value-contiki-z1} and the figure \ref{fig:reference-value-riot-z1} show the distribution of the reference value with the Z1 board.
 Note that the y-axis is logarithmic.
-This time, RIOT have a strong distribution around 27.625 $\mu$s.
-For Contiki, in the other hand, we have the majority of our measurements around 32 $\mu$s but some measurements are above 100 $\mu$s.
+This time, RIOT has a strong distribution around 27.625 $\mu$s.
+For Contiki, on the other hand, we have the majority of our measurements around 32 $\mu$s but some measurements are above 100 $\mu$s.
 
 \begin{figure}[!ht]
     % \begin{minipage}{.45\textwidth}

@@ -1,8 +1,8 @@
 \section{Assessment of the different approaches}
 
 Based on our reference measurements from the section \ref{sec:reference}, we can assess the performance of our two different approaches.
-To determine which approach perfom the best, the difference between the measured context switching time and the real one is used.
-Moreover, comparing the distributions of the measurements can affine the analysis.
+To determine which approach perform the best, the difference between the measured context switching time and the real one is used.
+Moreover, comparing the distributions of the measurements can refine the analysis.
 
 \subsection{Extension approach performance}
 
@@ -18,7 +18,7 @@ This is why the minimal value measured with Contiki on the Z1 board is $30.5175\
 The same logic can be applied with RIOT or the RE-Mote board.
 
 With a slow clock, it is not possible to have precise measures for the context switching time.
-Unfortunately, we did not found any solution to overcome this problem.
+Unfortunately, we did not find any solution to overcome this problem.
 Therefore, it is not possible to compute the context switching time internally.
 
 \subsection{Devices approach performance}
@@ -28,7 +28,7 @@ First, the measurements done with the framework differ only by 2.8\% with both C
 
 On Contiki, we have a maximum difference of $0.5\mu s$ with the reference value.
 When comparing the distributions of the framework measurements with the distributions of the reference measurements, we can see that they match.
-The figure \ref{fig:comparison-devices-framework-contiki-remote} shows the distributions comparison with measuremend made on the RE-Mote board.
+The figure \ref{fig:comparison-devices-framework-contiki-remote} shows the distributions comparison with measurements made on the RE-Mote board.
 
 \begin{figure}[!ht]
   \centering
@@ -36,7 +36,7 @@ The figure \ref{fig:comparison-devices-framework-contiki-remote} shows the distr
   \caption{distributions comparison with Contiki on the RE-Mote board\label{fig:comparison-devices-framework-contiki-remote}}
 \end{figure}
 
-The figure \ref{fig:comparison-devices-framework-contiki-z1} shows the distributions comparison with measuremend made on the Z1 board.
+The figure \ref{fig:comparison-devices-framework-contiki-z1} shows the distributions comparison with measurements made on the Z1 board.
 
 \begin{figure}[!ht]
   \centering

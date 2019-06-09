@@ -15,7 +15,7 @@ The memory of a computer system can be divided into 5 distinct sections\cite{sys
 \begin{itemize}
     \item The \texttt{text} segment or code segment consists of the compiled program code. It is read-only and initialized from the executable file.
     \item The \texttt{data} segment contains the global and static variables, allocated and initialized before the start of the program.
-    \item The \texttt{bss} segment contains all global an static variables that are not initialized.
+    \item The \texttt{bss} segment contains all global and static variables that are not initialized.
     \item The \texttt{heap} is used for the dynamic memory allocation, and is managed via calls to new, delete, malloc, free, etc.
     \item The \texttt{stack} is used for local variables. Space on the stack is reserved for local variables when they are declared.
 \end{itemize}
@@ -67,9 +67,9 @@ When needed, they are allocated using different policies:
 
 \subsubsection{Buddy allocator algorithm}
 This algorithm makes use of an array of linked lists.
-Each list from the array owns blocks of a distinct size.
+Each list of the array owns blocks of a distinct size.
 When requested, the buddy allocator algorithm finds the smallest but large enough block to meet the requirement from the array.
-It then picks one of the block from this position in the array.
+It then picks one of the blocks from this position in the array.
 
 If the list is empty at the position where the best fitting block is located, it goes to the next position in the array
 and splits a block from this list to fill the empty position.
