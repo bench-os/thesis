@@ -42,7 +42,7 @@ With a device like the PSLab, we can leave the benchmarked board that contains o
 
 With the benchmarked board, the PSLab and the computer, we have three devices that we use to compute the context switching time.
 The figure \ref{fig:external-benchmarking-framework-schema} shows the connections between the different devices.
-To make some clarity, we have defined a specific role to each device.
+To make some clarity, we defined a specific role to each device.
 
 \subsubsection{The benchmarked board}
 The benchmarked board runs the RTOS of our choice with the benchmarking framework and the simple application.
@@ -73,7 +73,7 @@ The PSLab monitors a single GPIO and measures the context switching time from it
 The figure \ref{fig:external-framework-context-switching-time-measurement} shows the steps in the measurement with the PSLab.
 Each task will set the GPIO up at the start of its execution and then reset the GPIO once it ended.
 In our example, the task 1 set up the GPIO at the step A and the GPIO is in high position at step A'.
-Once the task 1 is finished, it reset the GPIO at the step B that will be in low position at step B'.
+Once the task 1 is finished, it resets the GPIO at the step B that will be in low position at step B'.
 The same process occurs for the task 2.
 The task 2 set up the GPIO at step C.
 The GPIO is in high position at step C'.
@@ -103,7 +103,7 @@ The second task goes in the foreground and will also call \texttt{bench\_on()} a
 \subsubsection{Point of view of the PSLab and the computer}
 The PSLab will listen for an interval between a falling and a rising edge.
 In the figure \ref{fig:external-framework-context-switching-time-measurement}, this interval happens between the step B' and C'.
-For a reminder, the rising time can be omitted.
+For reminder, the rising time can be omitted.
 Once the PSLab detects an interval, it computes its duration.
 This interval time is the context switching time.
 This measure is sent to the computer that will store it.

@@ -73,7 +73,7 @@ Once again, the framework checks the received ID and no change is detected.
 It resets its internal timer.
 The stored ID is still \texttt{TASK\_1}.
 
-Now, the second task starts and call the framework with \texttt{bench\_ping(TASK\_2)} where \texttt{TASK\_2} is the ID of the second task.
+Now, the second task starts and calls the framework with \texttt{bench\_ping(TASK\_2)} where \texttt{TASK\_2} is the ID of the second task.
 The framework will detect an ID change by comparing the received ID, \texttt{TASK\_2}, with the stored ID in its context, \texttt{TASK\_1}.
 This change means that a context switch occurred.
 We are between the step A' and B in the figure \ref{fig:internal-framework-ping}.

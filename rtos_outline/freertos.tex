@@ -20,7 +20,7 @@ This license gives pretty much no restriction on reusability of the software.
 %scheduler
 %http://richardgoyette.com/Research/Papers/FreeRTOSPaper.pdf
 \paragraph{Technicals} For example, FreeRTOS supports preemptive or cooperative scheduling\cite{goyette}. 
-It also uses Dynamic Priority Scheduling which means that the priorities are defined during runtime.
+It also uses dynamic priority scheduling which means that the priorities are defined during runtime.
 The user can choose which scheduling policy he wants by modifying the \texttt{configUSE\_PREEMPTION} variable in the \texttt{FreeRTOSConfig.h} file.
 In the cooperative case, the only action the scheduler performs is to increase the tick count.
 In the preemptive case, the scheduler increments the tick count and then checks if a task is in the unblocked state.

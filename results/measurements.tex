@@ -1,4 +1,4 @@
-\section{Framework measurements}
+\section{Framework measurements\label{sect:frame-measure}}
 
 We describe in this section the results gathered with the extension approach described in the section \ref{sec:extension} and with the devices approach described in the section \ref{sec:external}.
 For recall, the first approach is to implement the framework as a RTOS module used in the user space and that will compute internally the context switching time.
@@ -12,7 +12,7 @@ The Contiki measurements are displayed side-by-side with the RIOT one for more c
 
 \subsubsection{RE-Mote board measurements}
 With Contiki, the framework outputs measurements with an average of 31.6162 $\mu$s.
-With 0$\mu$s as the minimum value and 457.7636 $\mu$s as the maximum value, the measurements have a large distribution.
+With 0 $\mu$s as the minimum value and 457.7636 $\mu$s as the maximum value, the measurements have a large distribution.
 We have a difference of 13.1112 $\mu$s between the measured context switching time and the real one measured with the oscilloscope.
 
 With RIOT, the framework outputs a constant context switching time of 17 $\mu$s.
@@ -94,7 +94,7 @@ The table \ref{tab:devices-framework-z1} shows the measurement for both Contiki 
 
 \input{assets/devices-framework-z1.tex}
 
-\subsection{Resume}
+\subsection{Summary}
 To give more clarity to the results, the following tables give the average context switching time measured with the two approaches.
 The table \ref{tab:framework-measurements-resume-remote} gives the measurements made on the RE-Mote board.
 The table \ref{tab:framework-measurements-resume-z1} gives the measurements made on the Z1 board.

@@ -1,6 +1,6 @@
 \chapter{Experiment \label{chap:experiment}}
 
-In order to measure the context switching time, we have imagined building our framework as a proxy between the interrupts and the tasks.
+In order to measure the context switching time, we imagined building our framework as a proxy between the interrupts and the tasks.
 In this way, our framework would be able to intercept interrupts and context switches in order to measure them as shown in the figure \ref{fig:proxy-framework}.
 
 \begin{figure}[!ht]
@@ -12,7 +12,7 @@ In this way, our framework would be able to intercept interrupts and context swi
 
 However, our main concern was to implement a framework that measures the context switching time without altering it or impacting the application.
 Indeed, we do not want our framework to slow down the application by adding an overhead.
-To discuss this issue, we have contacted and discussed with some IoT communities.
+To discuss this issue, we contacted and discussed with some IoT communities.
 Via mailing lists, we communicated with communities from RIOT, Contiki, FreeRTOS, mBed OS and Apache Mynewt.
 We also exchanged ideas with IoT developers through forums on the web.
 The different communities gave us some advice and helped us elaborate our three following approaches.
