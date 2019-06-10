@@ -32,7 +32,7 @@ If it is indeed the case, it checks the priority level of the task and compares 
 Since FreeRTOS uses the multithreading paradigm, the code can be structured as a set of tasks.
 As explained in the first chapter, each task uses its own stack and therefore has its own context.
 
-In addition to tasks, FreeRTOS includes another mechanism called \texttt{co-routine}\cite{freertos-tasks-coroutines}\cite{freertos-tasks-coroutines2}.
+In addition to tasks, FreeRTOS includes another mechanism called \texttt{co-routine}\cite{freertos-tasks-coroutines, freertos-tasks-coroutines2}.
 Co-routines are similar to tasks but have some fundamental differences which justify their usage:
 \begin{itemize}
     \item They share the same stack between them which greatly decrease the memory wasted in provisioning.
